@@ -79,7 +79,7 @@
                     <i class="fa fa-6 fa-facebook"></i>
                   </a>
                 </span>
-                March 06, 2015 | <a href="http://www.wagonhq.com/about" target="_blank">Patrick Flor</a>
+                March 06, 2015 | <a /about" target="_blank">Patrick Flor</a>
               </small>
             
           </h2>
@@ -92,7 +92,7 @@
 
 
 
-          <p>In a recent <a href="http://www.wagonhq.com/blog/engineering-at-wagon" target="_blank">engineering blog post</a>, our CTO Mike walked through our system architecture. As a complement, I’d like to describe the tools and processes we use to build Wagon.</p>
+          <p>In a recent <a /blog/engineering-at-wagon" target="_blank">engineering blog post</a>, our CTO Mike walked through our system architecture. As a complement, I’d like to describe the tools and processes we use to build Wagon.</p>
 
 <p>We’re always learning new things from our customers that impact the product and our technologies. Fast iteration based on feedback drives our development, so we have invested significant time in testing, integration, deployment, and monitoring frameworks. We want to minimize the friction needed to turn new ideas into features.</p>
 
@@ -129,7 +129,7 @@
 
 <p>We find a bug! If we’re unsure how to reproduce it, we use Wagon to query our logs to confirm the bug and find more test cases. Since our development setup works just like production, we can quickly spin up a local instance of the specific environment we’re debugging–this makes root cause isolation much easier. When the fix is reviewed (any emoji on the Github PR is our stamp of approval) and merged into master, it automatically kicks off a staging CI build, whose success transitively launches a new build of our hybrid native/JS Mac app. CircleCI gives us a native OS X build environment with scaled-up generative testing, so we have an additional level of verification that our fix performs as expected. Within 5 minutes, the new app build is available in staging and we are alerted in Slack to download and give it a spin. When we’ve queued up a cohesive set of features and fixes, a pull request from master to the production branch automatically cuts a new release and deploys it to users. We then explore and monitor the effects of those changes by querying Wagon’s logs with Wagon.</p>
 
-<p>If this sounds like fun to you, say hi at our sunny office on Valencia St. in San Francisco and check out our <a href="http://www.wagonhq.com/jobs" target="_blank">open positions</a>: we’d love to talk to you!</p>
+<p>If this sounds like fun to you, say hi at our sunny office on Valencia St. in San Francisco and check out our <a /jobs" target="_blank">open positions</a>: we’d love to talk to you!</p>
 
         </div>
       </section>

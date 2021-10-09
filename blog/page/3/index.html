@@ -232,7 +232,7 @@ where origin in (&#39;JFK&#39;, &#39;ORD&#39;, &#39;PHL&#39;)
 group by month, origin;</pre></noscript>
 <script src="https://gist.github.com/jweinstein/9e7e6726a6836f3b8b5f.js"> </script>
 
-<p>Hopefully this post saves you time when you’re interacting with Redshift in R, or even if you are looking to run some more custom queries against your Redshift cluster. <a href="http://www.wagonhq.com/">Sign up for early access to Wagon</a> if you want try for yourself. <em>Gogogo!</em></p>
+<p>Hopefully this post saves you time when you’re interacting with Redshift in R, or even if you are looking to run some more custom queries against your Redshift cluster. <a /">Sign up for early access to Wagon</a> if you want try for yourself. <em>Gogogo!</em></p>
 
 <p>Oh! And, we’re working on a deep integration with R. If you have strong opinions about it, join us at <a href="http://band.wagonhq.com/">band.wagonhq.com</a></p>
 
@@ -310,7 +310,7 @@ group by month, origin;</pre></noscript>
 		<img src="/images/posts/bandwagon_happy_hour.jpg" alt="Wagon hosts monthly happy hours for our users and friends." />
 	</div>
 </div>
-<p><em><span style="float: right;"><a href="http://begriffs.com/posts/2015-07-27-haskell-source-navigation.html">Joe Nelson’s fireside Wagon Haskell chat</a> and a recent <a href="http://www.wagonhq.com/community"><em>#bandwagon</em> happy hour</a> at our office in San Francisco.</span></em></p>
+<p><em><span style="float: right;"><a href="http://begriffs.com/posts/2015-07-27-haskell-source-navigation.html">Joe Nelson’s fireside Wagon Haskell chat</a> and a recent <a /community"><em>#bandwagon</em> happy hour</a> at our office in San Francisco.</span></em></p>
 
 <p><br /></p>
 
@@ -519,7 +519,7 @@ group by month, origin;</pre></noscript>
                   <i class="fa fa-6 fa-facebook"></i>
                 </a>
               </span>
-              July 15, 2015 | <a href="http://www.wagonhq.com/about" target="_blank">Mark Daly</a>
+              July 15, 2015 | <a /about" target="_blank">Mark Daly</a>
             </small>
           </h2>
           
@@ -536,7 +536,7 @@ group by month, origin;</pre></noscript>
 
 <p>As many companies are discovering, mixing <a href="https://medium.com/@collinmathilde/why-desktop-apps-are-making-a-comeback-5b4eb0427647">web and native technologies</a> is very compelling. Early adopters including Slack, Atom, Quip, Visual Studio, Spotify, MapBox, Front, and Nylas have found ways to weave these once unrelated approaches.</p>
 
-<p>At Wagon, we’re using <a href="http://electron.atom.io/">Github’s Electron</a> (previously “Atom-Shell”) as our underlying app framework. Electron was carved out of the Atom editor project and lets us deploy web UIs to the desktop.  Our CTO Mike <a href="http://www.wagonhq.com/blog/engineering-at-wagon">described Wagon’s technical architecture</a>: a Javascript application for user experience along with a native process for database connections and streaming data computation. We want a capable desktop application with the ease of developing for the web.</p>
+<p>At Wagon, we’re using <a href="http://electron.atom.io/">Github’s Electron</a> (previously “Atom-Shell”) as our underlying app framework. Electron was carved out of the Atom editor project and lets us deploy web UIs to the desktop.  Our CTO Mike <a /blog/engineering-at-wagon">described Wagon’s technical architecture</a>: a Javascript application for user experience along with a native process for database connections and streaming data computation. We want a capable desktop application with the ease of developing for the web.</p>
 
 <p><br /></p>
 
@@ -546,7 +546,7 @@ group by month, origin;</pre></noscript>
 
 <p><br /></p>
 
-<p>The earliest alpha of Wagon was a command line program that powered a browser app available at <code>localhost</code>. We soon shipped our first Mac app: a download-able, double-click-able version using <a href="https://github.com/MacGapProject">MacGap</a>. As more people used Wagon, we wanted to update the code silently in the background, deploy to Windows and Linux, and move away from WebKit (we &lt;3 Chromium’s dev tools!). We <a href="http://www.wagonhq.com/release-notes">frequently ship new versions</a> of both the JS and compiled Haskell, and it was painful for our users to manually download and reinstall the application. We briefly considered Mac-specific update mechanisms but it became clear we needed to replace MacGap. In searching for a full-featured, cross-platform web-view container, we found Electron.</p>
+<p>The earliest alpha of Wagon was a command line program that powered a browser app available at <code>localhost</code>. We soon shipped our first Mac app: a download-able, double-click-able version using <a href="https://github.com/MacGapProject">MacGap</a>. As more people used Wagon, we wanted to update the code silently in the background, deploy to Windows and Linux, and move away from WebKit (we &lt;3 Chromium’s dev tools!). We <a /release-notes">frequently ship new versions</a> of both the JS and compiled Haskell, and it was painful for our users to manually download and reinstall the application. We briefly considered Mac-specific update mechanisms but it became clear we needed to replace MacGap. In searching for a full-featured, cross-platform web-view container, we found Electron.</p>
 
 <p><br /></p>
 
@@ -578,7 +578,7 @@ group by month, origin;</pre></noscript>
 
 <p>When we’re ready to roll out a new version of Wagon.app, we use an automated deployment approach built on GitHub and <a href="https://circleci.com/">CircleCI</a>.  When we merge a pull request into the <code>master</code> or <code>production</code> branches of our repos, CircleCI automatically builds the application bundle.  The components are dropped into the Electron app structure, code-signed, and uploaded to S3.  CircleCI also updates a configuration file that our <a href="http://electron.atom.io/docs/v0.29.0/api/auto-updater/">auto-updater API endpoint</a> reads, which lets us notify running instances of Wagon that a new version is available. The update is automatically downloaded in the background, installed, and triggers a desktop notification for the user.</p>
 
-<p>We believe that great software should run in the browser, on phones, and on the desktop. If building across these platforms sounds exciting, check out our <a href="http://www.wagonhq.com/jobs/">open positions</a>, and <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">email us</a> or tweet <a href="https://twitter.com/wagonhq">@WagonHQ</a>. <em>Gogogo!</em></p>
+<p>We believe that great software should run in the browser, on phones, and on the desktop. If building across these platforms sounds exciting, check out our <a /jobs/">open positions</a>, and <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">email us</a> or tweet <a href="https://twitter.com/wagonhq">@WagonHQ</a>. <em>Gogogo!</em></p>
 
         </div>
       </section>
@@ -675,7 +675,7 @@ presentation showcases our product space, technical architecture,
 the libraries we lean on, and our deployment strategy. He also
 discusses Haskell’s learning curve (pros and cons) as well as its
 positive impact on recruiting. It’s one of the core reasons we’re
-able to frequently <a href="http://www.wagonhq.com/release-notes">ship new
+able to frequently <a /release-notes">ship new
 features</a> with confidence.</p>
 
 <p>If a picture is worth a thousand words then a thirty minute video
@@ -691,7 +691,7 @@ Swadling</a> who stepped up to bring everyone together,
 handling everything from food to soliciting talks to the conference
 web presence. We’re looking forward to next year’s conference. In
 the meantime, keep a look out Wagon and community hosted Haskell
-events, or better yet, <a href="http://www.wagonhq.com/jobs">join our team</a>!</p>
+events, or better yet, <a /jobs">join our team</a>!</p>
 
         </div>
       </section>
@@ -843,7 +843,7 @@ spend a day with our team</a>.</p>
 </div>
 
 
-          <p>People use Wagon to query data stored in databases, but sometimes they need to analyze a file that doesn’t (yet) live in a database. Our friend <a href="https://github.com/scpike">Steve Pike</a> recently showcased this hack in <a href="http://www.wagonhq.com/blog/bandwagon">our #bandwagon Slack channel</a>. He used a nifty command line tool called <em>csvsql</em> to automatically create a Postgres table from a CSV file and have it ready for Wagon.</p>
+          <p>People use Wagon to query data stored in databases, but sometimes they need to analyze a file that doesn’t (yet) live in a database. Our friend <a href="https://github.com/scpike">Steve Pike</a> recently showcased this hack in <a /blog/bandwagon">our #bandwagon Slack channel</a>. He used a nifty command line tool called <em>csvsql</em> to automatically create a Postgres table from a CSV file and have it ready for Wagon.</p>
 
 <p style="max-width: 150px; margin: auto;">
 	<img src="/images/posts/wagon_csv.png" alt="CSVs in Wagon" />
@@ -874,7 +874,7 @@ spend a day with our team</a>.</p>
       <li><code>postgres</code> is the name of the database, normally available by default</li>
     </ul>
   </li>
-  <li>Open Wagon and connect to your database: (Don’t have access to Wagon? <a href="http://www.wagonhq.com/">Sign up for early access!</a>)
+  <li>Open Wagon and connect to your database: (Don’t have access to Wagon? <a /">Sign up for early access!</a>)
     <ul>
       <li><em>Nickname</em>: csvsql</li>
       <li><em>Type</em>: Postgres</li>
@@ -942,7 +942,7 @@ spend a day with our team</a>.</p>
   <li><a href="https://twitter.com/rynclark">Ryan Clark</a> has a technical but still approachable <a href="http://ryanclark.me/getting-started-with-react/">Getting Started With React</a> walkthrough. If you like that, read the sibling article <a href="http://ryanclark.me/getting-started-with-flux/">Getting Started with Flux</a> too.</li>
 </ol>
 
-<p>We’ll be doing a deeper dive into Wagon’s React architecture, tooling, and how we see it changing in our next engineering blog post. If you like to hack on React, Flux, Javascript, and <a href="http://electron.atom.io/">Electron</a>, we’re <a href="http://www.wagonhq.com/jobs/frontend-engineer">hiring a frontend engineer</a> in San Francisco. Say hi!</p>
+<p>We’ll be doing a deeper dive into Wagon’s React architecture, tooling, and how we see it changing in our next engineering blog post. If you like to hack on React, Flux, Javascript, and <a href="http://electron.atom.io/">Electron</a>, we’re <a /jobs/frontend-engineer">hiring a frontend engineer</a> in San Francisco. Say hi!</p>
 
         </div>
       </section>

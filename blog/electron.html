@@ -160,7 +160,7 @@
 
 <p><br /></p>
 
-<p>Wagon’s <a href="http://twitter.com/deland">Matt DeLand</a> presented a few tips and tricks for developing, building, and deploying on Windows along with a demo of our latest version. <a href="https://www.wagonhq.com/">Sign up for early access to try Wagon on Windows</a>.</p>
+<p>Wagon’s <a href="http://twitter.com/deland">Matt DeLand</a> presented a few tips and tricks for developing, building, and deploying on Windows along with a demo of our latest version. <a /">Sign up for early access to try Wagon on Windows</a>.</p>
 
 <script async="" class="speakerdeck-embed" data-id="28549e1d1599428cb575dac98d94d766" data-ratio="1.29456384323641" src="//speakerdeck.com/assets/embed.js"></script>
 
@@ -308,7 +308,7 @@ we’ll see you soon.</p>
                    <i class="fa fa-6 fa-facebook"></i>
                  </a>
                </span>
-               July 15, 2015 | <a href="http://www.wagonhq.com/about" target="_blank">Mark Daly</a>
+               July 15, 2015 | <a /about" target="_blank">Mark Daly</a>
              </small>
            </h2>
            
@@ -325,7 +325,7 @@ we’ll see you soon.</p>
 
 <p>As many companies are discovering, mixing <a href="https://medium.com/@collinmathilde/why-desktop-apps-are-making-a-comeback-5b4eb0427647">web and native technologies</a> is very compelling. Early adopters including Slack, Atom, Quip, Visual Studio, Spotify, MapBox, Front, and Nylas have found ways to weave these once unrelated approaches.</p>
 
-<p>At Wagon, we’re using <a href="http://electron.atom.io/">Github’s Electron</a> (previously “Atom-Shell”) as our underlying app framework. Electron was carved out of the Atom editor project and lets us deploy web UIs to the desktop.  Our CTO Mike <a href="http://www.wagonhq.com/blog/engineering-at-wagon">described Wagon’s technical architecture</a>: a Javascript application for user experience along with a native process for database connections and streaming data computation. We want a capable desktop application with the ease of developing for the web.</p>
+<p>At Wagon, we’re using <a href="http://electron.atom.io/">Github’s Electron</a> (previously “Atom-Shell”) as our underlying app framework. Electron was carved out of the Atom editor project and lets us deploy web UIs to the desktop.  Our CTO Mike <a /blog/engineering-at-wagon">described Wagon’s technical architecture</a>: a Javascript application for user experience along with a native process for database connections and streaming data computation. We want a capable desktop application with the ease of developing for the web.</p>
 
 <p><br /></p>
 
@@ -335,7 +335,7 @@ we’ll see you soon.</p>
 
 <p><br /></p>
 
-<p>The earliest alpha of Wagon was a command line program that powered a browser app available at <code>localhost</code>. We soon shipped our first Mac app: a download-able, double-click-able version using <a href="https://github.com/MacGapProject">MacGap</a>. As more people used Wagon, we wanted to update the code silently in the background, deploy to Windows and Linux, and move away from WebKit (we &lt;3 Chromium’s dev tools!). We <a href="http://www.wagonhq.com/release-notes">frequently ship new versions</a> of both the JS and compiled Haskell, and it was painful for our users to manually download and reinstall the application. We briefly considered Mac-specific update mechanisms but it became clear we needed to replace MacGap. In searching for a full-featured, cross-platform web-view container, we found Electron.</p>
+<p>The earliest alpha of Wagon was a command line program that powered a browser app available at <code>localhost</code>. We soon shipped our first Mac app: a download-able, double-click-able version using <a href="https://github.com/MacGapProject">MacGap</a>. As more people used Wagon, we wanted to update the code silently in the background, deploy to Windows and Linux, and move away from WebKit (we &lt;3 Chromium’s dev tools!). We <a /release-notes">frequently ship new versions</a> of both the JS and compiled Haskell, and it was painful for our users to manually download and reinstall the application. We briefly considered Mac-specific update mechanisms but it became clear we needed to replace MacGap. In searching for a full-featured, cross-platform web-view container, we found Electron.</p>
 
 <p><br /></p>
 
@@ -367,7 +367,7 @@ we’ll see you soon.</p>
 
 <p>When we’re ready to roll out a new version of Wagon.app, we use an automated deployment approach built on GitHub and <a href="https://circleci.com/">CircleCI</a>.  When we merge a pull request into the <code>master</code> or <code>production</code> branches of our repos, CircleCI automatically builds the application bundle.  The components are dropped into the Electron app structure, code-signed, and uploaded to S3.  CircleCI also updates a configuration file that our <a href="http://electron.atom.io/docs/v0.29.0/api/auto-updater/">auto-updater API endpoint</a> reads, which lets us notify running instances of Wagon that a new version is available. The update is automatically downloaded in the background, installed, and triggers a desktop notification for the user.</p>
 
-<p>We believe that great software should run in the browser, on phones, and on the desktop. If building across these platforms sounds exciting, check out our <a href="http://www.wagonhq.com/jobs/">open positions</a>, and <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">email us</a> or tweet <a href="https://twitter.com/wagonhq">@WagonHQ</a>. <em>Gogogo!</em></p>
+<p>We believe that great software should run in the browser, on phones, and on the desktop. If building across these platforms sounds exciting, check out our <a /jobs/">open positions</a>, and <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">email us</a> or tweet <a href="https://twitter.com/wagonhq">@WagonHQ</a>. <em>Gogogo!</em></p>
 
          </div>
        </section>
