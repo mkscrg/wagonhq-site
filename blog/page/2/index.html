@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Blog - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Wagon's engineering, product, and news blog.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/page/2/index.html" />
+    <meta property="og:title" content="Blog" />
+    <meta property="og:description" content="Wagon's engineering, product, and news blog." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="release-notes">
+  <div class="container">
+    <div class="col-md-8 center-col">
+     
+     
+     
+     
+     
+     
+     
+     
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/twitter-tech-talk>FUNctional Programming with Haskell - Twitter Tech Talk</a><br>
+            <small>
+              <span class="share">
+                <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/twitter-tech-talk&text=FUNctional Programming with Haskell - Twitter Tech Talk%20from%20@WagonHQ:" target="_blank">
+                  <i class="fa fa-lg fa-twitter"></i>
+                </a>
+                <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/twitter-tech-talk/&t=FUNctional Programming with Haskell - Twitter Tech Talk%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                  <i class="fa fa-6 fa-facebook"></i>
+                </a>
+              </span>
+              December 21, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Jeff Weinstein</a>
+            </small>
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+          <p>Haskell is our primary backend language at Wagon— it helps us (safely) iterate faster, build for multiple environments, and attracts great engineering talent. It is fun to meet engineers from startups and large companies at <a href="http://www.meetup.com/Bay-Area-Haskell-Users-Group/">Haskell meetups</a>, <a href="http://bayhac.org/">BayHac</a>, and in the <a href="http://www.fpchat.com/">functional programming Slack channel</a>. Many engineers are curious how we use Haskell in production and have invited us to speak at their companies.</p>
+
+<p style="max-width: 100px; margin: auto;">
+	<img src="/images/posts/twitter_eng.png" alt="Twitter Engineering." />
+</p>
+
+<p>Wagon’s CTO Mike Craig spoke last month at Twitter (and <a href="https://www.wagonhq.com/blog/square-tech-talk">earlier this year at Square</a>) on the pros and cons of using Haskell in production. Thanks to Twitter’s <a href="https://twitter.com/peterseibel">Peter Seibel</a> for inviting us and to their team for posting the video.</p>
+
+<p>Here’s the talk:</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Dbjt_u1kSo4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<p>If you’re using Haskell at your company, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">let us know</a>.</p>
+
+        </div>
+      </section>
+     
+     
+     
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/active-users-in-sql>Calculating Active Users in SQL</a><br>
+            <small>
+              <span class="share">
+                <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/active-users-in-sql&text=Calculating Active Users in SQL%20from%20@WagonHQ:" target="_blank">
+                  <i class="fa fa-lg fa-twitter"></i>
+                </a>
+                <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/active-users-in-sql/&t=Calculating Active Users in SQL%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                  <i class="fa fa-6 fa-facebook"></i>
+                </a>
+              </span>
+              November 13, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+            </small>
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+          <p>How engaged are your users? How frequently do they visit your website or app? Analytics services like Google Analytics and MixPanel calculate basic counts of daily, weekly, and monthly active users, but it’s difficult to customize or join these results with other data. Writing this query in SQL gives you more control. Let’s do it!</p>
+
+<p>Here’s a table of user logins by day. How many users were active in the last week and month?</p>
+
+<table class="table">
+  <tr>
+    <th>date</th>
+    <th>user_id</th>
+    <th>num_logins</th>
+  </tr>
+  <tr>
+    <td>10/1/15</td>
+    <td>1</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/1/15</td>
+    <td>2</td>
+    <td><em>null</em></td>
+  </tr>
+  <tr>
+    <td>10/1/15</td>
+    <td>3</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>10/2/15</td>
+    <td>1</td>
+    <td><em>null</em></td>
+  </tr>
+  <tr>
+    <td>10/2/15</td>
+    <td>2</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>10/2/15</td>
+    <td>3</td>
+    <td>3</td>
+  </tr>
+</table>
+
+<p>Like <a href="/blog/running-totals-sql">calculating running totals</a>, there are two approaches: <code>self join</code> or <code>window function</code>.</p>
+
+<p>In either approach, it’s helpful to have a table of logins per user for each day, even if the user didn’t login (<em>null</em> in this example). If your data isn’t already organized like this, you can generate a table with a row per day, per user, with the following query (this is Postgres syntax, for other databases, modify the <code>generate_series</code> function to generate a table of dates).</p>
+
+<noscript><pre>select 
+    d.date, 
+    u.user_id, 
+    c.num_logins
+from (
+    select * from
+    -- fill in the minimum date in your dataset
+    generate_series(&#39;01-05-15&#39;::timestamp, 
+                    current_date::timestamp, &#39;24 hours&#39;) as date
+) d
+full outer join (select distinct(user_id) as user_id from userActivityTable) u on 1 = 1
+full outer join userActivityTable c on u.user_id = c.user_id and c.date = d.date;</pre></noscript>
+<script src="https://gist.github.com/grano/215991d7fb785bf7685a.js?file=generate_full_table.sql"> </script>
+
+<p>To use this data, you can create a temporary table, use a common table expression, or include it as a subselect.</p>
+
+<h4 id="approach-1-self-join">Approach 1: Self Join</h4>
+
+<p>A self join is when you join a table with itself.  How meta is that?  For each row, we ask how many logins that user had in the last week.  The join condition requires emails to match and for the date to be within the last 7 days. In line 5, the query sums num_logins for those dates. The case statement identifies the user as active on that day if she had any logins in the prior week.</p>
+
+<noscript><pre>select 
+    o.user_id, 
+    o.date,
+    case
+        when sum(i.num_logins) &gt;= 1 then TRUE
+        else FALSE 
+    end as active
+from userActivityTable as o
+join userActivityTable as i on 
+    i.date &lt;= o.date AND
+    i.date &gt;= (o.date :: date) - integer &#39;7&#39; AND
+    i.user_id = o.user_id
+group by o.user_id, o.date;
+</pre></noscript>
+<script src="https://gist.github.com/grano/a668412b889cb172823f.js?file=active_users_self_join.sql"> </script>
+
+<p>This query generates a table that tells us which users are seven-day-active over time. This result can be aggregated further, filtered for specific dates, used to find inactive users, and joined with other data. In Wagon, we can create a <a href="https://app.wagonhq.com/result/worlyovh53iwh4xr">graph of the number of 7 day active users over time</a>.</p>
+
+<h4 id="approach-2-window-functions">Approach 2: Window Functions</h4>
+
+<p>The self join works great, but modern databases have a more efficient way to get the same results. With window functions, we can explicitly aggregate only over rows that we care about with just a single pass through the data. If you have millions or billions of rows (lucky you), the self join will take a long time to compute. In line 5, the query sums num_logins for the user’s previous 14 days. It first partitions the table by email, then evaluates over a set of rows - in this case we’re looking at a specific date range.  The case statement classifies the user as active or not just as before.</p>
+
+<noscript><pre>select
+    user_id,
+    date,
+    case
+        when sum(num_logins) over (partition by user_id order by date rows between 14 preceding and current row) &gt;= 1 then TRUE
+        else FALSE
+    end as active
+from userActivityTable;
+</pre></noscript>
+<script src="https://gist.github.com/grano/a16e64d9164924bc6f3a.js?file=active_users_window_function.sql"> </script>
+
+<p>This query makes it easier to add additional metrics for 7 and 30 day active users. As expected, the <a href="https://app.wagonhq.com/result/4ooragqzn3fv3xex">wider your definition of active user</a>, the more you’ll have. Use these new powers carefully!</p>
+
+<hr />
+
+<p><em>Want to learn more SQL? Join us on Monday, November 16 at the Wagon office in San Francisco for a free SQL workshop.  Please <a href="https://www.eventbrite.com/e/an-evening-of-sql-and-cheese-tickets-19230173968">RSVP</a>!</em></p>
+
+        </div>
+      </section>
+     
+     
+     
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/electron-microsoft-meetup>Electron meetup at Microsoft</a><br>
+            <small>
+              <span class="share">
+                <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/electron-microsoft-meetup&text=Electron meetup at Microsoft%20from%20@WagonHQ:" target="_blank">
+                  <i class="fa fa-lg fa-twitter"></i>
+                </a>
+                <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/electron-microsoft-meetup/&t=Electron meetup at Microsoft%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                  <i class="fa fa-6 fa-facebook"></i>
+                </a>
+              </span>
+              November 06, 2015 | <a href="http://twitter.com/jeff_weinstein" target="_blank">Jeff Weinstein</a>
+            </small>
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/electron">#electron</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+          <p><a href="http://electron.atom.io">Electron</a> has momentum. The open source project for building cross platform desktop apps with web technologies now has 6000+ commits from 200+ contributors, a 3500+ person Slack room, and now it’s 4th meetup with 90+ RSVPs (the 1st was a few of us at a bar).</p>
+
+<p>On Monday, the <a href="http://www.meetup.com/Bay-Area-Electron-User-Group">Bay Area Electron group</a> met at Microsoft <a href="https://twitter.com/MSFTReactor">Reactor</a>, an event space in San Francisco. A few members of Microsoft’s open source team were in town to hear how people are using Electron to build Windows apps. The team is dedicated to helping projects run well with Microsoft platforms. It’s also exciting to see that <a href="https://code.visualstudio.com/">Visual Studio Code</a> is using Electron. Two of the five talks were Windows related:</p>
+
+<hr />
+
+<p><a href="http://twitter.com/kevinsawicki">Kevin Sawicki</a> from GitHub spoke about how to test Electron apps using ChromeDriver and his project <a href="https://github.com/kevinsawicki/spectron">Spectron</a>. Try this in your next project.</p>
+
+<script async="" class="speakerdeck-embed" data-id="ecbcfd9419c845faa0e791d87ba1ce97" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><br /></p>
+
+<p><a href="https://twitter.com/felixrieseberg">Felix Rieseberg</a> from Microsoft’s open source team gave us walkthrough of <a href="http://try.buildwinjs.com/">WinJS</a>. It seems like a great way to make Electron apps look native on Windows 10. Here are the <a href="https://onedrive.live.com/view.aspx?resid=4EA869C40F03DA47!238769&amp;ithint=file%2cpptx&amp;app=PowerPoint&amp;authkey=!ANhVu0KbHyOHXOQ">slides</a>.</p>
+
+<p><br /></p>
+
+<p><a href="https://twitter.com/johnhaley81">John Haley</a> from Axosoft’s GitKraken team talked about how they handle task scheduling in their Electron apps. This strategy seems like a new standard way to handle both UI and processing intensive applications.</p>
+
+<iframe src="https://drive.google.com/file/d/0B8f-2LpBuV0pMUU1bC0wTFJZMjg/preview" width="640" height="480"></iframe>
+
+<p><br /></p>
+
+<p>Wagon’s <a href="http://twitter.com/deland">Matt DeLand</a> presented a few tips and tricks for developing, building, and deploying on Windows along with a demo of our latest version. <a href="https://www.wagonhq.com/">Sign up for early access to try Wagon on Windows</a>.</p>
+
+<script async="" class="speakerdeck-embed" data-id="28549e1d1599428cb575dac98d94d766" data-ratio="1.29456384323641" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><br /></p>
+
+<p><a href="https://twitter.com/edgararout">Edgar Aroutiounian</a> gave a quick demo of how he used OCaml to build an Electron app. Checkout the example project <a href="https://github.com/fxfactorial/ocaml-electron">here</a>.</p>
+
+<hr />
+
+<p>Special thanks to Microsoft for hosting. We’re excited the Electron community is growing and that large companies are adopting and supporting this platform. See you at the next event!</p>
+
+        </div>
+      </section>
+     
+     
+     
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/square-tech-talk>Haskell in Production - Square Tech Talk</a><br>
+            <small>
+              <span class="share">
+                <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/square-tech-talk&text=Haskell in Production - Square Tech Talk%20from%20@WagonHQ:" target="_blank">
+                  <i class="fa fa-lg fa-twitter"></i>
+                </a>
+                <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/square-tech-talk/&t=Haskell in Production - Square Tech Talk%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                  <i class="fa fa-6 fa-facebook"></i>
+                </a>
+              </span>
+              October 28, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+            </small>
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+          <p>The <a href="https://corner.squareup.com/">Square engineering team</a> invited Wagon to give a tech talk on how we use Haskell in production.  Their teams are interested in functional programming and we were honored to walkthrough our experience building a modern analytics tool using <a href="/blog/engineering-at-wagon">Haskell, React, and Electron</a>. Thanks Square for welcoming us!</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/gX3rJkOjcz4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<p>If you’re using Haskell at your company, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">let us know</a>. We’d love to trade notes.</p>
+
+        </div>
+      </section>
+     
+     
+     
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/running-totals-sql>Calculating Running Totals using SQL</a><br>
+            <small>
+              <span class="share">
+                <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/running-totals-sql&text=Calculating Running Totals using SQL%20from%20@WagonHQ:" target="_blank">
+                  <i class="fa fa-lg fa-twitter"></i>
+                </a>
+                <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/running-totals-sql/&t=Calculating Running Totals using SQL%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                  <i class="fa fa-6 fa-facebook"></i>
+                </a>
+              </span>
+              October 20, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+            </small>
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+          <p>How many users joined in the last 5 months? What were total sales in Q2? How much revenue came from the March sign up cohort?</p>
+
+<p>Although these questions can be answered with a single number, it can be useful to see a <em>running total</em> over time: how many unique users joined, or how much cumulative revenue was received by day over some period.</p>
+
+<p>Usually, data is stored incrementally. For example, here’s a table of sales per day:</p>
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Sales</th>
+  </tr>
+  <tr>
+    <td style="width: 216px;">10/1/2015</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>10/2/2015</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/3/2015</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>10/4/2015</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>10/5/2015</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>10/6/2015</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/7/2015</td>
+    <td>6</td>
+  </tr>
+</table>
+
+<p>How do we generate the following table of cumulative sales over time? In SQL, there are two typical approaches: a self join or a window function.</p>
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Running Total of Sales</th>
+  </tr>
+  <tr>
+    <td style="width: 216px;">10/1/2015</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>10/2/2015</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>10/3/2015</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>10/4/2015</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>10/5/2015</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>10/6/2015</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>10/7/2015</td>
+    <td>34</td>
+  </tr>
+</table>
+
+<p>A self join is a query that compares a table to itself. In this case, we’re comparing each date to any date less than or equal to it in order to calculate the running total. Concretely, we take the sum of <code>sales</code> in the second table over every row that has a date less than or equal to the date coming from the first table. This is Postgres/Redshift syntax, but other SQL dialects are very similar.</p>
+
+<noscript><pre>select 
+    a.date,
+    sum(b.sales) as cumulative_sales
+from sales_table a 
+join sales_table b on a.date &gt;= b.date
+group by a.date
+order by a.date;</pre></noscript>
+<script src="https://gist.github.com/grano/b705f532374c0ec02f03.js?file=sales_running_total.sql"> </script>
+
+<p>This is not a bad approach; it is a nice showcase of how extensible SQL can be using only <code>select</code>, <code>from</code>, <code>join</code>, and <code>group by</code> statements.</p>
+
+<p>But it is a lot of code for a simple task. Let’s try a window function. They are designed to calculate a metric over a set of rows. In our case, we want to sum every row where the date is less than or equal to the date in the current row.</p>
+
+<noscript><pre>select
+    date,
+    sum(sales) over (order by date rows unbounded preceding) as cumulative_sales
+from sales_table;</pre></noscript>
+<script src="https://gist.github.com/grano/88fcf67e5ff14ae9e1c2.js?file=cumulative_sales_window_function.sql"> </script>
+
+<p>The window function can filter and arrange the set of rows to run the function over. Here the <code>order by date rows unbounded preceding</code> limits the sum function to only <code>sales</code> before the date of the current row. Window functions are incredibly useful for time-based analytical queries; to learn more, the <a href="http://www.postgresql.org/docs/9.4/static/tutorial-window.html">Postgres docs</a> are a great place to start.</p>
+
+<p>The final step of creating a chart and sharing it triumphantly with your teammates is easily accomplished using <a href="https://app.wagonhq.com/result/dcyjd5ha7eiptaoa">Wagon</a>. Window functions for the win!</p>
+
+<p><strong><em>Wagon is a modern SQL editor for analysts and engineers: write queries, visualize data, and share charts with your team. Signup for free:</em></strong></p>
+
+<form id="waitlist-form">
+  <div id="signup-name" class="form-group">
+    <input class="form-control input-lg" type="text" name="name" placeholder="Your name" />
+  </div>
+  <div id="signup-email" class="form-group">
+    <input class="form-control input-lg" type="text" name="email" placeholder="name@company.com" />
+  </div>
+  <p id="signup-error-message" class="form-group" style="color: red;"></p>
+  <p id="signup-success-message" class="form-group text-center"></p>
+  <div id="signup-submit-button" class="form-group">
+    <button class="btn btn-success btn-lg waitlist-submit-button" type="submit" name="submit" id="signup-submit">Sign up and download</button>
+  </div>
+</form>
+<script src="/js/signup.js"></script>
+
+
+        </div>
+      </section>
+     
+     
+     
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/react-at-wagon>React at Wagon</a><br>
+            <small>
+              <span class="share">
+                <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/react-at-wagon&text=React at Wagon%20from%20@WagonHQ:" target="_blank">
+                  <i class="fa fa-lg fa-twitter"></i>
+                </a>
+                <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/react-at-wagon/&t=React at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                  <i class="fa fa-6 fa-facebook"></i>
+                </a>
+              </span>
+              October 01, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+            </small>
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/react">#react</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+          <p>We’re building a hybrid web/native application that runs both in the browser and as a downloadable desktop app. Analysts use Wagon to query, analyze, visualize, and share data: the app is highly interactive and data-heavy. It has to be fast, furious, and stable even when used for hours.</p>
+
+<p>It ain’t all gravy: it’s difficult to maintain a UI with asynchronous updates, large scale data manipulation, and many other cross-cutting concerns. How can we build a sane frontend codebase, without losing our ability to iterate and ship quickly? The answer is to separate concerns. We break our UI into small self-contained components, and we isolate state and manage it separately from the UI. Facebook’s React and Flux libraries make this practical.</p>
+
+<p style="max-width: 330px; margin: auto;">
+  <img src="/images/posts/react.png" alt="Wagon loves React" />
+</p>
+
+<p>The big idea behind React is this: a UI component is just a function from its inputs to its content. All a component needs is a <code>render()</code> method that returns the elements we want the user to see.  As an example, here’s a component that takes a size and color and renders a div displaying a filled-in square. Notice that users of this component don’t need to know about how it is implemented.</p>
+
+<noscript><pre>var ColoredSquare = React.createClass({
+  render: function() {
+    // the component&#39;s inputs are available via this.props
+    var squareStyle = {
+      display: &quot;inline-block&quot;,
+      width: this.props.width,
+      height: this.props.width,
+      backgroundColor: this.props.color,
+      borderRadius: this.props.radius
+    };
+
+    return &lt;div style={squareStyle} onClick={saveUserFavColor(this.props.color)} /&gt;;
+  }
+});</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=ColoredSquare.jsx"> </script>
+
+<p>React components are simple to reuse because they nest like HTML elements. It’s easy to wrap an existing component to add additional styles or behavior—React favors composition over inheritance. We can forget about carefully maintaining the DOM to avoid excessive redraws and flicker: we declare what our components should look like, and React makes it so.</p>
+
+<p>React is great for organizing view elements, but an application is more than static UI. Users generate events and we need to capture them, update state, and direct how the app should respond. Flux manages this flow by clearly seperating user action events from application responses.</p>
+
+<p>Actions encapsulate events. They’re the application logic that runs in response to users doing stuff. In our example, when a user clicks a colored square, we update the server and dispatch to let the rest of app know what happened:</p>
+
+<noscript><pre>function saveUserFavColor(color) {
+  var id = getCurrentUserId();  // move along, this is just a demo
+  
+  ajax.user.saveInfo(id, color)  // make an AJAX call,
+    // then tell the rest of the application what happened
+    .then(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVED, {id: id, favoriteColor: color});
+    })
+    .catch(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVE_ERROR, {id: id});
+    });
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserInfoAction.js"> </script>
+
+<p>Stores encapsulate state. They listen to state changes dispatched from actions, and they update themselves to record the changes.</p>
+
+<noscript><pre>class UserStore extends EventEmitter {
+  // administrivia omitted!
+
+  onDispatch(action) {
+    switch (action.type) {
+      case USER_INFO_SAVED:
+        // save the updated state in an instance property
+        this._users[action.payload.id].favoriteColor = action.payload.favoriteColor;
+        // tell the rest of the application to come and get it
+        this.emitChange();
+        break;
+
+      // etc
+    }
+  }
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserStore.js"> </script>
+
+<p>UI components listen to stores and re-render when relevant state changes.</p>
+
+<p>Building a solid, maintainable frontend is still difficult despite these great libraries. Here are a few other strategies we’re using:</p>
+
+<ul>
+  <li>
+    <p>Build pure React components whenever possible. A pure component doesn’t make any external calls from <code>render()</code>—it’s a pure function of the component’s properties and state. Components like this are much easier to test, debug, and reuse. It’s such a good idea it’s <a href="https://facebook.github.io/react/docs/pure-render-mixin.html">included in React itself</a>!</p>
+  </li>
+  <li>
+    <p>Separate React components that listen to Flux stores from those that render the UI. Wrapping UI components in container components is another win for reuse. Jason Bonta mentioned this in <a href="https://www.youtube.com/watch?v=KYzlpRvWZ6c">his great talk at React.js Conf 2015</a>.</p>
+  </li>
+  <li>
+    <p>Take care when integrating non-React UI components. Mixing React’s declarative API with another library’s imperative API can be painful. Build wrapper components around external libraries, and use <a href="https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods">React’s lifecycle methods</a> to handle setup and teardown. When possible, avoid exposing direct-update methods like <code>drawChart()</code> or <code>setCursorPosition()</code>—manage state through component properties or Flux stores.</p>
+  </li>
+  <li>
+    <p>Split Flux actions into modules by UX concern. We separate navigation and authentication from running queries and making charts. Carve out submodules for cross-cutting concerns, like AJAX requests or logging.</p>
+  </li>
+  <li>
+    <p>Split Flux stores by domain. It’s helpful to separate persisted server-side state from ephemeral page state, for example. We hide the state of the URL bar behind a store, too!</p>
+  </li>
+</ul>
+
+<p>We’re tackling fun engineering challenges at Wagon.  If you want to learn more or work everyday on these technologies, <a href="/jobs">check out our jobs page</a> and get in touch!</p>
+
+        </div>
+      </section>
+     
+     
+     
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/sql-workbench-to-wagon>Migrating from SQL Workbench/J to Wagon</a><br>
+            <small>
+              <span class="share">
+                <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/sql-workbench-to-wagon&text=Migrating from SQL Workbench/J to Wagon%20from%20@WagonHQ:" target="_blank">
+                  <i class="fa fa-lg fa-twitter"></i>
+                </a>
+                <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/sql-workbench-to-wagon/&t=Migrating from SQL Workbench/J to Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                  <i class="fa fa-6 fa-facebook"></i>
+                </a>
+              </span>
+              September 30, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+            </small>
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+          <p>Many Wagon users previously used SQL Workbench/J to query Amazon Redshift. Older SQL tools are focused on DBA tasks like managing tables, updating schemas, and provisioning users. Analysts just want a simple way to query data, analyze it, visualize it, and collaborate with others. It’s no surprise that we’re frequently asked how to move from legacy tools like SQL Workbench/J to Wagon. It’s super easy.</p>
+
+<p>If you are currently using SQL Workbench/J and want to <a href="/">try Wagon</a>, here are the quick steps to connect to Redshift in Wagon:</p>
+
+<ol>
+  <li>In SQL Workbench/J, open the connection window</li>
+  <li>Grab the hostname, port, and database from the URL, the username, and the password (in the Redshift interface, the URL is called the JDBC URL)</li>
+  <li>Paste into Wagon (no need to install any drivers!)</li>
+</ol>
+
+<p style="max-width: 600px; margin: auto;">
+	<img src="/images/posts/workbench-config.png" alt="SQL Workbench/J connect window" />
+</p>
+
+<p><br /></p>
+
+<p>Happy querying!</p>
+
+        </div>
+      </section>
+     
+     
+     <!-- jobs are on the last blog page, so cut it off one page short -->
+     
+       <div class="clearfix paging">
+           
+           <p class="pull-left">
+             <a href="/blog/page/3/" class="next">← Older Posts</a>
+           </p>
+           
+           
+           <p class="pull-right">
+             <a href="/blog/index.html" class="previous">Newer Posts →</a>
+           </p>
+           
+         </div>
+       </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

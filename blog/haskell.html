@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Posts - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="A collection of blog posts from Wagon's engineering blog.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/haskell.html" />
+    <meta property="og:title" content="Posts" />
+    <meta property="og:description" content="A collection of blog posts from Wagon's engineering blog." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="release-notes">
+  <div class="container">
+    <div class="col-md-8 center-col">
+    <section class="hiring">
+      <h2 class="text-center">
+        #haskell<br>
+      </h2>
+
+    </section>
+    <ul>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/haskell-for-industry>Haskell for commercial software development</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/haskell-for-industry&text=Haskell for commercial software development%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/haskell-for-industry/&t=Haskell for commercial software development%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               February 02, 2016 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Inquiring minds on Quora want to know, <em><a href="https://www.quora.com/Is-Haskell-suitable-for-commercial-software-development">is Haskell suitable for commercial software development?</a></em></p>
+
+<blockquote>
+  <p>I’m looking for an alternative to Python mainly for reasons of Python having so much trouble with
+workable concurrency, and Go seemed great at first look (it’s still not bad, but indeed error
+handling and lack of generics are a few features cut away too far).</p>
+
+  <p>This pretty much leaves Haskell as workable alternative. But is it really a practical alternative?</p>
+
+  <p>My biggest fear that while Haskell seems very powerful, it is also difficult and so it may be too
+difficult for person A to read code written by person B (what seems to have killed Lisp in my view
+is that problem and person-specific DSLs written in Lisp were simply unreadable for too many other
+people).</p>
+
+  <p>PS, in other words: I do not ask about strong sides of Haskell (or language X), those are well
+known, but rather about a lack of show-stoppers.</p>
+</blockquote>
+
+<p>Absolutely, yes! At Wagon, we’ve built server- and client-side systems in Haskell, running in AWS and distributed to our users in a cross-platform desktop app.</p>
+
+<p style="max-width: 600px; margin: auto;">
+  <img src="/images/posts/quora.png" alt="Wagon on Quora" />
+</p>
+
+<p>Possible show-stoppers to using Haskell commercially:</p>
+
+<p><strong>Community support</strong><br /> A good open-source community is a big deal. It’s the difference between fixing other people’s code and finding an open GitHub issue with a workaround and an in-progress fix. With Haskell, we find the latter much more frequently than the former. The community is positive, active, and generally helpful when problems come up. Lively discussion takes place on <a href="https://www.reddit.com/r/haskell/">Reddit</a>, <a href="https://wiki.haskell.org/IRC_channel">IRC</a>, a <a href="http://fpchat.com/">public Slack channel</a>, and several <a href="https://wiki.haskell.org/Mailing_lists">mailing lists</a>.</p>
+
+<p><strong>Hiring</strong><br /> There are many factors involved in hiring: team size, location, remove vs on-site, other expertise required, etc. At Wagon we’re an on-site team of ~10 in San Francisco, with lots of web- and database-related problems to work on. Finding qualified Haskellers has not been an issue.</p>
+
+<p>Haskell is different from the languages lots of developers are used to. ML-style syntax, strong types, and lazy evaluation make for a steep initial learning curve. Anecdotally, we’ve found Haskell’s secondary learning curve smooth and productive. Intermediate Haskellers quickly pick up advanced concepts on the job: parsers, monad transformers, higher-order types, profiling and optimization, etc.</p>
+
+<p><strong>Available industrial-strength libraries</strong><br /> Haskell lends itself to lightweight-but-powerful libraries that do one thing very well. We get a lot done by composing these small libraries rather than relying on big feature-complete frameworks. Some libraries have become de-facto standards that are stable and performant, and <a href="http://www.stackage.org/">Stackage</a> gives us a reliable way to find additional packages that usually “just work”.</p>
+
+<p>We do sometimes find gaps in Haskell’s available libraries. For example, Haskell can’t yet match Python’s <a href="http://pandas.pydata.org/">tools for numerical computing</a>. And like every open-source ecosystem, there is some bad code out there. We rely on community recommendations and a sense of dependency hygiene to stay productive.</p>
+
+<p><strong>Performance</strong><br /> A quick Google search turns up benchmarks comparing Haskell to anything else you can imagine. In practice, we’re interested in tools with two properties:</p>
+
+<ol>
+  <li>Fast enough under most circumstances. “Fast enough” means performance is never an issue for a given piece of code.</li>
+  <li>Easy to optimize when needed. When we do need more speed, we’d like to get it incrementally rather than immediately rewrite that code in C.</li>
+</ol>
+
+<p>Haskell has both of these properties. We almost never have to address performance in our Haskell code. When we do, we turn to GHC’s profiler and its many performance knobs: optimization flags, inlining, strictness and memory layout controls, etc. Haskell also has good interopability with C for when that’s appropriate.</p>
+
+<p><strong>Memory leaks</strong><br /> There’s a lot of talk about memory leaks caused by Haskell’s lazy evaluation model. We run into this very infrequently in practice, and in those rare situations GHC’s profiler has led us to solutions quickly. The real problem is not lazy evaluation but <a href="http://dev.stephendiehl.com/hask/#lazy-io">lazy IO</a>, which we avoid with tools like <a href="http://www.stackage.org/package/conduit">conduit</a> and <a href="http://www.stackage.org/package/pipes">pipes</a>.</p>
+
+<p><strong>Debuggability</strong><br /> Haskell doesn’t have a debugger in the same sense as Python or Java. This is mostly a non-issue, because exceptions are rare and GHCi gives us a flexible way to run code interactively. Nonetheless, hunting down problems in a big application can be difficult. This has improved in recent versions of GHC with support for proper <a href="https://downloads.haskell.org/~ghc/latest/docs/html/libraries/base-4.8.2.0/GHC-Stack.html">stack traces</a>.</p>
+
+<p><strong>Haskellers reading other Haskellers’ code</strong><br /> This hasn’t been a problem for us. Haskell is a flexible language both in syntax and semantics, but this leads to better solutions more than it leads to opaque or unreadable code. Heavy indirection—via embedded DSLs or deep typeclass hierarchies—is unusual in practice. We reach for those tools as a last resort, knowing that they come with a serious maintenance cost. Agreeing on a basic <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md">style guide</a> helps smooth out minor syntax differences.</p>
+
+<p>Read our other <a href="https://www.wagonhq.com/blog/haskell">Haskell engineering blog posts</a>, come to our community events, or better yet, <a href="https://www.wagonhq.com/jobs">join our team</a>!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/twitter-tech-talk>FUNctional Programming with Haskell - Twitter Tech Talk</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/twitter-tech-talk&text=FUNctional Programming with Haskell - Twitter Tech Talk%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/twitter-tech-talk/&t=FUNctional Programming with Haskell - Twitter Tech Talk%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               December 21, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Jeff Weinstein</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Haskell is our primary backend language at Wagon— it helps us (safely) iterate faster, build for multiple environments, and attracts great engineering talent. It is fun to meet engineers from startups and large companies at <a href="http://www.meetup.com/Bay-Area-Haskell-Users-Group/">Haskell meetups</a>, <a href="http://bayhac.org/">BayHac</a>, and in the <a href="http://www.fpchat.com/">functional programming Slack channel</a>. Many engineers are curious how we use Haskell in production and have invited us to speak at their companies.</p>
+
+<p style="max-width: 100px; margin: auto;">
+	<img src="/images/posts/twitter_eng.png" alt="Twitter Engineering." />
+</p>
+
+<p>Wagon’s CTO Mike Craig spoke last month at Twitter (and <a href="https://www.wagonhq.com/blog/square-tech-talk">earlier this year at Square</a>) on the pros and cons of using Haskell in production. Thanks to Twitter’s <a href="https://twitter.com/peterseibel">Peter Seibel</a> for inviting us and to their team for posting the video.</p>
+
+<p>Here’s the talk:</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Dbjt_u1kSo4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<p>If you’re using Haskell at your company, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">let us know</a>.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/square-tech-talk>Haskell in Production - Square Tech Talk</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/square-tech-talk&text=Haskell in Production - Square Tech Talk%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/square-tech-talk/&t=Haskell in Production - Square Tech Talk%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               October 28, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>The <a href="https://corner.squareup.com/">Square engineering team</a> invited Wagon to give a tech talk on how we use Haskell in production.  Their teams are interested in functional programming and we were honored to walkthrough our experience building a modern analytics tool using <a href="/blog/engineering-at-wagon">Haskell, React, and Electron</a>. Thanks Square for welcoming us!</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/gX3rJkOjcz4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<p>If you’re using Haskell at your company, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">let us know</a>. We’d love to trade notes.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/bayhac>Bayhac 2015</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/bayhac&text=Bayhac 2015%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/bayhac/&t=Bayhac 2015%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               June 30, 2015 | <a href="http://twitter.com/begriffs" target="_blank">Joe Nelson</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p><a href="http://bayhac.org/">Bayhac</a> is back. The annual Bay Area Haskell
+conference and hackathon met last weekend for its fifth consecutive
+year, bringing us fascinating talks and strongly-typed bonhomie.
+It drew attendees from all over the country, even from faraway
+Oakland (I’m told to say, “<a href="https://twitter.com/WagonHQ/status/610980698527129601">Go
+Warriors</a>!”).</p>
+
+<p>Each year at Bayhac I am reminded how the Haskell community is
+thriving: more adoption, new libraries, robust tooling. It seems
+that the language is destined to fail at its goal of “avoiding
+success at all costs.” What struck me this year is the number of
+funded startups developing critical parts of their products in
+Haskell. They are springing up in San Francisco, some blocks away
+from the Wagon office, companies like <a href="https://mirror.co/">Mirror</a>,
+<a href="https://www.frontrowed.com/">Front Row Education</a>,
+<a href="https://www.projector.com/">Projector</a>,
+<a href="http://engineering.imvu.com/2014/03/24/what-its-like-to-use-haskell/">IMVU</a>,
+<a href="http://www.alphaheavy.com/">Alpha Heavy Industries</a>, and
+<a href="http://www.pingwell.com/">Pingwell</a>.</p>
+
+<p><br /></p>
+
+<figure>
+  <div class="row">
+    <div class="col-sm-6">
+    <img src="/images/posts/bayhac01.jpg" alt="Bayhac picture" />
+    </div>
+    <div class="col-sm-6">
+    <img src="/images/posts/bayhac02.jpg" alt="Another Bayhac picture" />
+    </div>
+  </div>
+
+  <figcaption class="row">
+    Clockwise from top left: Greg Weber, Phil Freeman,
+    Conal Elliott, Dan Burton
+  </figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>The conference started out strong with two talks which interested
+me personally. <a href="http://jelv.is">Tikhon Jelvis</a> demonstrated how
+lazy evaluation is fundamental to designing modular code, not just
+an incidental curiosity. He gave numerous examples of laziness
+solving problems (the video for his talk is available
+<a href="http://begriffs.com/posts/2015-06-17-thinking-with-laziness.html">here</a>).</p>
+
+<p>Then <a href="https://unknownparallel.wordpress.com">Dan Burton</a> took the
+stage and gave us a tantalizing vision of the world post <code>cabal-install</code>,
+a glimpse of <a href="https://github.com/commercialhaskell/stack">Stack</a>.
+It is the spiritual successor of <code>stackage-cli</code>. In addition to
+locking project dependencies at mutually compatible versions like
+its predecessor, Stack can install necessary binaries and fetch
+packages right from git. Building projects, arguably the biggest
+pain in Haskelland, is getting better.</p>
+
+<p>That was just Friday night. The rest of the weekend had plenty in
+store including our very own Mike Craig sharing Wagon’s experience
+of using Haskell. This technology choice has served our small team
+well and his talk dives in to its strengths and weaknesses. The
+presentation showcases our product space, technical architecture,
+the libraries we lean on, and our deployment strategy. He also
+discusses Haskell’s learning curve (pros and cons) as well as its
+positive impact on recruiting. It’s one of the core reasons we’re
+able to frequently <a href="http://www.wagonhq.com/release-notes">ship new
+features</a> with confidence.</p>
+
+<p>If a picture is worth a thousand words then a thirty minute video
+at thirty frames per second is worth fifty-four million words. Here
+they are:</p>
+
+<div class="responsive-container">
+  <iframe src="https://player.vimeo.com/video/131029270" width="500" height="281" frameborder="0" webkitallowfullscree2="" mozallowfullscreen="" allowfullscreen=""></iframe>
+</div>
+
+<p>Big thanks to Bayhac organizers, notably <a href="https://maxs.io/">Maxwell
+Swadling</a> who stepped up to bring everyone together,
+handling everything from food to soliciting talks to the conference
+web presence. We’re looking forward to next year’s conference. In
+the meantime, keep a look out Wagon and community hosted Haskell
+events, or better yet, <a href="http://www.wagonhq.com/jobs">join our team</a>!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/first-two-weeks-haskell-wagon>My First Two Weeks of Haskell at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/first-two-weeks-haskell-wagon&text=My First Two Weeks of Haskell at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/first-two-weeks-haskell-wagon/&t=My First Two Weeks of Haskell at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               June 11, 2015 | <a href="http://twitter.com/begriffs" target="_blank">Joe Nelson</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/team">#team</a>
+  
+</div>
+
+
+           <p>It’s no secret I’m into Haskell. Two years ago a friend introduced
+me to what I then affectionately called “moon language,” and it’s
+been a continuous experience of learning, cursing, and joy ever
+since.</p>
+
+<p>Loving the language is easy; finding a team who shares this functional
+programming passion and uses it to build their core product is more
+rare. That’s what I found at Wagon and I’d like to share my experience
+of the exciting first two weeks as a new Wagoner.</p>
+
+<p><br /></p>
+
+<p style="max-width: 330px; margin: auto;">
+  <img src="/images/posts/wagon-loves-haskell.png" alt="Wagon loves Haskell" />
+</p>
+
+<p><br /></p>
+
+<p>I’ve written Haskell professionally before, so that part wasn’t a
+change. What’s different is that my prior use of the language felt
+almost surreptitious. Building an API server here, writing a script
+there, whatever could fit comfortably within a more conventional
+consulting project. Now it’s different, everyone is onboard: we own
+our product destiny and technology choices.</p>
+
+<p>For me it means being exposed to practices across the whole tech
+stack that were designed with Haskell in mind, not as an afterthought.
+From dockerizing Cabal to sharing and versioning packages between
+client and server code, to streaming statistical calculations over
+datasets with Conduit. There is a lot that goes into the company
+goal of creating a modern data collaboration tool.</p>
+
+<p>Although we work together in person (in the Mission district of San
+Francisco where the walls are muralier, the coffee pour-overier and
+the bikes fixier) we do much of our code communication via pull
+requests. Everyone tries to have at least one other person review
+their work, which keeps us all in the know and leads to a lot of
+teaching. For instance, here is my teammate Mark suggesting an
+improvement to my coding style:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell">(bid, now) &lt;- liftIO $ do
+    b &lt;- randomIO
+    n &lt;- getCurrentTime
+    return (b, n)</code></pre></div>
+
+<p><br />
+<img src="/images/posts/joe-mark-pr.png" alt="Example pull request" />
+<br />
+<br /></p>
+
+<p>Challenges go beyond mere coding style of course, and the team
+excels at debugging gnarly issues, including a memory leak caused
+by a useful yet tricky language feature called lazy evaluation. Our
+architecture is split between a shared server (Haskell), a client
+interface (<a href="https://github.com/atom/electron">Electron</a> + React)
+and a client server (Haskell) for local data access. Nowadays it’s
+common for the browser component on the client to use hundreds of
+megabytes of memory while the Haskell component races along at
+twenty megabytes even when doing intensive streaming operations.
+This was not always the case however, and the team used the GHC
+profiler to identify and correct a memory leak in the streaming
+subsystem.</p>
+
+<p><br /></p>
+
+<p><img src="/images/posts/ghc-profiling.png" alt="Memory profiling in GHC" /></p>
+
+<div style="text-align: center; font-style: italic;">GHC Memory Profiling</div>
+
+<p><br /></p>
+
+<p>During the past two weeks I’ve been getting acquainted with more
+type-safe ways of doing things than I had previously tried. For
+instance I’ve previously worked with Hasql for database access (a
+good choice for low-level and performant PostgreSQL work) and now
+I’m learning Persistent, which uses Template Haskell to generate
+structured ways to access and migrate databases. The Wagon server
+includes a custom routing system with some handy combinators which
+has helped me think about patterns of improving code with types.</p>
+
+<p>I’m excited to share more of what I learn in the coming weeks, both
+the coding and the cultural practices that help us do our best work,
+as well as things we’re learning to improve. (See also <a href="/blog/engineering-at-wagon">Engineering
+at Wagon post</a>)</p>
+
+<p>We’ll be at <a href="http://bayhac.org">BayHac</a> this weekend so make sure
+to check out our CTO Mike Craig’s talk Sunday, June 14 at 11am or
+find me.  If you love this stuff the way we do, you should <a href="/jobs">come
+spend a day with our team</a>.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/engineering-at-wagon>Engineering at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/engineering-at-wagon&text=Engineering at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/engineering-at-wagon/&t=Engineering at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               February 13, 2015 | <a href="https://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/team">#team</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/react">#react</a>
+  
+</div>
+
+
+           <p>Over the last few months, we’ve been user-testing a preview version of Wagon—a modern SQL editor that powers a Google Docs-style experience for analysts, engineers, and their teams. We’ve iterated on both our <a href="http://www.wagonhq.com/blog/design-at-wagon" target="_blank">design process</a> and technology choices to build a tool that we and our users rely on every day.</p>
+
+<p>Wagon takes advantage of <a href="http://a16z.com/2015/01/22/cloud-client-computing/" target="_blank">cloud-local computing</a>, combining the strengths of remote servers like syncing, sharing, and storage with local client advantages like <a href="http://aadrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html" target="_blank">data locality</a> and device-specific user interfaces. Our architecture has three components: a frontend app, a native client, and backend services.</p>
+
+<p><br /></p>
+
+<p style="max-width: 802px; margin: auto;">
+  <a href="http://stackshare.io/wagon/wagon" target="_blank">
+    <img src="/images/posts/system_architecture.png" alt="Wagon architecture" />
+  </a>
+  <em><span style="float: right;">Wagon architecture</span></em>
+</p>
+
+<p><br /></p>
+
+<p>We make it easy to get started. You can download Wagon—a hybrid web application and native client, like Slack—and connect it to an existing local, private, or public database. The frontend is a slick interface for writing and running SQL, interacting with large results, and generating statistics and pivot tables. The native client locally handles connections, manages query runs, and processes results as they return from the database. The results, statistics, and pivots are cached locally and can be used to create sharable charts. When shared, Wagon securely transfers data from the local machine to the backend, making it available to permissioned teammates.</p>
+
+<p><strong>Frontend App</strong></p>
+
+<p>We use HTML, CSS, and JavaScript to maintain a consistent user experience across platforms and environments. The frontend is a single-page application built with React and Flux. We bundle it with the native client as a desktop application, and we have an in-browser experience for sharing and collaboration.</p>
+
+<p><em>Technology: Javascript, React, Flux, Ace</em></p>
+
+<ul>
+  <li><a href="http://facebook.github.io/react/" target="_blank">React</a> gives us declarative, reusable UI elements. React components compose like HTML elements with rich state handling, so we manage fewer event listeners and nested callbacks.</li>
+  <li><a href="https://facebook.github.io/flux/docs/overview.html#content" target="_blank">Flux</a> complements React and helps structure our frontend code. It separates logic, state, and UI into loosely coupled components, and has a straightforward data flow.</li>
+  <li><a href="http://ace.c9.io/#nav=about" target="_blank">Ace</a> is an extensible, embeddable code editor. We use its syntax highlighting and have extended its autocomplete.</li>
+</ul>
+
+<p><strong>Native Client</strong></p>
+
+<p>Our users want to query their databases without any new IT or admin setup, so users connect via their local machine with their existing credentials. Wagon handles connections through the native client, since most databases require socket-level network access that isn’t possible directly from browser.</p>
+
+<p>Exploration and analysis can be a time-consuming and tedious job with existing SQL tools. Each step is an additional database query subject to queuing, slow execution, and changing data. Our users want to quickly explore results and evaluate summary statistics without executing subsequent queries. To power that experience, the client also computes statistics and caches query results on the local file system.</p>
+
+<p>We built the native client in Haskell. It’s a high level language with great libraries, static compilation, a high performance ceiling, and an active community. We use MacGap to bundle the client and the frontend into a downloadable OS X application (Windows soon!).</p>
+
+<p><em>Technology: Haskell, MacGap</em></p>
+
+<ul>
+  <li>Prototyping and refactoring is safe with Haskell’s type-driven development. The compiler helps us avoid bugs and edge cases as we iterate.</li>
+  <li>Haskell’s opt-in control over compiler optimizations and strictness allows for incremental optimization. GHC includes a capable profiler, and the community maintains libraries for <a href="http://hackage.haskell.org/package/QuickCheck" target="_blank">testing</a> and <a href="http://hackage.haskell.org/package/criterion" target="_blank">performance measurement</a>.</li>
+  <li><a href="http://macgapproject.github.io/" target="_blank">MacGap</a> is a lightweight (~1MB) web-to-native wrapper. It provides a JS API to integrate with the file system, subprocesses, and OS-specific features like notifications and menus.</li>
+</ul>
+
+<p><em>*Note: Wagon is now powered by Electron rather than MacGap. Read our <a href="/blog/electron-at-wagon">Electron blog post to learn more</a>.</em></p>
+
+<p><strong>Backend Services</strong></p>
+
+<p>Our backend services persists state and shared data to allow users to securely collaborate on queries, results, and charts. The backend is also written in Haskell: using the same language for the client and the server helps us stay flexible and reduce complexity. We store application state in Postgres while larger immutable data, like shared query results, live in Amazon S3.</p>
+
+<p><em>Technology: Haskell, Postgres, Amazon S3</em></p>
+
+<ul>
+  <li>Haskell’s lightweight threads and the GHC runtime scale well on multi-core machines.</li>
+  <li>Postgres is powerful, flexible, and straightforward to host. We use features like <a href="http://www.postgresql.org/docs/9.4/static/storage-toast.html" target="_blank">TOAST</a> and <a href="http://www.postgresql.org/docs/9.4/static/datatype-json.html" target="_blank">JSON support</a> to test new features.</li>
+</ul>
+
+<p>There are exciting upcoming technology challenges including optimizing compute across local and remote environments, designing efficient streaming statistics algorithms, building features that learn and improve with usage.</p>
+
+<p>We’d love to hear from you! <a href="https://twitter.com/wagonhq" target="_blank">Follow @WagonHQ</a>, check out our stack on <a href="http://stackshare.io/wagon/wagon" target="_blank">Stackshare</a>, and learn more about our <a href="http://www.wagonhq.com/about" target="_blank">engineering and design team</a>. Stay tuned for future engineering deep dives!</p>
+
+<p><br />
+<em>
+  Thanks to <a href="https://twitter.com/scpike" target="_blank">Steve Pike</a> and <a href="https://twitter.com/petkanics" target="_blank">Doug Petkanics</a> for reviewing this post. <a href="http://thenounproject.com/term/website/35429/" target="_blank">Image credit</a> Adam Wilson from The Noun Project.
+</em></p>
+
+         </div>
+       </section>
+      
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

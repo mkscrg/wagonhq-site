@@ -1,0 +1,590 @@
+/* /* site-wide */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  font-size: 16px;
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  padding-bottom: 50px;
+}
+
+a:focus {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+code {
+  font-family: monospace;
+  color: #a71d5d;
+  background-color: transparent;
+}
+
+.black {
+  color: #333;
+}
+
+.gray {
+  color: #9B9B9B;
+}
+
+
+/* 2.4-width columns */
+.col-xs-24,
+.col-sm-24,
+.col-md-24,
+.col-lg-24 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.col-xs-24 {
+  width: 20%;
+  float: left;
+}
+@media (min-width: 768px) {
+.col-sm-24 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-24 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-24 {
+    width: 20%;
+    float: left;
+  }
+}
+
+/* navbar */
+.navbar-header > a {
+  display: inline-flex;
+  text-decoration: none;
+}
+.navbar-header > a:hover {
+  opacity: 0.875;
+}
+.navbar-default {
+  background-color: white;
+  border-color: white;
+}
+.navbar-logo {
+  background: url(/images/logo_text.svg);
+  background-size: 90%;
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding: 15px 120px 15px 31px;
+  margin-right: 15px;
+}
+.navbar-header .navbar-brand:hover {
+  color: #173B6B;
+}
+.navbar-static-top {
+  margin: 0;
+  padding-top: 25px;
+}
+.navbar-static-bottom {
+  position: absolute;
+  bottom: 0;
+  border-radius: 0;
+  border-width: 1px 0 0;
+  width: 100%;
+  margin: 0;
+}
+.navbar-left:first-child {
+  margin-left: -30px;
+}
+.navbar-text.navbar-right {
+  margin-right: 0;
+}
+.topnav > li > a {
+  color: #9B9B9B;
+  font-weight: 400;
+}
+#green-text {
+  color: #4cae4c;
+}
+#green-text:hover {
+  color: #337733;
+}
+.signup-button {
+  margin-top: 8px;
+  margin-bottom: 0px;
+  font-size: 15px;
+  margin-left: 10px;
+}
+.signup-button > a:hover {
+  text-decoration: none;
+}
+.signup-button > a {
+  color: white;
+}
+.signup-os > img {
+  width: 70px;
+}
+#no-padding {
+  padding: 0px;
+}
+#app-screenshot {
+  width: 800px;
+  max-width: 100%;
+}
+
+/* headers */
+h1, h2, h3 {
+  color: #183C69 !important;
+}
+h1 small, h2 small, h3 small {
+  color: #9B9B9B;
+}
+h2 {
+  font-size: 34px;
+  line-height: 0.9;
+  margin-bottom: 30px;;
+}
+h2 small {
+  font-size: 18px;
+  line-height: 22px;
+}
+h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+h3 small {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.small {
+  color: #9B9B9B;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+/* misc */
+.jumbotron {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+section {
+  margin-bottom: 15px;
+}
+@media screen and (min-width: 768px) {
+  section:first-child {
+    margin-top: 30px;
+  }
+}
+.center-col {
+  margin: auto;
+  float: none;
+}
+.img-fill {
+  width: 100%;
+}
+.lead {
+  line-height: 1.5;
+  font-size: 20px;
+  color: #4A4A4A;
+}
+
+.subhead {
+  color: #9B9B9B;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+a.no-underline:hover {
+  text-decoration: none;
+}
+
+.img-center {
+  display: block;
+  margin: 0 auto;
+}
+
+/* /* index */
+.index .header {
+  background: none;
+  padding-bottom: 0;
+}
+
+.index .header h1 {
+  font-size: 40px;
+}
+@media screen and (min-width: 768px) {
+  .index .header {
+    padding: 0 60px;
+    margin: 30px 0;
+  }
+  .index .header h1 small {
+    display: block;
+    margin-top: 15px;
+    font-size: 24px;
+    line-height: 35px;
+  }
+}
+.index .features .row.img {
+  margin: 0 -10px;
+}
+.index .features .col-md-4.img {
+  padding: 0 10px;
+}
+.index .links .row h3 {
+  font-weight: 400;
+}
+.index .vert-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+.features .vert-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+#signup-submit-button > .btn {
+  width: 100%;
+}
+#signup-error-message {
+  color: red;
+  margin-top: 15px;
+}
+#signup-success-message{
+  font-weight: bold;
+  color: green;
+}
+.index-signup {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 30px;
+}
+.platform-pic {
+  width: 90px;
+  margin-bottom: 30px;
+}
+@media (min-width: 992px) {
+  .signup-input-field {
+    margin-right: 20px;
+  }
+}
+@media (max-width: 992px){
+  .input-parent {
+    display: block !important;
+    margin-bottom: 15px !important;
+  }
+}
+.signup-input-field {
+  font-size: 16px;
+  width: 275px !important;
+  height: 45px;
+}
+#signup-submit {
+  font-size: 16px;
+  width: 190px;
+  height: 45px;
+}
+.database-list {
+  list-style: none;
+}
+.database-list > li {
+  display: inline;
+  margin-right: 20px;
+  color: #9B9B9B;
+  font-size: 22px;
+  line-height: 22px;
+  font-weight: 400;
+}
+@media screen and (min-width: 768px) {
+  .signup-logo {
+    margin-top: 60px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .signup-logo {
+    margin-top: 45px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .signup-logo {
+    margin-top: 15px;
+  }
+}
+h3.signup-header {
+  margin-bottom: 15px;
+}
+
+.waitlist-submit-button {
+  white-space: normal;
+}
+
+#waitlist-form {
+  width: 350px;
+  margin: auto;
+  max-width: 100%;
+}
+
+.gray-background {
+  background-color: #f8f8f8;
+}
+
+.announcement {
+  font-size: 27px;
+  color: #797878;
+}
+
+.announcement-content {
+  font-size: 22px;
+  color: #797878;
+}
+
+
+/* /* about */
+.about .bg-img {
+  width: 100%;
+  padding-top: 100%;
+  background-size: 100% 100%;
+}
+.about h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.about .team .row:not(:last-child) {
+  margin-bottom: 10px;
+}
+.about .team p {
+  font-size: 14px;
+}
+.about .team-img {
+  width: 50%;
+  padding-top: 50%;
+  margin: 0 auto 0;
+  border-radius: 9999px;
+}
+.about .social-icons li {
+  margin-bottom: 10px;
+}
+.about .social-icons span {
+  width: 50px;
+}
+.about .insta-imgs .row:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+
+/* /* job */
+.job h3 {
+  margin-bottom: 10px;
+}
+
+/* features */
+@media (min-width: 992px) {
+  .vcenter {
+     margin-top: 30px;
+  }
+}
+.feature {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.db-image {
+  margin-right: 10px;
+  width: 30px;
+  padding-bottom: 5px;
+}
+/* /* blog */
+.post .share {
+  float: right;
+  margin-top: 9px;
+}
+.post .share a {
+  cursor: pointer;
+}
+.post .share a:hover {
+  text-decoration: none;
+}
+.post img {
+  width: 100%;
+}
+.post figure {
+  text-align: center;
+}
+.post figure figcaption {
+  font-style: italic;
+  padding-top: 1em;
+}
+.post figure img {
+  display: inline-block;
+}
+.responsive-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.responsive-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.post-header {
+  margin-bottom: 0px;
+}
+
+/* /* release notes */
+.note ul {
+  max-width: 100%;
+  overflow: auto;
+}
+
+/* /* community */
+a.list-group-item:focus {
+  background-color: #fff;
+}
+
+
+.gig-text {
+  float: left;
+  padding: 7.5px 0 0 15px;
+}
+.gig-logo {
+  float: left;
+}
+.gig-logo img {
+  width: 60px;
+}
+
+/* tags */
+.tags {
+  color: #9B9B9B;
+  font-size: 15px;
+  font-style: italic;
+  margin-bottom: 15px
+}
+
+.mailing-list-group {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: 100;
+}
+
+.paging {
+  margin-bottom: 20px;
+}
+
+/* sql tutorial */
+
+.sqltutorial h3 {
+  font-size: 22px;
+  display: inline;
+}
+
+.sqltutorial h2 {
+  display: inline;
+  margin-bottom: 10px;
+}
+
+.sqltutorial .share {
+  float: right;
+}
+
+.sqltutorial-content {
+  margin-top: 25px;
+}
+
+.back-to-sql {
+  margin-top: 10px;
+}
+
+#wagon_team {
+  color: #183C69 !important;
+}
+
+button.segment {
+  margin-bottom: 15px;
+}
+
+.signup-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#segment-logo {
+  width: 220px;
+  margin-right: 4px;
+  position: relative;
+  bottom: 6px;
+}
+
+#segment-sources {
+  width: 500px;
+  max-width: 100%;
+}
+
+.segment-get-started {
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+#fivetran-logo {
+  margin-bottom: 20px;
+}
+
+#amplitude-logo {
+  margin-bottom: 10px;
+}
+
+#rjmetrics-screenshot {
+  width: 600px;
+  max-width: 100%;
+}
+
+#wagon-partner-logo {
+  width: 120px;
+  margin-right: 4px;
+  position: relative;
+  bottom: 11px;
+}
+
+.query-image {
+  width: 600px;
+  max-width: 100%;
+}
+
+.bottom-page {
+  margin-bottom: 20px;
+}
+
+.pricing-action {
+  margin-bottom: 12px;
+}
+
+.pricing-action-button {
+  width: 120px;
+  font-size: 18px;
+}
+
+/* #bandwagon love display */
+
+.slick-slide {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tweet-arrow {
+  margin-top: 20px;
+}

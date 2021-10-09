@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Building an Analytics Pipeline in 2015 - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Why you need SQL and how to build a modern analytics pipeline.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/building-an-analytics-pipeline" />
+    <meta property="og:title" content="Building an Analytics Pipeline in 2015" />
+    <meta property="og:description" content="Why you need SQL and how to build a modern analytics pipeline." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/building-an-analytics-pipeline>Building an Analytics Pipeline in 2015</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/building-an-analytics-pipeline&text=Building an Analytics Pipeline in 2015%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/building-an-analytics-pipeline/&t=Building an Analytics Pipeline in 2015%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                August 06, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+
+          <p>Every company needs an analytics data platform queryable by SQL.</p>
+
+<p>Using a single analytics tool or relying on logs from a single source is a fast way to get started but is rarely sufficient. You’ll realize you need a better data strategy when attempting more detailed analytics tasks: cohorting customers based on segments available in multiple data sources, analyzing long time scale trends, or making data available to other applications. Unfortunately, you’ll quickly reach the limit of your off-the-shelf tool.</p>
+
+<p>There has been a dramatic increase in data being created and fascination with <em>Big Data</em>, but less of a corresponding uptick in how to capture its value. Engineering a system to ingest, transform, and process data from many (changing, flaky) sources has been a <a href="http://www.b-eye-network.com/newsletters/inmon/7040">long time, Very Hard Problem™</a>. Doing this well requires hard work – the dreaded ETL.</p>
+
+<p>We see more and more companies choosing to invest in SQL warehouses and the requisite engineering well before they become large businesses. How do you effectively build one of these things? And what makes building robust analytics infrastructure difficult?</p>
+
+<p><br /></p>
+
+<p style="max-width: 600px; margin: auto;">
+	<img src="/images/posts/gtrends.png" alt="Google Trends for Big Data vs. ETL" />
+	<em><span style="float: right;"><a href="http://www.google.com/trends/explore?hl=en-US#q=big+data,+/m/01jr1p&amp;date=1/2004+133m&amp;cmpt=q&amp;tz=Etc/GMT%2B7&amp;tz=Etc/GMT%2B7">See full Google Trends report</a></span></em>
+</p>
+
+<p><br /></p>
+
+<p>Here’s an example illustrating the core problems: You implemented a new purchase flow in your app and you’d like to understand conversion rates (tracked from logs) broken down by your email marketing A/B test (tracked from a 3rd party). The log lines you’re generating have new structure and may need to be re-parsed to fit into your existing schema. The A/B testing info may live in a different place than user data. Boiler plate reporting tools and drag and drop analytics UIs are great, but they require structuring ahead of time and the new checkout flow change is already live in production. Manually doing this analysis one time is annoying, but turning it into a reliable, repeatable practice is nearly impossible without dedicated engineering effort.</p>
+
+<p>Your goal should be to get your data into a data warehouse that can be queried directly by people and programs.  While it’s not straightforward, it’s important to understand the pieces. We see companies addressing this problem by focusing on the following steps:</p>
+
+<ol>
+  <li>For each data source: generate, collect, and store your data</li>
+  <li>Transform data into usable, queryable form</li>
+  <li>Copy multiple sources into a single place</li>
+  <li>Enjoy the data fruits of your data labor</li>
+</ol>
+
+<p>The first step is collecting the data with as much structure as possible. You need to generate the data, transmit it from apps, browsers, or services for collection, and then safely store it for later. Many mobile and web analytics providers offer these three steps, others focus on a subset. For example, <a href="https://heapanalytics.com/">Heap</a> and <a href="https://mixpanel.com/">Mixpanel</a> generate many app usage events automatically. Others focus on receiving data and making it available to read later (<a href="https://keen.io/">Keen</a> and <a href="http://www.splunk.com/">Splunk</a> as different examples). <a href="https://segment.com/">Segment</a> takes advantage of the difficulty of logging to many places by transmitting data to many of the above services with one API call.</p>
+
+<p>Another large source of data is logs (usually messy and unstructured). Just having logs is not enough - it must be massaged into usable rows and columns. Some log lines help engineers analyze technology performance or debug errors, some log lines must be interpreted to signal “human” events, and some log lines have been around for so long that no one remembers why they’re there. Logs are rarely generated with their end purpose or a fixed type system in mind. Transformation of these raw strings is necessary to make them usable rather than just searchable.</p>
+
+<p>For example, you may need to combine three separate log lines in order to signal a successful-user-flow, or to compare log lines against prior data to understand if a user is new, active or re-activated. Or maybe you need to remove those extra pesky spaces around your beautiful integers or standardize timestamps across timezones. <a href="http://www.trifacta.com/">Trifacta</a>, <a href="http://www.paxata.com/">Paxata</a>, and <a href="http://www.tamr.com/landing-pages/tamr-technical-whitepaper/">Tamr</a> offer technical tools for transforming ugly log forms to structured rows and columns. Or you’ll roll your own.</p>
+
+<p><br /></p>
+
+<p style="max-width: 500px; margin: auto;">
+	<a href="http://dilbert.com/strip/2008-05-07"><img src="/images/posts/dilbert.gif" alt="Dilbert Cartoon" /></a>
+</p>
+
+<p><br /></p>
+
+<p>Once data collection systems are in place, you want to get this data flowing into a data warehouse. While some of the aforementioned tools provide their own interface for accessing collected and processed data, joining across multiple sources is difficult if not impossible, and their interfaces are often inflexible and cumbersome. Luckily, many of these services recognize this, and offer easy exports to data warehouses. <a href="https://amplitude.com/blog/2015/03/27/why-we-chose-redshift/">Amplitude</a> and <a href="https://segment.com/redshift">Segment</a> do this well and offer straightforward exports to Redshift. Google Analytics offers export to BigQuery for Premium customers (~$150k / year). Others make it possible, but require a bit of work (for example, <a href="https://twitter.com/keen_io/status/545642330384908289">Keen</a>). New startups like <a href="https://www.textur.com/">Textur</a> and <a href="http://www.alooma.io">Alooma</a> are working on plumbing data into hosted RDBMS systems.</p>
+
+<p>Outside of dedicated analytics solutions, you often have data from third party sources you’d like to join and analyze (e.g. Salesforce, ZenDesk, MailChimp, etc.). Most of these tools offer APIs to extract data. Building and maintaining these connections from 3rd parties to your data warehouse on your own is doable, but this is often where data integration tools are helpful. Services like <a href="http://snowplowanalytics.com/">Snowplow</a> and <a href="https://www.fivetran.com">Fivetran</a> help.</p>
+
+<p>At this point, data is flowing in a structured way. But where is it going? When assessing a data warehouse, look for:</p>
+
+<ol>
+  <li>Large scale ingestion and storage</li>
+  <li>Fast computation and multi-user concurrency</li>
+  <li>Easy management and scaling with data</li>
+  <li>Security and permissioning</li>
+</ol>
+
+<p>There are many that meet these criteria: Amazon Redshift, Google BigQuery, Microsoft Azure SQL Data Warehouse, Hive, Spark, Greenplum, Vertica, Impala (the list goes on!). The largest technology companies (Amazon, Google, Microsoft) are investing in, and subsidizing, these data warehousing solutions. It’s a crucial component to nearly every business, which naturally draws the attention of the tech titans.</p>
+
+<p style="max-width: 660px; margin: auto;">
+
+	<a href="http://www.slideshare.net/mjft01/big-data-landscape-matt-turck-may-2014"><img src="/images/posts/big-data-landscape.png" alt="Big Data landscape diagram " /></a>
+
+	<em><span style="float: right;">It’s a data jungle out there. Diagram from 2014 by Matt Turck at FirstMark</span></em>
+</p>
+
+<p><br /></p>
+
+<hr />
+
+<p>Phew, now you can enjoy the freedom of querying structured data, and the work (and fun!) begins. We’ll have more on the data analysis step soon!</p>
+
+<p>We’d love to hear how you’re tackling these problems. What are your favorite tools? Where are your most painful pains? Tweet at <a href="https://twitter.com/wagonhq">@WagonHQ</a> or send us a note at <a href="mailto:hello@wagonhq.com">hello@wagonhq.com</a>!</p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

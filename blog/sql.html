@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Posts - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="A collection of blog posts from Wagon's engineering blog.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/sql.html" />
+    <meta property="og:title" content="Posts" />
+    <meta property="og:description" content="A collection of blog posts from Wagon's engineering blog." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="release-notes">
+  <div class="container">
+    <div class="col-md-8 center-col">
+    <section class="hiring">
+      <h2 class="text-center">
+        #sql<br>
+      </h2>
+
+    </section>
+    <ul>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/customer-data-together>Your customer data, together at last</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/customer-data-together&text=Your customer data, together at last%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/customer-data-together/&t=Your customer data, together at last%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               April 06, 2016 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p>Customers interact with your company through many paths — they engage inside your product, open emails, view ads, answer surveys, etc. To understand your customers, you have to combine product engagement with their other interactions.</p>
+
+<p>Unfortunately, it’s difficult to analyze customer data across these different experiences.  Customer behavior in your product is usually measured through a 3rd party tracking service or by analyzing raw application logs.  Other interactions, like as customer support chats or sales calls, are stored in SaaS apps or homegrown internal tools.  You can only access this data through each of their limited reporting UIs, exports, or possibly an API.  There’s no magic wand for joining these disparate streams.</p>
+
+<p>There are two common approaches to join these multiple datasets: (1) send all data to one tracking service or (2) move the data to a common place. Sending all the data to a single tracking service, like Google Analytics or Mixpanel, is cumbersome, nearly impossible to implement, and inflexible to query. Dead end.</p>
+
+<p>The better approach is to move all customer data into a common store. Amazon Redshift, Google BigQuery, and Azure SQL Warehouse are our favorite cloud data stores for large scale analytics. They’re fast, easy to manage, and decreasing in price. But moving data from 3rd party sources to these cloud databases is still hard. You have to work with multiple APIs, find join keys, schedule data pulls, handle backfill, etc… It’s a huge headache.</p>
+
+<p>There are two strategies: build or buy. Building your own is complicated - we have a <a href="/blog/building-an-analytics-pipeline">post</a> about it!</p>
+
+<p style="max-width: 600px; margin: auto;">
+	<img src="/images/partners/segment-sources.png" />
+</p>
+
+<p><br /></p>
+
+<h2 class="text-center" style="font-size: 45px; margin-bottom: 0px;">
+  <a href="/partners/segment" class="no-underline">
+    <img src="/images/wagon.png" id="wagon-partner-logo" />
+      &nbsp;&nbsp;💖&nbsp;&nbsp;
+    <span>
+      <img src="/images/partners/segment-logo.svg" id="segment-logo" />
+    </span>
+  </a>
+</h2>
+<p><br /></p>
+
+<p>Today, thanks to <a href="https://segment.com/sources/?utm_medium=blog&amp;utm_source=wagon&amp;utm_campaign=sources">Segment Sources</a>, bringing all of your customer touch points together got easier. They’ve made it easy to pull customer data from many sources, such as Salesforce, Zendesk, and behavioral data from your app or website, into a single warehouse.  We worked with Segment to write some <a href="/partners/segment/queries">starter queries</a> - give them a go. If you’re already using Wagon and connect a Segment Warehouse, you can open these queries right in the app.</p>
+
+<p>Segment will be expanding its Source catalog in the coming months, and you can always check out the current <a href="https://segment.com/catalog/?utm_medium=blog&amp;utm_source=wagon&amp;utm_campaign=sources">catalog</a> to see the latest additions. We’re excited to partner with Segment on our shared mission to make answering questions with data easy.</p>
+
+<p>We also recommend other tools to help unify your various customer data sets: <a href="https://fivetran.com/">Fivetran</a>, <a href="https://rjmetrics.com/product/pipeline">RJ Metrics Pipeline</a>, and <a href="http://snowplowanalytics.com/">Snowplow</a> – so that you’ll always have access to the data you need in Wagon, no matter how you choose to set up your pipeline.</p>
+
+<p>Modern ETL + modern SQL tools = win!</p>
+
+<script src="/js/public-query.js"></script>
+
+<script src="/js/protocol-url.js"></script>
+
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/Redshift-UDFs-in-Python>Python UDFs in Amazon Redshift</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/Redshift-UDFs-in-Python&text=Python UDFs in Amazon Redshift%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/Redshift-UDFs-in-Python/&t=Python UDFs in Amazon Redshift%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               February 01, 2016 | <a href="https://twitter.com/elisebreda" target="_blank">Elise Breda (Yhat)</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p><em><a href="https://twitter.com/elisebreda">Elise Breda</a> is the Growth Strategist at <a href="https://www.yhat.com/">Yhat</a>, a tech company that builds software for deploying predictive analytics to mobile and web apps. When she isn’t at their awesome new office in DUMBO, she can be found exploring the bike paths and Thai restaurants of NYC.</em></p>
+
+<h3 id="in-the-beginning">In the Beginning…</h3>
+
+<p>In the early 2000’s, the behemoth collection of cloud computing services we now know as <a href="http://aws.amazon.com/">Amazon Web Services</a> (AWS) was little more than sparks firing in <a href="https://twitter.com/ccpinkham">Chris Pinkham</a> and <a href="https://twitter.com/b6n">Benjamin Black</a>’s neurons. In 2003, the two presented a paper (<a href="http://blog.b3k.us/2009/01/25/ec2-origins.html">blog post here</a>) outlining a radical vision for a retail computing infrastructure that would be standardized, automated and built upon web services. The next year, <a href="https://en.wikipedia.org/wiki/Amazon_Simple_Queue_Service">Simple Queue Service</a>, the first AWS service for public usage, was launched.</p>
+
+<p>Fast forward almost a decade, and AWS is now the most commonly used cloud platform among enterprise software developers. AWS products span the gamut of web services, from computation (eg EC2) to networking (eg VPC) and content delivery (eg S3). In this post we’ll explore a small fraction of a fraction of the AWS ecosystem–a database that’s generating all kinds of groundswell right now: <a href="https://en.wikipedia.org/wiki/Amazon_Redshift">Amazon Redshift</a>.</p>
+
+<p>The rest of this post will talk about Redshift at a high level and then dive into a mini overview of <a href="https://en.wikipedia.org/wiki/User-defined_function">User Defined Functions</a> (UDFs), how they work, why they’re great, and how to start using them.</p>
+
+<h3 id="amazon-redshift">Amazon Redshift</h3>
+
+<p><a href="https://aws.amazon.com/redshift/">Amazon Redshift</a> is a hosted data warehouse that’s accessible / easy to set up, and built for speed and suitable for a variety of combining, storing, and compute-heavy analytics tasks.</p>
+
+<p>Two things make Redshift particularly attractive. First, Redshift can handle insane amounts of data–it is a petabyte-scale warehouse. A petabyte is a <em>lot</em> (10<sup>15</sup> bytes) of data. As a point of reference, the entire master catalog of Netflix video in 2013 amounted to about 3.14 petabytes of storage space (interesting read <a href="https://www.quora.com/What-things-in-the-world-have-a-pebibyte-of-storage-space-in-them">on Quora</a>). Second, unlike Amazon’s other hosted database product, Amazon RDS, Redshift stores data according to column-based structure. Column orientation is good for tables containing columns with lots of repeated values (i.e. Credit Card Names, County/State, Product Type, etc, like <a href="http://www.salesforce.com">CRM</a> data. The benefit of column data is that because it’s uniform, there are opportunities for storage size optimization via compression. You can read more about how to maximize compression <a href="https://en.wikipedia.org/wiki/Column-oriented_DBMS#Compression">here</a>.</p>
+
+<p style="max-width: 400px; margin: auto;">
+	<img src="https://kejserbi.files.wordpress.com/2012/07/image4.png" alt="Column orientation compression" />
+</p>
+
+<p>Redshift handles large scale column-oriented datasets using massive parallel processing, performing coordinated computations across a large number of processors in parallel, making it a fast and powerful data warehouse option.</p>
+
+<h3 id="data-warehouse-setup-in-the-data-age">Data Warehouse Setup in the Data Age</h3>
+
+<p>Even just a few years ago, getting a data warehouse and proper ETL processes in place was a long, painful and probably very expensive ordeal. But we’ve arrived in the data age where easy-to-use, affordable data solutions are bountiful.</p>
+
+<p>At <a href="https://www.yhat.com/">Yhat</a>, we use a Redshift to warehouse everything–CRM data (we use SFDC), product data, site metrics from Google Analytics, and data from a bunch of other data. It took us about 20 mins to set up the database on AWS, and it took us…wait for it…another 20 mins or so to set up all of our ETL using <a href="http://fivetran.com/">Fivetran</a> which we couldn’t be more impressed with.</p>
+
+<h3 id="sql-ide-done-right">SQL IDE Done Right</h3>
+
+<p>Most SQL IDEs of yesteryear leave something to be desired in terms of UX. The majority are clunky and have super old school frankenstein UIs. Why they all focus on making exploring the DB schema rather than on making it easy to write queries, view results and think critically about your data has always been a mystery.</p>
+
+<p>Well those days are also over. Wagon is the query-focused SQL app I’ve been looking for for years. Wagon boasts a clean UX designed analysts. Features are carefully chosen with a keen eye for usability for people writing tens or hundreds of queries per day. Wagon gets it in spades.</p>
+
+<h3 id="overview-of-python-udfs-in-redshift">Overview of Python UDFs in Redshift</h3>
+
+<p>UDF stands for user-defined function, meaning that you can add functions to an environment (in this case, Redshift) in addition to those that come built in. Python UDFs allow you combine the power of Redshift with what you know and love about the Python programming language without switching between IDEs or systems.</p>
+
+<p>The great thing about UDFs in Redshift is that Redshift will automatically execute it using its MPP architecture. One caveat to keep in mind is that your Python code still won’t execute as quickly as native SQL functions (<code>AVG</code>, <code>MIN</code>, <code>MAX</code>, etc.) that are baked into the database.</p>
+
+<h3 id="how-to-use-udfs">How to Use UDFs</h3>
+
+<p>You can certainly work with text in pure SQL, but some tasks are just easier to do in a scripting language like Python instead. Here’s a toy example to illustrate how to use Python functionality within Redshift using a UDF.</p>
+
+<p>Suppose a column in one of our tables contains huge chunks of text or html, and we’re interested to find any email addresses within any one record. Let’s write a function that will take in raw text and return a pipe <code>|</code> separated string containing any email addresses found within the input text document. Define the function like so:</p>
+
+<script src="https://gist.github.com/elisebreda/e5ea2dcb43bc896c3ab0.js"></script>
+
+<p>Once defined, you can use it like this:</p>
+
+<script src="https://gist.github.com/elisebreda/6286e4497a96bfa122b7.js"></script>
+
+<p>This is a scalar function, so it’ll return one record for each input row (i.e. not an aggregate function). One thing to remember is that your UDFs are per-database, meaning that if you have multiple in your Redshift cluster, you’ll need to define your functions in each database.</p>
+
+<h3 id="example">Example</h3>
+
+<p>Redshift Python UDFs are based on Python 2.7 and come preloaded with a lot of our favorite libraries, including NumPy, SciPy and Pandas. You can also import custom modules from S3 and the web.</p>
+
+<p>Here’s the template published on the AWS blog that you can use to start creating your own scalar functions:</p>
+
+<script src="https://gist.github.com/elisebreda/471b18eb6e87c4fa3b3f.js"></script>
+
+<p>The scalar UDFs that you create will return a single result value for each input value. Once you’ve defined a UDF, you can use it in any SQL statement. One thing to remember is that your UDFs are per-database, meaning that if you have multiple in your Redshift cluster, you’ll need to define your functions in each database.</p>
+
+<h3 id="helpful-resources">Helpful Resources</h3>
+
+<p>To learn more about Python UDFs in Redshift, check out Amazon’s <a href="http://docs.aws.amazon.com/redshift/latest/dg/user-defined-functions.html">documentation</a>, which is super helpful and covers everything from constraints to security and python support. You can also check out the <a href="https://aws.amazon.com/blogs/aws/user-defined-functions-for-amazon-redshift/">initial release blogpost</a> and a more <a href="http://blogs.aws.amazon.com/bigdata/post/Tx1IHV1G67CY53T/Introduction-to-Python-UDFs-in-Amazon-Redshift">extensive post</a> that uses UDFs to analyze the CMS Open Payments data set.</p>
+
+<h3 id="yhat">Yhat</h3>
+<p>Yhat’s flagship product, <a href="https://www.yhat.com/products/sciencecluster">ScienceOps</a>, empowers teams of data scientists deploy their models into web and mobile applications. These models are embedded into production applications via REST APIs without any recoding from their native statistical language.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/active-users-in-sql>Calculating Active Users in SQL</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/active-users-in-sql&text=Calculating Active Users in SQL%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/active-users-in-sql/&t=Calculating Active Users in SQL%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               November 13, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p>How engaged are your users? How frequently do they visit your website or app? Analytics services like Google Analytics and MixPanel calculate basic counts of daily, weekly, and monthly active users, but it’s difficult to customize or join these results with other data. Writing this query in SQL gives you more control. Let’s do it!</p>
+
+<p>Here’s a table of user logins by day. How many users were active in the last week and month?</p>
+
+<table class="table">
+  <tr>
+    <th>date</th>
+    <th>user_id</th>
+    <th>num_logins</th>
+  </tr>
+  <tr>
+    <td>10/1/15</td>
+    <td>1</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/1/15</td>
+    <td>2</td>
+    <td><em>null</em></td>
+  </tr>
+  <tr>
+    <td>10/1/15</td>
+    <td>3</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>10/2/15</td>
+    <td>1</td>
+    <td><em>null</em></td>
+  </tr>
+  <tr>
+    <td>10/2/15</td>
+    <td>2</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>10/2/15</td>
+    <td>3</td>
+    <td>3</td>
+  </tr>
+</table>
+
+<p>Like <a href="/blog/running-totals-sql">calculating running totals</a>, there are two approaches: <code>self join</code> or <code>window function</code>.</p>
+
+<p>In either approach, it’s helpful to have a table of logins per user for each day, even if the user didn’t login (<em>null</em> in this example). If your data isn’t already organized like this, you can generate a table with a row per day, per user, with the following query (this is Postgres syntax, for other databases, modify the <code>generate_series</code> function to generate a table of dates).</p>
+
+<noscript><pre>select 
+    d.date, 
+    u.user_id, 
+    c.num_logins
+from (
+    select * from
+    -- fill in the minimum date in your dataset
+    generate_series(&#39;01-05-15&#39;::timestamp, 
+                    current_date::timestamp, &#39;24 hours&#39;) as date
+) d
+full outer join (select distinct(user_id) as user_id from userActivityTable) u on 1 = 1
+full outer join userActivityTable c on u.user_id = c.user_id and c.date = d.date;</pre></noscript>
+<script src="https://gist.github.com/grano/215991d7fb785bf7685a.js?file=generate_full_table.sql"> </script>
+
+<p>To use this data, you can create a temporary table, use a common table expression, or include it as a subselect.</p>
+
+<h4 id="approach-1-self-join">Approach 1: Self Join</h4>
+
+<p>A self join is when you join a table with itself.  How meta is that?  For each row, we ask how many logins that user had in the last week.  The join condition requires emails to match and for the date to be within the last 7 days. In line 5, the query sums num_logins for those dates. The case statement identifies the user as active on that day if she had any logins in the prior week.</p>
+
+<noscript><pre>select 
+    o.user_id, 
+    o.date,
+    case
+        when sum(i.num_logins) &gt;= 1 then TRUE
+        else FALSE 
+    end as active
+from userActivityTable as o
+join userActivityTable as i on 
+    i.date &lt;= o.date AND
+    i.date &gt;= (o.date :: date) - integer &#39;7&#39; AND
+    i.user_id = o.user_id
+group by o.user_id, o.date;
+</pre></noscript>
+<script src="https://gist.github.com/grano/a668412b889cb172823f.js?file=active_users_self_join.sql"> </script>
+
+<p>This query generates a table that tells us which users are seven-day-active over time. This result can be aggregated further, filtered for specific dates, used to find inactive users, and joined with other data. In Wagon, we can create a <a href="https://app.wagonhq.com/result/worlyovh53iwh4xr">graph of the number of 7 day active users over time</a>.</p>
+
+<h4 id="approach-2-window-functions">Approach 2: Window Functions</h4>
+
+<p>The self join works great, but modern databases have a more efficient way to get the same results. With window functions, we can explicitly aggregate only over rows that we care about with just a single pass through the data. If you have millions or billions of rows (lucky you), the self join will take a long time to compute. In line 5, the query sums num_logins for the user’s previous 14 days. It first partitions the table by email, then evaluates over a set of rows - in this case we’re looking at a specific date range.  The case statement classifies the user as active or not just as before.</p>
+
+<noscript><pre>select
+    user_id,
+    date,
+    case
+        when sum(num_logins) over (partition by user_id order by date rows between 14 preceding and current row) &gt;= 1 then TRUE
+        else FALSE
+    end as active
+from userActivityTable;
+</pre></noscript>
+<script src="https://gist.github.com/grano/a16e64d9164924bc6f3a.js?file=active_users_window_function.sql"> </script>
+
+<p>This query makes it easier to add additional metrics for 7 and 30 day active users. As expected, the <a href="https://app.wagonhq.com/result/4ooragqzn3fv3xex">wider your definition of active user</a>, the more you’ll have. Use these new powers carefully!</p>
+
+<hr />
+
+<p><em>Want to learn more SQL? Join us on Monday, November 16 at the Wagon office in San Francisco for a free SQL workshop.  Please <a href="https://www.eventbrite.com/e/an-evening-of-sql-and-cheese-tickets-19230173968">RSVP</a>!</em></p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/running-totals-sql>Calculating Running Totals using SQL</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/running-totals-sql&text=Calculating Running Totals using SQL%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/running-totals-sql/&t=Calculating Running Totals using SQL%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               October 20, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p>How many users joined in the last 5 months? What were total sales in Q2? How much revenue came from the March sign up cohort?</p>
+
+<p>Although these questions can be answered with a single number, it can be useful to see a <em>running total</em> over time: how many unique users joined, or how much cumulative revenue was received by day over some period.</p>
+
+<p>Usually, data is stored incrementally. For example, here’s a table of sales per day:</p>
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Sales</th>
+  </tr>
+  <tr>
+    <td style="width: 216px;">10/1/2015</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>10/2/2015</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/3/2015</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>10/4/2015</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>10/5/2015</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>10/6/2015</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/7/2015</td>
+    <td>6</td>
+  </tr>
+</table>
+
+<p>How do we generate the following table of cumulative sales over time? In SQL, there are two typical approaches: a self join or a window function.</p>
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Running Total of Sales</th>
+  </tr>
+  <tr>
+    <td style="width: 216px;">10/1/2015</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>10/2/2015</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>10/3/2015</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>10/4/2015</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>10/5/2015</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>10/6/2015</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>10/7/2015</td>
+    <td>34</td>
+  </tr>
+</table>
+
+<p>A self join is a query that compares a table to itself. In this case, we’re comparing each date to any date less than or equal to it in order to calculate the running total. Concretely, we take the sum of <code>sales</code> in the second table over every row that has a date less than or equal to the date coming from the first table. This is Postgres/Redshift syntax, but other SQL dialects are very similar.</p>
+
+<noscript><pre>select 
+    a.date,
+    sum(b.sales) as cumulative_sales
+from sales_table a 
+join sales_table b on a.date &gt;= b.date
+group by a.date
+order by a.date;</pre></noscript>
+<script src="https://gist.github.com/grano/b705f532374c0ec02f03.js?file=sales_running_total.sql"> </script>
+
+<p>This is not a bad approach; it is a nice showcase of how extensible SQL can be using only <code>select</code>, <code>from</code>, <code>join</code>, and <code>group by</code> statements.</p>
+
+<p>But it is a lot of code for a simple task. Let’s try a window function. They are designed to calculate a metric over a set of rows. In our case, we want to sum every row where the date is less than or equal to the date in the current row.</p>
+
+<noscript><pre>select
+    date,
+    sum(sales) over (order by date rows unbounded preceding) as cumulative_sales
+from sales_table;</pre></noscript>
+<script src="https://gist.github.com/grano/88fcf67e5ff14ae9e1c2.js?file=cumulative_sales_window_function.sql"> </script>
+
+<p>The window function can filter and arrange the set of rows to run the function over. Here the <code>order by date rows unbounded preceding</code> limits the sum function to only <code>sales</code> before the date of the current row. Window functions are incredibly useful for time-based analytical queries; to learn more, the <a href="http://www.postgresql.org/docs/9.4/static/tutorial-window.html">Postgres docs</a> are a great place to start.</p>
+
+<p>The final step of creating a chart and sharing it triumphantly with your teammates is easily accomplished using <a href="https://app.wagonhq.com/result/dcyjd5ha7eiptaoa">Wagon</a>. Window functions for the win!</p>
+
+<p><strong><em>Wagon is a modern SQL editor for analysts and engineers: write queries, visualize data, and share charts with your team. Signup for free:</em></strong></p>
+
+<form id="waitlist-form">
+  <div id="signup-name" class="form-group">
+    <input class="form-control input-lg" type="text" name="name" placeholder="Your name" />
+  </div>
+  <div id="signup-email" class="form-group">
+    <input class="form-control input-lg" type="text" name="email" placeholder="name@company.com" />
+  </div>
+  <p id="signup-error-message" class="form-group" style="color: red;"></p>
+  <p id="signup-success-message" class="form-group text-center"></p>
+  <div id="signup-submit-button" class="form-group">
+    <button class="btn btn-success btn-lg waitlist-submit-button" type="submit" name="submit" id="signup-submit">Sign up and download</button>
+  </div>
+</form>
+<script src="/js/signup.js"></script>
+
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/sql-workbench-to-wagon>Migrating from SQL Workbench/J to Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/sql-workbench-to-wagon&text=Migrating from SQL Workbench/J to Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/sql-workbench-to-wagon/&t=Migrating from SQL Workbench/J to Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               September 30, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p>Many Wagon users previously used SQL Workbench/J to query Amazon Redshift. Older SQL tools are focused on DBA tasks like managing tables, updating schemas, and provisioning users. Analysts just want a simple way to query data, analyze it, visualize it, and collaborate with others. It’s no surprise that we’re frequently asked how to move from legacy tools like SQL Workbench/J to Wagon. It’s super easy.</p>
+
+<p>If you are currently using SQL Workbench/J and want to <a href="/">try Wagon</a>, here are the quick steps to connect to Redshift in Wagon:</p>
+
+<ol>
+  <li>In SQL Workbench/J, open the connection window</li>
+  <li>Grab the hostname, port, and database from the URL, the username, and the password (in the Redshift interface, the URL is called the JDBC URL)</li>
+  <li>Paste into Wagon (no need to install any drivers!)</li>
+</ol>
+
+<p style="max-width: 600px; margin: auto;">
+	<img src="/images/posts/workbench-config.png" alt="SQL Workbench/J connect window" />
+</p>
+
+<p><br /></p>
+
+<p>Happy querying!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/dear-aws-data-blog>Dear AWS Big Data Blog</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/dear-aws-data-blog&text=Dear AWS Big Data Blog%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/dear-aws-data-blog/&t=Dear AWS Big Data Blog%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               August 13, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p>We love Redshift and we love R. So we were delighted to see an <a href="http://blogs.aws.amazon.com/bigdata/post/Tx1G8828SPGX3PK/Connecting-R-with-Amazon-Redshift">AWS post about how to connect Redshift to R</a>. Petabytes of data plus all the statistical models you can imagine? I’m in!</p>
+
+<p style="max-width: 400px; margin: auto;">
+	<img src="/images/posts/wagon_redshift.png" alt="Wagon is a great way to use Redshift." />
+</p>
+
+<p>Unfortunately, their recommended setup instructions are awfully cumbersome, in large part due to the <a href="http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-using-workbench.html">12 unfriendly steps required to connect SQL Workbench/J</a>. In Wagon, connecting to Redshift is one step and requires no complex configuration: just copy and paste your connection details. Now, you’re ready to run those same Redshift queries in Wagon. SQL Workbench/J no longer needed.</p>
+
+<p>While R offers an incredible collection of statistics and visualization libraries, it can often be more than you need for basic exploration and analysis. Also, many analysts find R to be overwhelming and unneeded for most their work. In fact, the data manipulation and visualization in the blog post of flight delays by month can be recreated in Wagon with one query and a quick drag and drop chart. You don’t need to be a command line wizard, just a little SQL curious!</p>
+
+<noscript><pre>select
+	month,
+	origin,
+	avg(depdelay)
+from flights
+where origin in (&#39;JFK&#39;, &#39;ORD&#39;, &#39;PHL&#39;)
+group by month, origin;</pre></noscript>
+<script src="https://gist.github.com/jweinstein/9e7e6726a6836f3b8b5f.js"> </script>
+
+<p>Hopefully this post saves you time when you’re interacting with Redshift in R, or even if you are looking to run some more custom queries against your Redshift cluster. <a href="http://www.wagonhq.com/">Sign up for early access to Wagon</a> if you want try for yourself. <em>Gogogo!</em></p>
+
+<p>Oh! And, we’re working on a deep integration with R. If you have strong opinions about it, join us at <a href="http://band.wagonhq.com/">band.wagonhq.com</a></p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/building-an-analytics-pipeline>Building an Analytics Pipeline in 2015</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/building-an-analytics-pipeline&text=Building an Analytics Pipeline in 2015%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/building-an-analytics-pipeline/&t=Building an Analytics Pipeline in 2015%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               August 06, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Every company needs an analytics data platform queryable by SQL.</p>
+
+<p>Using a single analytics tool or relying on logs from a single source is a fast way to get started but is rarely sufficient. You’ll realize you need a better data strategy when attempting more detailed analytics tasks: cohorting customers based on segments available in multiple data sources, analyzing long time scale trends, or making data available to other applications. Unfortunately, you’ll quickly reach the limit of your off-the-shelf tool.</p>
+
+<p>There has been a dramatic increase in data being created and fascination with <em>Big Data</em>, but less of a corresponding uptick in how to capture its value. Engineering a system to ingest, transform, and process data from many (changing, flaky) sources has been a <a href="http://www.b-eye-network.com/newsletters/inmon/7040">long time, Very Hard Problem™</a>. Doing this well requires hard work – the dreaded ETL.</p>
+
+<p>We see more and more companies choosing to invest in SQL warehouses and the requisite engineering well before they become large businesses. How do you effectively build one of these things? And what makes building robust analytics infrastructure difficult?</p>
+
+<p><br /></p>
+
+<p style="max-width: 600px; margin: auto;">
+	<img src="/images/posts/gtrends.png" alt="Google Trends for Big Data vs. ETL" />
+	<em><span style="float: right;"><a href="http://www.google.com/trends/explore?hl=en-US#q=big+data,+/m/01jr1p&amp;date=1/2004+133m&amp;cmpt=q&amp;tz=Etc/GMT%2B7&amp;tz=Etc/GMT%2B7">See full Google Trends report</a></span></em>
+</p>
+
+<p><br /></p>
+
+<p>Here’s an example illustrating the core problems: You implemented a new purchase flow in your app and you’d like to understand conversion rates (tracked from logs) broken down by your email marketing A/B test (tracked from a 3rd party). The log lines you’re generating have new structure and may need to be re-parsed to fit into your existing schema. The A/B testing info may live in a different place than user data. Boiler plate reporting tools and drag and drop analytics UIs are great, but they require structuring ahead of time and the new checkout flow change is already live in production. Manually doing this analysis one time is annoying, but turning it into a reliable, repeatable practice is nearly impossible without dedicated engineering effort.</p>
+
+<p>Your goal should be to get your data into a data warehouse that can be queried directly by people and programs.  While it’s not straightforward, it’s important to understand the pieces. We see companies addressing this problem by focusing on the following steps:</p>
+
+<ol>
+  <li>For each data source: generate, collect, and store your data</li>
+  <li>Transform data into usable, queryable form</li>
+  <li>Copy multiple sources into a single place</li>
+  <li>Enjoy the data fruits of your data labor</li>
+</ol>
+
+<p>The first step is collecting the data with as much structure as possible. You need to generate the data, transmit it from apps, browsers, or services for collection, and then safely store it for later. Many mobile and web analytics providers offer these three steps, others focus on a subset. For example, <a href="https://heapanalytics.com/">Heap</a> and <a href="https://mixpanel.com/">Mixpanel</a> generate many app usage events automatically. Others focus on receiving data and making it available to read later (<a href="https://keen.io/">Keen</a> and <a href="http://www.splunk.com/">Splunk</a> as different examples). <a href="https://segment.com/">Segment</a> takes advantage of the difficulty of logging to many places by transmitting data to many of the above services with one API call.</p>
+
+<p>Another large source of data is logs (usually messy and unstructured). Just having logs is not enough - it must be massaged into usable rows and columns. Some log lines help engineers analyze technology performance or debug errors, some log lines must be interpreted to signal “human” events, and some log lines have been around for so long that no one remembers why they’re there. Logs are rarely generated with their end purpose or a fixed type system in mind. Transformation of these raw strings is necessary to make them usable rather than just searchable.</p>
+
+<p>For example, you may need to combine three separate log lines in order to signal a successful-user-flow, or to compare log lines against prior data to understand if a user is new, active or re-activated. Or maybe you need to remove those extra pesky spaces around your beautiful integers or standardize timestamps across timezones. <a href="http://www.trifacta.com/">Trifacta</a>, <a href="http://www.paxata.com/">Paxata</a>, and <a href="http://www.tamr.com/landing-pages/tamr-technical-whitepaper/">Tamr</a> offer technical tools for transforming ugly log forms to structured rows and columns. Or you’ll roll your own.</p>
+
+<p><br /></p>
+
+<p style="max-width: 500px; margin: auto;">
+	<a href="http://dilbert.com/strip/2008-05-07"><img src="/images/posts/dilbert.gif" alt="Dilbert Cartoon" /></a>
+</p>
+
+<p><br /></p>
+
+<p>Once data collection systems are in place, you want to get this data flowing into a data warehouse. While some of the aforementioned tools provide their own interface for accessing collected and processed data, joining across multiple sources is difficult if not impossible, and their interfaces are often inflexible and cumbersome. Luckily, many of these services recognize this, and offer easy exports to data warehouses. <a href="https://amplitude.com/blog/2015/03/27/why-we-chose-redshift/">Amplitude</a> and <a href="https://segment.com/redshift">Segment</a> do this well and offer straightforward exports to Redshift. Google Analytics offers export to BigQuery for Premium customers (~$150k / year). Others make it possible, but require a bit of work (for example, <a href="https://twitter.com/keen_io/status/545642330384908289">Keen</a>). New startups like <a href="https://www.textur.com/">Textur</a> and <a href="http://www.alooma.io">Alooma</a> are working on plumbing data into hosted RDBMS systems.</p>
+
+<p>Outside of dedicated analytics solutions, you often have data from third party sources you’d like to join and analyze (e.g. Salesforce, ZenDesk, MailChimp, etc.). Most of these tools offer APIs to extract data. Building and maintaining these connections from 3rd parties to your data warehouse on your own is doable, but this is often where data integration tools are helpful. Services like <a href="http://snowplowanalytics.com/">Snowplow</a> and <a href="https://www.fivetran.com">Fivetran</a> help.</p>
+
+<p>At this point, data is flowing in a structured way. But where is it going? When assessing a data warehouse, look for:</p>
+
+<ol>
+  <li>Large scale ingestion and storage</li>
+  <li>Fast computation and multi-user concurrency</li>
+  <li>Easy management and scaling with data</li>
+  <li>Security and permissioning</li>
+</ol>
+
+<p>There are many that meet these criteria: Amazon Redshift, Google BigQuery, Microsoft Azure SQL Data Warehouse, Hive, Spark, Greenplum, Vertica, Impala (the list goes on!). The largest technology companies (Amazon, Google, Microsoft) are investing in, and subsidizing, these data warehousing solutions. It’s a crucial component to nearly every business, which naturally draws the attention of the tech titans.</p>
+
+<p style="max-width: 660px; margin: auto;">
+
+	<a href="http://www.slideshare.net/mjft01/big-data-landscape-matt-turck-may-2014"><img src="/images/posts/big-data-landscape.png" alt="Big Data landscape diagram " /></a>
+
+	<em><span style="float: right;">It’s a data jungle out there. Diagram from 2014 by Matt Turck at FirstMark</span></em>
+</p>
+
+<p><br /></p>
+
+<hr />
+
+<p>Phew, now you can enjoy the freedom of querying structured data, and the work (and fun!) begins. We’ll have more on the data analysis step soon!</p>
+
+<p>We’d love to hear how you’re tackling these problems. What are your favorite tools? Where are your most painful pains? Tweet at <a href="https://twitter.com/wagonhq">@WagonHQ</a> or send us a note at <a href="mailto:hello@wagonhq.com">hello@wagonhq.com</a>!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/querying-csvs-in-wagon>Querying CSVs in Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/querying-csvs-in-wagon&text=Querying CSVs in Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/querying-csvs-in-wagon/&t=Querying CSVs in Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               June 08, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p>People use Wagon to query data stored in databases, but sometimes they need to analyze a file that doesn’t (yet) live in a database. Our friend <a href="https://github.com/scpike">Steve Pike</a> recently showcased this hack in <a href="http://www.wagonhq.com/blog/bandwagon">our #bandwagon Slack channel</a>. He used a nifty command line tool called <em>csvsql</em> to automatically create a Postgres table from a CSV file and have it ready for Wagon.</p>
+
+<p style="max-width: 150px; margin: auto;">
+	<img src="/images/posts/wagon_csv.png" alt="CSVs in Wagon" />
+</p>
+
+<p>Here’s how to set it up on Mac:</p>
+
+<ol>
+  <li>Install Postgres
+    <ul>
+      <li><a href="http://postgresapp.com/">Download this quick Postgres Installer</a></li>
+      <li>Or here’s the <a href="http://www.postgresql.org/download/">full documentation</a></li>
+    </ul>
+  </li>
+  <li>Install <a href="https://csvkit.readthedocs.org/en/0.9.1/install.html">csvkit</a>
+    <ul>
+      <li>It’s simpler if you have pip, so <a href="https://pip.pypa.io/en/latest/installing.html">install pip</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>Load your CSV file into Postgres:</p>
+
+    <pre><code> csvsql --db postgres://localhost:5432/postgres --insert --tables mytable /myfile.csv
+</code></pre>
+
+    <ul>
+      <li><code>mytable</code> is the name of the new table</li>
+      <li><code>postgres</code> is the name of the database, normally available by default</li>
+    </ul>
+  </li>
+  <li>Open Wagon and connect to your database: (Don’t have access to Wagon? <a href="http://www.wagonhq.com/">Sign up for early access!</a>)
+    <ul>
+      <li><em>Nickname</em>: csvsql</li>
+      <li><em>Type</em>: Postgres</li>
+      <li><em>Hostname</em>: localhost</li>
+      <li><em>Port</em>: 5432</li>
+      <li><em>Database</em>: postgres</li>
+      <li><em>User</em>: [your computer’s username]</li>
+      <li><em>Password</em>: [empty]</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Woo! You can now write SQL against your CSV file using Wagon.</p>
+
+<p>Try this out with your next CSV file or an <a href="/data/film_locations_in_san_francisco.csv" download="">example dataset of movie scenes filmed in San Francisco</a> (<a href="https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am/about">source</a>). Our team favorite <em>Blue Jasmine</em> isn’t number 1!</p>
+
+<p>Wagon is a great way to analyze databases and now small text files. Thanks <em>csvsql</em>.</p>
+
+<p>Need help with this quick hack? Email us at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;</a>.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/weekly-roundup-sql>Weekly Roundup: Great SQL Posts</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/weekly-roundup-sql&text=Weekly Roundup: Great SQL Posts%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/weekly-roundup-sql/&t=Weekly Roundup: Great SQL Posts%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               March 02, 2015 | <a href="http://twitter.com/wagonhq" target="_blank">Brant Gidwitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+           <p>We’re always on the lookout for great articles about SQL, analytics, and visualization.  Here’s a roundup of the team’s favorite recent posts.  Enjoy!</p>
+
+<dl>
+	<dt>
+		1. <a href="http://rob.conery.io/2015/02/24/embracing-sql-in-postgres/" target="_blank">Embracing SQL In Postgres</a>
+	</dt>
+	<dd>
+		<a href="https://twitter.com/robconery" target="_blank">Rob Conery</a> dives into Postgres' rich features including regex, full text search, series generation, date math, and window functions.
+	</dd>
+
+	<br />
+
+	<dt>
+		2. <a href="http://use-the-index-luke.com/blog/2015-02/modern-sql" target="_blank">Modern SQL in PostgreSQL [and other databases]</a>
+	</dt>
+	<dd>
+    	<a href="https://twitter.com/markuswinand" target="_blank">Markus Winand</a> presented a talk about lateral joins, common table expressions, with recursive, filters, and fetch first.  Do you know about fetch first?!
+    </dd>
+
+    <br />
+
+	<dt>
+		3. <a href="http://truongtx.me/2014/02/28/tree-structure-query-with-postgresql/" target="_blank">Tree structure query with PostgreSQL</a>
+	</dt>
+    <dd>
+    	Learn how to use WITH RECURSIVE to query hierarchical data from <a href="https://twitter.com/mr_truong_tx/" target="_blank">Trường TX</a>.
+    </dd>
+
+	<br />
+
+	<dt>
+		4. <a href="https://medium.com/@mattdennewitz/tinkering-with-marcel-pt-1-3cb1f9edb36d" target="_blank">Tinkering with Marcel (Pt. 1)</a>
+	</dt>
+	<dd>
+    	Awesome adaptation of Tom Tango's Marcel Projection system for baseball projections implemented in PostgreSQL.  Hats off to <a href="https://twitter.com/mattdennewitz" target="_blank">@mattdennewitz</a>!
+    </dd>
+
+</dl>
+
+<p>These posts showcase SQL’s power and versatility.  While the basics may be simple, it’s hard to master the language.  We love seeing people carefully explain the complex topics.  What are your favorite articles and blogs for learning SQL and exploring data?</p>
+
+         </div>
+       </section>
+      
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

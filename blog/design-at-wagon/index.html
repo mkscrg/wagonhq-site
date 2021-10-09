@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Design at Wagon - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Learn about Wagon’s design process.  Over the past few months, we’ve developed a structured design workflow and five core product values.  Enjoy!">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/design-at-wagon" />
+    <meta property="og:title" content="Design at Wagon" />
+    <meta property="og:description" content="Learn about Wagon’s design process.  Over the past few months, we’ve developed a structured design workflow and five core product values.  Enjoy!" />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/design-at-wagon>Design at Wagon</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/design-at-wagon&text=Design at Wagon%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/design-at-wagon/&t=Design at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                January 22, 2015 | <a href="http://twitter.com/jeff_weinstein" target="_blank">Jeff Weinstein</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/team">#team</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+
+          <p>We have a challenging design goal: build an easy-to-use product for analysts and their teams to collaborate on understanding data.  Our product is (1) a database query editor for analysts and (2) a Google Docs-style experience for non-technical people to explore results together.</p>
+
+<p>We’re looking for someone to be our first <a href="http://www.wagonhq.com/jobs/ux-designer" target="_blank">UX designer</a> – come craft our user experience, our voice, and our pixels.  You’ll grow a team of designers and engineers that love data analysis and collaboration software.</p>
+
+<p>As a team of engineers and data scientists, we have more experience building systems than storyboarding.  Over the past few months, we’ve developed a structured design workflow.  It starts with stories, drawing, and getting feedback from customers.  We then specify the application’s states and object models and finally code mockups.  Here’s how it all works:</p>
+
+<p><br /></p>
+
+<p style="max-width: 330px; margin: auto;">
+	<a href="https://www.facebook.com/wagonhq/photos/pb.1404706883137141.-2207520000.1421889722./1538047583136403/?type=3&amp;theater" target="_blank">
+		<img src="/images/posts/storyboardDesignMorning.jpg" alt="Drawing on whiteboard" />
+	</a>
+	<em><span style="float: right;">Mark and Mike sketch application states.</span></em>
+</p>
+
+<p><br /><br /></p>
+
+<h5 id="story"><strong>Story</strong></h5>
+<p>Many friends and former colleagues have the analysis and collaboration problem that Wagon solves and they’ve been very helpful testing the product.  We watch them work, document their pain points, and listen to their feature requests.  We winnow our notes into specific user stories: “As an X person, I need to do Y, in order to get Z.”  To avoid groupthink, we <a href="http://www.fastcodesign.com/3034772/innovation-by-design/note-and-vote-how-google-ventures-avoids-groupthink-in-meetings" target="_blank">independently draft and prioritize these stories</a>, then collectively compare and merge them.</p>
+
+<h5 id="draw"><strong>Draw</strong></h5>
+<p>We sketch on the whiteboard, use pen and paper, and drag and drop in Google Draw to visualize our ideas.  We review screenshots and pictures in Github Issues and Slack and share paper prototypes using <a href="https://popapp.in" target="_blank">POP</a>.  One surprisingly successful mockup was built with ASCII in Sublime Text.  As our friends at Wildcard detailed, there are plenty of <a href="http://stephenmeszaros.com/posts/prototyping-tools.html" target="_blank">other design tools</a> that we’d be excited to learn.</p>
+
+<h5 id="feedback"><strong>Feedback</strong></h5>
+<p>Early and frequent user testing is essential.  Our beta testers’ eyes surface bugs and corner cases at a humbling rate.  They contribute directly via our <a href="https://www.hipchat.com/gDpzCSvjl" target="_blank">public Hipchat room</a> and shared Google Docs.  Fortunately, our users have been patient, thoughtful, and enjoy participating.</p>
+
+<h5 id="specify"><strong>Specify</strong></h5>
+<p>We define application states and user flows before writing any code.  These detailed state diagrams are critical for building quickly and reducing the confusion and blockers that can arise during implementation.</p>
+
+<h5 id="wireframe"><strong>Wireframe</strong></h5>
+<p>During implementation, while APIs and data are developed and tested, we lay out the user experience with HTML/CSS. This helps us uncover usability problems and lets us tweak the design in conjunction with other tasks.</p>
+
+<p>To stay focused as a team, our five core product values set expectations and help us measure progress.</p>
+
+<dl class="dl-horizontal">
+  <dt>Intuitive</dt>
+  <dd>Clean design and approachable voice</dd>
+
+  <dt>Aware</dt>
+  <dd>Communicate context and insight</dd>
+
+  <dt>Interoperable</dt>
+  <dd>Connect to the outside world</dd>
+
+  <dt>Responsive</dt>
+  <dd>Iterate at human speed, always in control</dd>
+
+  <dt>Collective</dt>
+  <dd>Shared knowledge improves individuals and unites teams</dd>
+</dl>
+
+<p>Design at Wagon has been a team effort. We’ve been lucky enough to be advised and supported by a set of design advisors.  Curious about data and design at Wagon?  <a href="mailto:hello@wagonhq.com" target="_blank">Say hi</a>.</p>
+
+<p><br />
+<em>Thank you to <a href="https://twitter.com/hillarykelly" target="_blank">Hillary Kelly</a> for reviewing this post.</em></p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

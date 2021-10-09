@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        SQL Tutorial - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Friendly tips to help you learn SQL.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/sql-tutorial/index.html" />
+    <meta property="og:title" content="SQL Tutorial" />
+    <meta property="og:description" content="Friendly tips to help you learn SQL." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="release-notes">
+  <div class="container">
+    <div class="col-md-8 center-col">
+    <section class="hiring">
+      <section class="hiring">
+  <h2 class="text-center">
+    <a href="/sql-tutorial" style="color: #183C69 !important;">SQL Tutorial</a><br>
+    <small>Friendly tips to help you learn SQL<br/> <code>select 💝 from <span id="wagon_team">wagon_team</span>;</code></small>
+  </h2>
+</section>
+
+    </section>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/calculating-joint-distribution"><h3 class="panel-title">Calculating a Joint Distribution in SQL</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/calculating-joint-distribution&text=Calculating a Joint Distribution in SQL%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p><em>This tip builds on the analysis of a 🍌banana store🍌 introduced in <a href="/sql-tutorial/summary-stats">Summarizing Data in SQL</a> tip.</em></p>
+
+<p>Comparing two numerical measures is very important as we try to summarize our data. Though the math becomes more complicated, SQL can still handle it. For example, we might be nervous that if people have to wait too long, they end up spending less money when they get to the front of the line. To get a rough idea of the relationship between wait-time and revenue, we might write a query very similar to the histogram one:</p>
+
+<noscript><pre>select 
+	floor(wait_time/10.00)*10 as wait_time_bucket,
+	avg(revenue) as avg_revenue
+from banana_sales
+group by 1
+order by 1;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=joint.sql"> </script>
+
+<noscript><pre>wait_time_bucket, avg_revenue
+0, 10.87
+10, 8.43
+20, 9.01
+30, 7.50
+..., ...</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=joint.csv"> </script>
+
+<p>These queries give us some insight into the join distribution (plug: Wagon makes charts like these super easy to generate). We might also be interested in more statistical measurements like covariance or correlation. Most of the popular SQL implementations have these statistics built in, so for example in Postgres/Redshift we can write:</p>
+
+<noscript><pre>select
+	corr(wait_time, revenue) as correlation,
+	covar_samp(wait_time, revenue) as covariance
+from banana_sales;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=joint2.sql"> </script>
+
+<p>Postgres has all kinds of cool <a href="http://www.postgresql.org/docs/9.4/static/functions-aggregate.html">aggregate functions</a>, including linear regressions - right in our SQL query!</p>
+
+<h4 id="read-these-sql-tips-to-learn-more">Read these SQL tips to learn more:</h4>
+
+<ul>
+  <li><a href="/sql-tutorial/summary-stats">Summarizing Data</a></li>
+  <li><a href="/sql-tutorial/calculating-percentiles-sql">Calculating Percentiles</a></li>
+  <li><a href="/sql-tutorial/creating-a-histogram-sql">Creating a Histogram</a></li>
+</ul>
+
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/creating-a-histogram-sql"><h3 class="panel-title">Creating a Histogram in SQL</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/creating-a-histogram-sql&text=Creating a Histogram in SQL%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p><em>This tip builds on the analysis of a 🍌banana store🍌 introduced in <a href="/sql-tutorial/summary-stats">Summarizing Data in SQL</a> tip.</em></p>
+
+<p>It’s often useful to have a rough idea of the distribution of the data in a table or query result. Generating a histogram is a great way to understand that distribution. What’s the distribution of revenue per purchase at the banana stand? I mean, <a href="https://media1.giphy.com/media/yJu2jIQZgPubm/200_s.gif">how much could a banana cost?</a> We might (naively) write a query like:</p>
+
+<noscript><pre>select
+	revenue,
+	count(*)
+from banana_sales
+group by revenue
+order by revenue;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram_naive.sql"> </script>
+
+<p>It’s likely this query will return far too many rows to eyeball the revenue distribution (1 row per distinct price). Instead, we’d like to group revenue values together into buckets so that we can understand the shape of the data. We might be interested in the number of banana purchases which generated between $0 to $5, $5 to $10, etc. There’s no “correct” number of buckets to use, it’s a choice we can make and experiment with to get a better understanding of the distribution. Probably 1000 buckets is too many, but 2 is too few. A reasonable rule of thumb is to use somewhere around 20 buckets. Our query will specify the width of the bucket, rather than the total number. The larger the width, the fewer buckets we’ll end up with.</p>
+
+<noscript><pre>select 
+	floor(revenue/5.00)*5 as bucket_floor,
+	count(*) as count
+from banana_sales
+group by 1
+order by 1;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram.sql"> </script>
+
+<noscript><pre>bucket_floor, count
+0, 1054
+5, 465
+10, 233
+..., ...</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram.csv"> </script>
+
+<p>This is a simple, but tricky query that will generate a histogram for us. It rounds each revenue data point down to the nearest multiple of 5 and then groups by that rounded value. It has one failing in that if we have no data in a bucket (e.g. no purchases of 55 to 60 dollars), then that row will not appear in the results. We can fix that with a more complex query, but let’s skip it for now. In order to choose our bucket size, it helps to first calculate the min/max values so we know how many buckets we would end up with. If we want the buckets to have slightly nicer labels, we can format the labels with a query like:</p>
+
+<noscript><pre>select
+    bucket_floor,
+    CONCAT(bucket_floor, &#39; to &#39;, bucket_ceiling) as bucket_name,
+    count(*) as count
+from (
+	select 
+		floor(revenue/5.00)*5 as bucket_floor,
+		floor(revenue/5.00)*5 + 5 as bucket_ceiling
+	from web_sessions_table
+) a
+group by 1, 2
+order by 1;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram_label.sql"> </script>
+
+<noscript><pre>bucket_floor, bucket_name, count
+0, 0 to 5, 1054
+5, 5 to 10, 465
+10, 10 to 15, 233
+..., ..., ...</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram_label.csv"> </script>
+
+<h4 id="read-these-sql-tips-to-learn-more">Read these SQL tips to learn more:</h4>
+
+<ul>
+  <li><a href="/sql-tutorial/summary-stats">Summarizing Data</a></li>
+  <li><a href="/sql-tutorial/calculating-percentiles-sql">Calculating Percentiles</a></li>
+  <li><a href="/sql-tutorial/calculating-joint-distribution">Calculating a Joint Distribution</a></li>
+</ul>
+
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/calculating-percentiles-sql"><h3 class="panel-title">Calculating Percentiles in SQL</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/calculating-percentiles-sql&text=Calculating Percentiles in SQL%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p><em>This tip builds on the analysis of a 🍌banana store🍌 introduced in <a href="/sql-tutorial/summary-stats">Summarizing Data in SQL</a> tip.</em></p>
+
+<p>How long do people wait for their tasty banana orders? Using basic SQL we can compute average wait time, but if the distribution is skewed away from normal (as many <a href="https://en.wikipedia.org/wiki/Skewness">internet-driven (and banana?) distributions often are</a>), this may not give us a complete picture of how long most people are waiting. In addition to computing the average, we might (and should) ask, what are the 25th, 50th, 75th <a href="https://en.wikipedia.org/wiki/Percentile">percentiles</a> of wait-time, and how does that number vary day to day?</p>
+
+<p>Many databases (including <a href="http://www.postgresql.org/docs/9.4/static/functions-aggregate.html">Postgres 9.4</a>, <a href="http://docs.aws.amazon.com/redshift/latest/dg/r_Examples_of_PERCENTILE_CONT_WF.html">Redshift</a>, <a href="https://msdn.microsoft.com/en-us/library/hh231473.aspx">SQL Server</a>) have built in percentile functions. Here’s an example using the function <code>percentile_cont</code> which is a <a href="http://www.postgresql.org/docs/current/static/tutorial-window.html">window function</a> that computes the percentile of wait-time, split (pun intended!) by day:</p>
+
+<noscript><pre>SELECT
+	date,
+	percentile_cont (0.25) WITHIN GROUP
+		(ORDER BY wait_time ASC) OVER(PARTITION BY date) as percentile_25,
+	percentile_cont (0.50) WITHIN GROUP
+		(ORDER BY wait_time ASC) OVER(PARTITION BY date) as percentile_50,
+	percentile_cont (0.75) WITHIN GROUP
+		(ORDER BY wait_time ASC) OVER(PARTITION BY date) as percentile_75,
+	avg(wait_time) as avg -- for comparison
+FROM banana_sales
+GROUP BY date
+ORDER BY date;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles.sql"> </script>
+
+<noscript><pre>date, percentile_25, percentile_50, percentile_75, avg
+2016-01-01, 18, 37, 75, 66
+2016-01-02, 19, 35, 77, 64
+..., ..., ..., ..., ...</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles.csv"> </script>
+
+<p>The structure of the <code>percentile_cont</code> is similar to other window functions: we specify how to order the data, how to group it - and the database does the rest. If we wanted to add more dimensions to our query (e.g. time of day), we’d add them to the <code>partition</code> and <code>group by</code> clause.
+If our database doesn’t support <code>percentile_cont</code> (sorry MySQL, Postgres &lt; 9.4), the query is more complicated, but fear not, still possible! The challenge is to order the rows by increasing wait-time (per date of course) and then pick out the middle value (for median). In MySQL, we can use local variables to keep track of the order, and in Postgres, we can use the <a href="http://www.postgresql.org/docs/8.4/static/functions-window.html">row-number</a> function. Here’s the Postgres version:</p>
+
+<noscript><pre>SELECT
+	t1.date,
+	t1.wait_time as median
+FROM (	
+	SELECT
+		date,
+		wait_time,
+		ROW_NUMBER() OVER(ORDER BY wait_time PARTITION BY date) as row_num
+	FROM banana_sales
+) t
+JOIN (
+	SELECT
+		date,
+		count(*) as total
+	FROM banana_sales
+	GROUP BY date
+) t2
+	ON
+		t1.date = t2.date
+-- for simplicity, we take a simple solution when the list has an even length, to just choose one value
+WHERE t1.row_num =
+  CASE when t2.total % 2 = 0 
+		THEN t2.total / 2
+		ELSE (t2.total + 1) / 2
+	END;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles2.sql"> </script>
+
+<noscript><pre>date, median
+2016-01-01, 37
+2016-01-02, 35
+..., ...</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles2.csv"> </script>
+
+<h4 id="read-these-sql-tips-to-learn-more">Read these SQL tips to learn more:</h4>
+
+<ul>
+  <li><a href="/sql-tutorial/summary-stats">Summarizing Data</a></li>
+  <li><a href="/sql-tutorial/creating-a-histogram-sql">Creating a Histogram</a></li>
+  <li><a href="/sql-tutorial/calculating-joint-distribution">Calculating a Joint Distribution</a></li>
+</ul>
+
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/summary-stats"><h3 class="panel-title">Summarizing Data in SQL</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/summary-stats&text=Summarizing Data in SQL%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p>How quickly can you understand data from your database? Excel croaks at ten thousands rows, R is difficult to run on a cluster, and your eye certainly can’t summarize large tables. SQL to the rescue!</p>
+
+<p>Summary statistics are the fastest way to learning about your dataset. Are there outliers? How does the distribution look? What are the relationships hiding inside the rows and columns? You’ll always want to ask these questions when faced with a new dataset. SQL (an uninspired acronym for <em>Structured Query Language</em>) is the native language for database computation. Many summary methods are available as built in SQL functions in modern databases and  more complex measures can be implemented directly in SQL as well.</p>
+
+<p>In this post, we’ll walk through 4 ways to summarize your dataset in SQL so you can run it directly on your database.</p>
+
+<p>Here’s a relatable example: suppose we work in a 🍌<a href="http://arresteddevelopment.wikia.com/wiki/Bluth%27s_Original_Frozen_Banana_Stand">banana stand’s</a>🍌 back office and we analyze banana data.</p>
+
+<p>With just a few SQL commands, we’ll be able to calculate the basic stats: <code>count</code>, <code>distinct</code>, <code>sum</code>, <code>average</code>, <code>variance</code>, … If we have a table of banana transactions, let’s calculate the total number of customers, unique customers, number of bananas sold, as well as total and average revenue per day:</p>
+
+<noscript><pre>SELECT
+	date,
+	count(*) as num_customers,
+	count(distinct user_id) as distinct_customers,
+	sum(bananas_sold) as total_bananas,
+	sum(revenue) as total_revenue,
+	avg(revenue) as revenue_per_sale
+FROM banana_sales
+GROUP BY date
+ORDER BY date;</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=basic_query.sql"> </script>
+
+<noscript><pre>date, num_customers, distinct_customers, total_bananas, total_revenue, revenue_per_sale
+2016-01-01, 345, 287, 564, 3689, 6.54
+2016-01-02, 364, 299, 582, 4080, 7.01
+..., ..., ..., ..., ..., ...</pre></noscript>
+<script src="https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=basic_query.csv"> </script>
+
+<p>This should be a familiar SQL pattern (and if not, come to the <a href="https://www.wagonhq.com/mailing-list">next free Wagon SQL class</a>!). With just one query, we can calculate important aggregations over very large datasets. If we dress it up with a few <code>where</code> statements or <code>join</code> with customer lookup tables, we can quickly and effectively slice and dice our data. Unfortunately, there are some tricky questions that can’t be answered with the regular SQL functions alone.</p>
+
+<h4 id="read-these-sql-tips-to-learn-more">Read these SQL tips to learn more:</h4>
+
+<ul>
+  <li><a href="/sql-tutorial/calculating-percentiles-sql">Calculating Percentiles</a></li>
+  <li><a href="/sql-tutorial/creating-a-histogram-sql">Creating a Histogram</a></li>
+  <li><a href="/sql-tutorial/calculating-joint-distribution">Calculating a Joint Distribution</a></li>
+</ul>
+
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/date-formatting-sql"><h3 class="panel-title">Date formatting in SQL</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/date-formatting-sql&text=Date formatting in SQL%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p>Timestamps are great for debugging logs. But for analysis, we want to group by day, week, and month.</p>
+
+<p>Timestamps look like this: <code>07/04/1776 00:28:39.682</code>, but you’d rather see “July 4, 1776”, “July 1776” or “Q3 - 1776” 🇺🇸. Let’s clean up those messy timestamps in SQL!</p>
+
+<h4 id="postgres--redshift">Postgres &amp; Redshift</h4>
+
+<p>In Postgres &amp; Redshift, the <code>to_char</code> function is handy for formatting dates. It takes two arguments: a timestamp and the output format pattern. For example, the following returns “July 04, 1776”:</p>
+
+<pre><code>select to_char('07/04/1776 00:28:39.682'::timestamp, 'Month DD, YYYY');
+</code></pre>
+
+<p>The next SQL statement returns “Q3 - 1776”, by concatenating “Q” to the quarter and year from the <code>to_char</code> function.</p>
+
+<pre><code>select 'Q' || to_char('07/04/1776 00:28:39.682'::timestamp, 'Q - YYYY');
+</code></pre>
+
+<p><em>Pro Tip:</em> Use <code>to_char</code> to format numbers too! See all the possibilities in the <a href="http://www.postgresql.org/docs/current/static/functions-formatting.html">official docs</a>.</p>
+
+<h4 id="mysql">MySQL</h4>
+
+<p>In MySQL, the <code>date_format</code> function will make those timestamps prettier. Here’s how to make ‘1776-07-04 00:28:39.682’ look like “July 4, 1776”:</p>
+
+<pre><code>select date_format('1776-07-04 00:28:39.682', '%M %e, %Y');
+</code></pre>
+
+<h4 id="learn-more">Learn More</h4>
+
+<ul>
+  <li>Official <a href="http://www.postgresql.org/docs/current/static/functions-formatting.html"><code>to_char</code></a> and <a href="http://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html#function_date-format"><code>date_format</code></a> docs</li>
+  <li><a href="https://en.wikipedia.org/wiki/Date_format_by_country">Date format by country</a> (Wikipedia)</li>
+</ul>
+
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/how-is-my-database-organized"><h3 class="panel-title">How is my database organized?</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/how-is-my-database-organized&text=How is my database organized?%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p>What’s the difference between a <code>database</code>, <code>schema</code>, and a <code>table</code>? Let’s break it down.</p>
+
+<p>In relational databases, data is organized in a hierarchy, like files and folders. Databases have schemas. Schemas have tables. Tables have columns.</p>
+
+<p>The standard flow is you connect to a database, browse schemas, and query a table’s columns. There are a few differences for this organization for Postgres, Redshift, and MySQL so here are some tips to navigating your database.</p>
+
+<h4 id="postgres--redshift">Postgres &amp; Redshift</h4>
+
+<p>In Postgres and Redshift, you connect to a single database and can only access schemas and their tables within that database.</p>
+
+<p style="text-align: center;">
+<img src="/images/sql-tutorial/postgres-schema.png" alt="Diagram of Postgres tables are organized." style="width: 100%; max-width: 500px;" />
+</p>
+
+<p>For example, in Wagon’s demo database, there is a schema named <code>dvd</code> containing tables such as <code>products</code>, <code>orders</code>, and <code>customers</code>.</p>
+
+<p>To query one of these tables, you need to prefix your table with <code>dvd.</code>:</p>
+
+<pre><code>select * from dvd.orders;
+</code></pre>
+
+<p>If you are frequently querying the same schema, it can be tedious to retype the schema over and over. You can inform the query engine that you’d like to use a specific schema by using <code>set search_path to schema_name;</code>:</p>
+
+<pre><code>select * from orders; -- will generate “relation "orders" does not exist” error!
+set search_path to dvd;
+select * from orders; -- this works now!
+</code></pre>
+
+<p><em>Pro tip:</em> You can set <code>search_path</code> to multiple schemas too: <code>set search_path to schema1, schema2, schema3</code>.</p>
+
+<p><em>A good question:</em> Is every table in a schema? Tables that are created without a specific schema are put in a default schema called <code>public</code>. This is the default <code>search_path</code> when you first connect to your database.</p>
+
+<h4 id="mysql">MySQL</h4>
+
+<p>In MySQL, databases and schemas are synonyms. You connect to a specific database, but can still query tables in other databases.</p>
+
+<p style="text-align: center;">
+<img src="/images/sql-tutorial/mysql-schema.png" alt="Diagram of how MySQL tables are organized." style="width: 100%; max-width: 500px;" />
+</p>
+
+<p>To query data from another database, you must prefix the database name. For example, if you are connected to the <code>dvd</code> database and want to query the <code>baseball</code> database, you must prefix table names with <code>baseball.</code>:</p>
+
+<pre><code>select * from baseball.batting;
+</code></pre>
+
+<p>To switch databases, run the <code>use</code> command:</p>
+
+<pre><code>use new_database;
+</code></pre>
+
+<h4 id="learn-more">Learn more</h4>
+<ul>
+  <li><a href="http://www.postgresqlforbeginners.com/2010/12/schema.html">Schemas in Postgres in depth</a></li>
+  <li><a href="http://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql">Schema vs database in MySQL</a></li>
+</ul>
+
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/values-from-nested-json"><h3 class="panel-title">How to extract values from a nested JSON field in SQL</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/values-from-nested-json&text=How to extract values from a nested JSON field in SQL%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p>Someone dumped JSON into your database! <code>{“uh”: “oh”, “anything”: “but json”}</code>. What do you do?</p>
+
+<p>Relational databases are beginning to support document types like JSON.  It’s an easy, flexible data type to create but can be painful to query.</p>
+
+<p>Here’s how to extract values from nested JSON in SQL 🔨:</p>
+
+<h4 id="example">Example</h4>
+
+<p><code>{"userId": "555", "transaction": {"id": "222", "sku": "ABC"}</code></p>
+
+<p>Let’s select a column for each <code>userId</code>, <code>id</code>, and <code>sku</code>. The following queries return <code>555, 222, ABC</code>.</p>
+
+<h4 id="postgres">Postgres</h4>
+
+<p>Use the <code>-&gt;&gt;</code> operator to extract a value as text, and the <code>-&gt;</code> to extract a JSON object:</p>
+
+<pre><code>select
+    my_json_field -&gt;&gt; 'userId',
+    my_json_field -&gt; 'transaction' -&gt;&gt; 'id',
+    my_json_field -&gt; 'transaction' -&gt;&gt; 'sku'
+from my_table;
+</code></pre>
+
+<h4 id="redshift">Redshift</h4>
+
+<p>Use the <code>json_extract_path_text</code> function:</p>
+
+<pre><code>select
+    json_extract_path_text(my_json_field, 'userId'),
+    json_extract_path_text(my_json_field, 'transaction', 'id'),
+    json_extract_path_text(my_json_field, 'transaction', 'sku')
+from my_table;
+</code></pre>
+
+<h4 id="mysql">MySQL</h4>
+
+<p>MySQL 5.7 includes JSON support. Hurray! Use the <code>json_extract</code> function:</p>
+
+<pre><code>select
+    json_extract(my_json_field, '$.userId'),
+    json_extract(my_json_field, '$.transaction.id'),
+    json_extract(my_json_field, '$.transaction.sku')
+from my_table;
+</code></pre>
+
+<h4 id="learn-more">Learn more</h4>
+
+<ul>
+  <li><a href="http://schinckel.net/2014/05/25/querying-json-in-postgres/">Querying JSON in Postgres</a></li>
+  <li>JSON Docs: <a href="http://www.postgresql.org/docs/current/static/functions-json.html">Postgres</a>, <a href="http://docs.aws.amazon.com/redshift/latest/dg/json-functions.html">Redshift</a>, <a href="https://dev.mysql.com/doc/refman/5.7/en/json-search-functions.html">MySQL</a></li>
+</ul>
+
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading sqltutorial">
+        <a href="/sql-tutorial/search-for-text-sql"><h3 class="panel-title">The easiest way to search for text in SQL</h3></a>
+        <span class="share">
+          <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/sql-tutorial/search-for-text-sql&text=The easiest way to search for text in SQL%20from%20@WagonHQ:" target="_blank">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </span>
+      </div>
+      <div class="panel-body">
+        <p>What’s the easiest way to match case insensitive text anywhere in a string?</p>
+
+<p>For example, let’s say you’re a fruit company marketing executive and you want all records matching “orange”, including “navel oranges”, “Syracuse Orange,” “Orange is the New Black”, “The Real Housewives of Orange County”, “orange you glad I didn’t say banana”, “🍊” and so on.</p>
+
+<p>Here’s a quick way to match case insensitive text.</p>
+
+<h4 id="postgres--redshift">Postgres &amp; Redshift</h4>
+<p>Use <code>~*</code>:</p>
+
+<pre><code>select *
+from my_table
+where item ~* 'orange';
+</code></pre>
+
+<p>The <code>~*</code> operator searches for ‘orange’ anywhere in the string, thanks to the power of regular expressions.</p>
+
+<h4 id="mysql">MySQL</h4>
+<p>Use <code>like</code>:</p>
+
+<pre><code>select *
+from my_table
+where item like '%orange%';
+</code></pre>
+
+<p>In MySQL, <code>like</code> is case insensitive and much faster than <code>regexp</code> (the MySQL equivalent of <code>~*</code> in Postgres and Redshift). Add the <code>%</code> wildcard to both sides of ‘orange’ for a substring match.</p>
+
+<h4 id="learn-more">Learn more</h4>
+
+<ul>
+  <li><a href="http://regexone.com/">Regular Expressions Tutorial</a></li>
+  <li><a href="http://www.postgresql.org/docs/current/static/functions-matching.html">Pattern matching in Postgres</a></li>
+  <li><a href="http://dev.mysql.com/doc/refman/5.7/en/pattern-matching.html">Pattern matching in MySQL</a></li>
+</ul>
+
+      </div>
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

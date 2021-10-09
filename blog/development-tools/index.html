@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        How Wagon Rolls: Tooling - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Learn about Wagon’s tools stack and how we use Docker, CoreOS, CircleCI, Github, and Wagon.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/development-tools" />
+    <meta property="og:title" content="How Wagon Rolls: Tooling" />
+    <meta property="og:description" content="Learn about Wagon’s tools stack and how we use Docker, CoreOS, CircleCI, Github, and Wagon." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/development-tools>How Wagon Rolls: Tooling</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/development-tools&text=How Wagon Rolls: Tooling%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/development-tools/&t=How Wagon Rolls: Tooling%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                March 06, 2015 | <a href="http://www.wagonhq.com/about" target="_blank">Patrick Flor</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+
+          <p>In a recent <a href="http://www.wagonhq.com/blog/engineering-at-wagon" target="_blank">engineering blog post</a>, our CTO Mike walked through our system architecture. As a complement, I’d like to describe the tools and processes we use to build Wagon.</p>
+
+<p>We’re always learning new things from our customers that impact the product and our technologies. Fast iteration based on feedback drives our development, so we have invested significant time in testing, integration, deployment, and monitoring frameworks. We want to minimize the friction needed to turn new ideas into features.</p>
+
+<p>Here is an overview of our tools and engineering development flow:</p>
+
+<p><strong>Docker + CoreOS</strong></p>
+
+<p>Docker and CoreOS gives us a common interface to our backend systems across development, staging, and production environments. If it works on my machine, it works in staging; if it misbehaves in staging or production, I can debug it on my machine. CoreOS’ clustering and service discovery features also give us a path forward as we scale.</p>
+
+<p><strong>Github + CircleCI</strong></p>
+
+<p>CircleCI’s enthusiasm for experimentation and <a href="https://twitter.com/circleci/status/537304143367774208" target="_blank">great customer service</a> have helped us quickly evolve our technical architecture. Their highly configurable Linux and Mac build environments let us consistently test and deploy pieces of Wagon while we transitioned from a server/browser web app to a hybrid native/JS desktop tool. CircleCI’s inferred build processes and Github integration help us to get traction on quick spikes, and their configuration and documentation let us customize CI and get back to building our product.</p>
+
+<p>Here are some details of how we use them to minimize manual testing and deployment:</p>
+
+<ul>
+  <li>CircleCI builds and runs the full test suite on updates to every GitHub branch, so we know the state of any mainline or feature branch.</li>
+  <li>We dial up the counts on our <a href="https://hackage.haskell.org/package/QuickCheck" target="_blank">generative tests</a> in CI to ferret out uncommon and transient bugs in the build farm.</li>
+  <li>All changes are reviewed by at least one other team member before they are merged to a mainline branch. We use GitHub’s Pull Requests for code review and to accept changes.</li>
+  <li>Staging and production deployments are a direct function of successful CI builds on mainline branches. Any pull request accepted into master goes to staging and anything that makes our production branch goes live to users, with no additional tagging or manual deploy steps.</li>
+  <li>We use CircleCI’s API to kick off transitive builds for more complicated pipelines: this helps us keep the component projects small and single-purpose.</li>
+  <li>Each deployment pushes a notification to Slack, so everyone knows there is a new Wagon to enjoy.</li>
+</ul>
+
+<p><strong>Structured logs + Wagon</strong></p>
+
+<p>We log all application events–native, web, and server-side–as structured JSON. We use this data to answer questions about our systems post-hoc. It also gives us a structured stream to pass along to monitoring and alerting tools.</p>
+
+<p>After some light ETL, we use Postgres’ awesome <a href="http://www.postgresql.org/docs/9.4/static/datatype-json.html" target="_blank">JSON</a> <a href="http://www.postgresql.org/docs/9.4/static/functions-json.html" target="_blank">support</a> to query our logs with Wagon itself. This combines dogfooding and product analytics into a workflow that’s so fun and beneficial we dedicate a Slack channel to it. We use Wagon to investigate our application performance and user engagement the same way our users analyze their own data: by writing queries, visualizing results, and sharing charts.</p>
+
+<hr />
+
+<p>Here’s an example of how we use these tools together in practice.</p>
+
+<p>We find a bug! If we’re unsure how to reproduce it, we use Wagon to query our logs to confirm the bug and find more test cases. Since our development setup works just like production, we can quickly spin up a local instance of the specific environment we’re debugging–this makes root cause isolation much easier. When the fix is reviewed (any emoji on the Github PR is our stamp of approval) and merged into master, it automatically kicks off a staging CI build, whose success transitively launches a new build of our hybrid native/JS Mac app. CircleCI gives us a native OS X build environment with scaled-up generative testing, so we have an additional level of verification that our fix performs as expected. Within 5 minutes, the new app build is available in staging and we are alerted in Slack to download and give it a spin. When we’ve queued up a cohesive set of features and fixes, a pull request from master to the production branch automatically cuts a new release and deploys it to users. We then explore and monitor the effects of those changes by querying Wagon’s logs with Wagon.</p>
+
+<p>If this sounds like fun to you, say hi at our sunny office on Valencia St. in San Francisco and check out our <a href="http://www.wagonhq.com/jobs" target="_blank">open positions</a>: we’d love to talk to you!</p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

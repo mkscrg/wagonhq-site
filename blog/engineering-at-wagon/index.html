@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Engineering at Wagon - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Learn about Wagon’s engineering stack and how we take advantage of cloud-local computing and Haskell, React, and Flux.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/engineering-at-wagon" />
+    <meta property="og:title" content="Engineering at Wagon" />
+    <meta property="og:description" content="Learn about Wagon’s engineering stack and how we take advantage of cloud-local computing and Haskell, React, and Flux." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/engineering-at-wagon>Engineering at Wagon</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/engineering-at-wagon&text=Engineering at Wagon%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/engineering-at-wagon/&t=Engineering at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                February 13, 2015 | <a href="https://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/team">#team</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/react">#react</a>
+  
+</div>
+
+
+
+          <p>Over the last few months, we’ve been user-testing a preview version of Wagon—a modern SQL editor that powers a Google Docs-style experience for analysts, engineers, and their teams. We’ve iterated on both our <a href="http://www.wagonhq.com/blog/design-at-wagon" target="_blank">design process</a> and technology choices to build a tool that we and our users rely on every day.</p>
+
+<p>Wagon takes advantage of <a href="http://a16z.com/2015/01/22/cloud-client-computing/" target="_blank">cloud-local computing</a>, combining the strengths of remote servers like syncing, sharing, and storage with local client advantages like <a href="http://aadrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html" target="_blank">data locality</a> and device-specific user interfaces. Our architecture has three components: a frontend app, a native client, and backend services.</p>
+
+<p><br /></p>
+
+<p style="max-width: 802px; margin: auto;">
+  <a href="http://stackshare.io/wagon/wagon" target="_blank">
+    <img src="/images/posts/system_architecture.png" alt="Wagon architecture" />
+  </a>
+  <em><span style="float: right;">Wagon architecture</span></em>
+</p>
+
+<p><br /></p>
+
+<p>We make it easy to get started. You can download Wagon—a hybrid web application and native client, like Slack—and connect it to an existing local, private, or public database. The frontend is a slick interface for writing and running SQL, interacting with large results, and generating statistics and pivot tables. The native client locally handles connections, manages query runs, and processes results as they return from the database. The results, statistics, and pivots are cached locally and can be used to create sharable charts. When shared, Wagon securely transfers data from the local machine to the backend, making it available to permissioned teammates.</p>
+
+<p><strong>Frontend App</strong></p>
+
+<p>We use HTML, CSS, and JavaScript to maintain a consistent user experience across platforms and environments. The frontend is a single-page application built with React and Flux. We bundle it with the native client as a desktop application, and we have an in-browser experience for sharing and collaboration.</p>
+
+<p><em>Technology: Javascript, React, Flux, Ace</em></p>
+
+<ul>
+  <li><a href="http://facebook.github.io/react/" target="_blank">React</a> gives us declarative, reusable UI elements. React components compose like HTML elements with rich state handling, so we manage fewer event listeners and nested callbacks.</li>
+  <li><a href="https://facebook.github.io/flux/docs/overview.html#content" target="_blank">Flux</a> complements React and helps structure our frontend code. It separates logic, state, and UI into loosely coupled components, and has a straightforward data flow.</li>
+  <li><a href="http://ace.c9.io/#nav=about" target="_blank">Ace</a> is an extensible, embeddable code editor. We use its syntax highlighting and have extended its autocomplete.</li>
+</ul>
+
+<p><strong>Native Client</strong></p>
+
+<p>Our users want to query their databases without any new IT or admin setup, so users connect via their local machine with their existing credentials. Wagon handles connections through the native client, since most databases require socket-level network access that isn’t possible directly from browser.</p>
+
+<p>Exploration and analysis can be a time-consuming and tedious job with existing SQL tools. Each step is an additional database query subject to queuing, slow execution, and changing data. Our users want to quickly explore results and evaluate summary statistics without executing subsequent queries. To power that experience, the client also computes statistics and caches query results on the local file system.</p>
+
+<p>We built the native client in Haskell. It’s a high level language with great libraries, static compilation, a high performance ceiling, and an active community. We use MacGap to bundle the client and the frontend into a downloadable OS X application (Windows soon!).</p>
+
+<p><em>Technology: Haskell, MacGap</em></p>
+
+<ul>
+  <li>Prototyping and refactoring is safe with Haskell’s type-driven development. The compiler helps us avoid bugs and edge cases as we iterate.</li>
+  <li>Haskell’s opt-in control over compiler optimizations and strictness allows for incremental optimization. GHC includes a capable profiler, and the community maintains libraries for <a href="http://hackage.haskell.org/package/QuickCheck" target="_blank">testing</a> and <a href="http://hackage.haskell.org/package/criterion" target="_blank">performance measurement</a>.</li>
+  <li><a href="http://macgapproject.github.io/" target="_blank">MacGap</a> is a lightweight (~1MB) web-to-native wrapper. It provides a JS API to integrate with the file system, subprocesses, and OS-specific features like notifications and menus.</li>
+</ul>
+
+<p><em>*Note: Wagon is now powered by Electron rather than MacGap. Read our <a href="/blog/electron-at-wagon">Electron blog post to learn more</a>.</em></p>
+
+<p><strong>Backend Services</strong></p>
+
+<p>Our backend services persists state and shared data to allow users to securely collaborate on queries, results, and charts. The backend is also written in Haskell: using the same language for the client and the server helps us stay flexible and reduce complexity. We store application state in Postgres while larger immutable data, like shared query results, live in Amazon S3.</p>
+
+<p><em>Technology: Haskell, Postgres, Amazon S3</em></p>
+
+<ul>
+  <li>Haskell’s lightweight threads and the GHC runtime scale well on multi-core machines.</li>
+  <li>Postgres is powerful, flexible, and straightforward to host. We use features like <a href="http://www.postgresql.org/docs/9.4/static/storage-toast.html" target="_blank">TOAST</a> and <a href="http://www.postgresql.org/docs/9.4/static/datatype-json.html" target="_blank">JSON support</a> to test new features.</li>
+</ul>
+
+<p>There are exciting upcoming technology challenges including optimizing compute across local and remote environments, designing efficient streaming statistics algorithms, building features that learn and improve with usage.</p>
+
+<p>We’d love to hear from you! <a href="https://twitter.com/wagonhq" target="_blank">Follow @WagonHQ</a>, check out our stack on <a href="http://stackshare.io/wagon/wagon" target="_blank">Stackshare</a>, and learn more about our <a href="http://www.wagonhq.com/about" target="_blank">engineering and design team</a>. Stay tuned for future engineering deep dives!</p>
+
+<p><br />
+<em>
+  Thanks to <a href="https://twitter.com/scpike" target="_blank">Steve Pike</a> and <a href="https://twitter.com/petkanics" target="_blank">Doug Petkanics</a> for reviewing this post. <a href="http://thenounproject.com/term/website/35429/" target="_blank">Image credit</a> Adam Wilson from The Noun Project.
+</em></p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

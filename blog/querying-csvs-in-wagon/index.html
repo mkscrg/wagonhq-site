@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Querying CSVs in Wagon - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Learn to query CSV files in Wagon.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/querying-csvs-in-wagon" />
+    <meta property="og:title" content="Querying CSVs in Wagon" />
+    <meta property="og:description" content="Learn to query CSV files in Wagon." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/querying-csvs-in-wagon>Querying CSVs in Wagon</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/querying-csvs-in-wagon&text=Querying CSVs in Wagon%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/querying-csvs-in-wagon/&t=Querying CSVs in Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                June 08, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+
+          <p>People use Wagon to query data stored in databases, but sometimes they need to analyze a file that doesn’t (yet) live in a database. Our friend <a href="https://github.com/scpike">Steve Pike</a> recently showcased this hack in <a href="http://www.wagonhq.com/blog/bandwagon">our #bandwagon Slack channel</a>. He used a nifty command line tool called <em>csvsql</em> to automatically create a Postgres table from a CSV file and have it ready for Wagon.</p>
+
+<p style="max-width: 150px; margin: auto;">
+	<img src="/images/posts/wagon_csv.png" alt="CSVs in Wagon" />
+</p>
+
+<p>Here’s how to set it up on Mac:</p>
+
+<ol>
+  <li>Install Postgres
+    <ul>
+      <li><a href="http://postgresapp.com/">Download this quick Postgres Installer</a></li>
+      <li>Or here’s the <a href="http://www.postgresql.org/download/">full documentation</a></li>
+    </ul>
+  </li>
+  <li>Install <a href="https://csvkit.readthedocs.org/en/0.9.1/install.html">csvkit</a>
+    <ul>
+      <li>It’s simpler if you have pip, so <a href="https://pip.pypa.io/en/latest/installing.html">install pip</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>Load your CSV file into Postgres:</p>
+
+    <pre><code> csvsql --db postgres://localhost:5432/postgres --insert --tables mytable /myfile.csv
+</code></pre>
+
+    <ul>
+      <li><code>mytable</code> is the name of the new table</li>
+      <li><code>postgres</code> is the name of the database, normally available by default</li>
+    </ul>
+  </li>
+  <li>Open Wagon and connect to your database: (Don’t have access to Wagon? <a href="http://www.wagonhq.com/">Sign up for early access!</a>)
+    <ul>
+      <li><em>Nickname</em>: csvsql</li>
+      <li><em>Type</em>: Postgres</li>
+      <li><em>Hostname</em>: localhost</li>
+      <li><em>Port</em>: 5432</li>
+      <li><em>Database</em>: postgres</li>
+      <li><em>User</em>: [your computer’s username]</li>
+      <li><em>Password</em>: [empty]</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Woo! You can now write SQL against your CSV file using Wagon.</p>
+
+<p>Try this out with your next CSV file or an <a href="/data/film_locations_in_san_francisco.csv" download="">example dataset of movie scenes filmed in San Francisco</a> (<a href="https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am/about">source</a>). Our team favorite <em>Blue Jasmine</em> isn’t number 1!</p>
+
+<p>Wagon is a great way to analyze databases and now small text files. Thanks <em>csvsql</em>.</p>
+
+<p>Need help with this quick hack? Email us at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;</a>.</p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

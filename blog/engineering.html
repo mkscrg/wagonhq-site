@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Posts - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="A collection of blog posts from Wagon's engineering blog.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/engineering.html" />
+    <meta property="og:title" content="Posts" />
+    <meta property="og:description" content="A collection of blog posts from Wagon's engineering blog." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="release-notes">
+  <div class="container">
+    <div class="col-md-8 center-col">
+    <section class="hiring">
+      <h2 class="text-center">
+        #engineering<br>
+      </h2>
+
+    </section>
+    <ul>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/deploying-electron>Deploying Electron</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/deploying-electron&text=Deploying Electron%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/deploying-electron/&t=Deploying Electron%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               February 23, 2016 | <a href="http://twitter.com/deland" target="_blank">Matt DeLand</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/electron">#electron</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p><a href="http://electron.atom.io/">Electron</a> makes it easy to write cross-platform desktop apps using web technology— but how do you build and deploy these hybrid apps in production?</p>
+
+<p>At January’s <a href="http://www.meetup.com/Bay-Area-Electron-User-Group/events/228010482/">Bay Area Electron Meetup</a>, we presented how Wagon builds and delivers new updates to our users. This talk covers both standard and custom Electron usage for background updating, uninterrupted usage, helper processes, cross-platform builds, OS notifications, and the occasional hotfix.</p>
+
+<script async="" class="speakerdeck-embed" data-id="1b22323b1ac34371a4d75a5813c17f86" data-ratio="1.29456384323641" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p>Thanks to <a href="https://twitter.com/bengotow">Ben Gotow</a> at Nylas for organizing!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/haskell-for-industry>Haskell for commercial software development</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/haskell-for-industry&text=Haskell for commercial software development%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/haskell-for-industry/&t=Haskell for commercial software development%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               February 02, 2016 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Inquiring minds on Quora want to know, <em><a href="https://www.quora.com/Is-Haskell-suitable-for-commercial-software-development">is Haskell suitable for commercial software development?</a></em></p>
+
+<blockquote>
+  <p>I’m looking for an alternative to Python mainly for reasons of Python having so much trouble with
+workable concurrency, and Go seemed great at first look (it’s still not bad, but indeed error
+handling and lack of generics are a few features cut away too far).</p>
+
+  <p>This pretty much leaves Haskell as workable alternative. But is it really a practical alternative?</p>
+
+  <p>My biggest fear that while Haskell seems very powerful, it is also difficult and so it may be too
+difficult for person A to read code written by person B (what seems to have killed Lisp in my view
+is that problem and person-specific DSLs written in Lisp were simply unreadable for too many other
+people).</p>
+
+  <p>PS, in other words: I do not ask about strong sides of Haskell (or language X), those are well
+known, but rather about a lack of show-stoppers.</p>
+</blockquote>
+
+<p>Absolutely, yes! At Wagon, we’ve built server- and client-side systems in Haskell, running in AWS and distributed to our users in a cross-platform desktop app.</p>
+
+<p style="max-width: 600px; margin: auto;">
+  <img src="/images/posts/quora.png" alt="Wagon on Quora" />
+</p>
+
+<p>Possible show-stoppers to using Haskell commercially:</p>
+
+<p><strong>Community support</strong><br /> A good open-source community is a big deal. It’s the difference between fixing other people’s code and finding an open GitHub issue with a workaround and an in-progress fix. With Haskell, we find the latter much more frequently than the former. The community is positive, active, and generally helpful when problems come up. Lively discussion takes place on <a href="https://www.reddit.com/r/haskell/">Reddit</a>, <a href="https://wiki.haskell.org/IRC_channel">IRC</a>, a <a href="http://fpchat.com/">public Slack channel</a>, and several <a href="https://wiki.haskell.org/Mailing_lists">mailing lists</a>.</p>
+
+<p><strong>Hiring</strong><br /> There are many factors involved in hiring: team size, location, remove vs on-site, other expertise required, etc. At Wagon we’re an on-site team of ~10 in San Francisco, with lots of web- and database-related problems to work on. Finding qualified Haskellers has not been an issue.</p>
+
+<p>Haskell is different from the languages lots of developers are used to. ML-style syntax, strong types, and lazy evaluation make for a steep initial learning curve. Anecdotally, we’ve found Haskell’s secondary learning curve smooth and productive. Intermediate Haskellers quickly pick up advanced concepts on the job: parsers, monad transformers, higher-order types, profiling and optimization, etc.</p>
+
+<p><strong>Available industrial-strength libraries</strong><br /> Haskell lends itself to lightweight-but-powerful libraries that do one thing very well. We get a lot done by composing these small libraries rather than relying on big feature-complete frameworks. Some libraries have become de-facto standards that are stable and performant, and <a href="http://www.stackage.org/">Stackage</a> gives us a reliable way to find additional packages that usually “just work”.</p>
+
+<p>We do sometimes find gaps in Haskell’s available libraries. For example, Haskell can’t yet match Python’s <a href="http://pandas.pydata.org/">tools for numerical computing</a>. And like every open-source ecosystem, there is some bad code out there. We rely on community recommendations and a sense of dependency hygiene to stay productive.</p>
+
+<p><strong>Performance</strong><br /> A quick Google search turns up benchmarks comparing Haskell to anything else you can imagine. In practice, we’re interested in tools with two properties:</p>
+
+<ol>
+  <li>Fast enough under most circumstances. “Fast enough” means performance is never an issue for a given piece of code.</li>
+  <li>Easy to optimize when needed. When we do need more speed, we’d like to get it incrementally rather than immediately rewrite that code in C.</li>
+</ol>
+
+<p>Haskell has both of these properties. We almost never have to address performance in our Haskell code. When we do, we turn to GHC’s profiler and its many performance knobs: optimization flags, inlining, strictness and memory layout controls, etc. Haskell also has good interopability with C for when that’s appropriate.</p>
+
+<p><strong>Memory leaks</strong><br /> There’s a lot of talk about memory leaks caused by Haskell’s lazy evaluation model. We run into this very infrequently in practice, and in those rare situations GHC’s profiler has led us to solutions quickly. The real problem is not lazy evaluation but <a href="http://dev.stephendiehl.com/hask/#lazy-io">lazy IO</a>, which we avoid with tools like <a href="http://www.stackage.org/package/conduit">conduit</a> and <a href="http://www.stackage.org/package/pipes">pipes</a>.</p>
+
+<p><strong>Debuggability</strong><br /> Haskell doesn’t have a debugger in the same sense as Python or Java. This is mostly a non-issue, because exceptions are rare and GHCi gives us a flexible way to run code interactively. Nonetheless, hunting down problems in a big application can be difficult. This has improved in recent versions of GHC with support for proper <a href="https://downloads.haskell.org/~ghc/latest/docs/html/libraries/base-4.8.2.0/GHC-Stack.html">stack traces</a>.</p>
+
+<p><strong>Haskellers reading other Haskellers’ code</strong><br /> This hasn’t been a problem for us. Haskell is a flexible language both in syntax and semantics, but this leads to better solutions more than it leads to opaque or unreadable code. Heavy indirection—via embedded DSLs or deep typeclass hierarchies—is unusual in practice. We reach for those tools as a last resort, knowing that they come with a serious maintenance cost. Agreeing on a basic <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md">style guide</a> helps smooth out minor syntax differences.</p>
+
+<p>Read our other <a href="https://www.wagonhq.com/blog/haskell">Haskell engineering blog posts</a>, come to our community events, or better yet, <a href="https://www.wagonhq.com/jobs">join our team</a>!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/twitter-tech-talk>FUNctional Programming with Haskell - Twitter Tech Talk</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/twitter-tech-talk&text=FUNctional Programming with Haskell - Twitter Tech Talk%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/twitter-tech-talk/&t=FUNctional Programming with Haskell - Twitter Tech Talk%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               December 21, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Jeff Weinstein</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Haskell is our primary backend language at Wagon— it helps us (safely) iterate faster, build for multiple environments, and attracts great engineering talent. It is fun to meet engineers from startups and large companies at <a href="http://www.meetup.com/Bay-Area-Haskell-Users-Group/">Haskell meetups</a>, <a href="http://bayhac.org/">BayHac</a>, and in the <a href="http://www.fpchat.com/">functional programming Slack channel</a>. Many engineers are curious how we use Haskell in production and have invited us to speak at their companies.</p>
+
+<p style="max-width: 100px; margin: auto;">
+	<img src="/images/posts/twitter_eng.png" alt="Twitter Engineering." />
+</p>
+
+<p>Wagon’s CTO Mike Craig spoke last month at Twitter (and <a href="https://www.wagonhq.com/blog/square-tech-talk">earlier this year at Square</a>) on the pros and cons of using Haskell in production. Thanks to Twitter’s <a href="https://twitter.com/peterseibel">Peter Seibel</a> for inviting us and to their team for posting the video.</p>
+
+<p>Here’s the talk:</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Dbjt_u1kSo4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<p>If you’re using Haskell at your company, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">let us know</a>.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/electron-microsoft-meetup>Electron meetup at Microsoft</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/electron-microsoft-meetup&text=Electron meetup at Microsoft%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/electron-microsoft-meetup/&t=Electron meetup at Microsoft%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               November 06, 2015 | <a href="http://twitter.com/jeff_weinstein" target="_blank">Jeff Weinstein</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/electron">#electron</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p><a href="http://electron.atom.io">Electron</a> has momentum. The open source project for building cross platform desktop apps with web technologies now has 6000+ commits from 200+ contributors, a 3500+ person Slack room, and now it’s 4th meetup with 90+ RSVPs (the 1st was a few of us at a bar).</p>
+
+<p>On Monday, the <a href="http://www.meetup.com/Bay-Area-Electron-User-Group">Bay Area Electron group</a> met at Microsoft <a href="https://twitter.com/MSFTReactor">Reactor</a>, an event space in San Francisco. A few members of Microsoft’s open source team were in town to hear how people are using Electron to build Windows apps. The team is dedicated to helping projects run well with Microsoft platforms. It’s also exciting to see that <a href="https://code.visualstudio.com/">Visual Studio Code</a> is using Electron. Two of the five talks were Windows related:</p>
+
+<hr />
+
+<p><a href="http://twitter.com/kevinsawicki">Kevin Sawicki</a> from GitHub spoke about how to test Electron apps using ChromeDriver and his project <a href="https://github.com/kevinsawicki/spectron">Spectron</a>. Try this in your next project.</p>
+
+<script async="" class="speakerdeck-embed" data-id="ecbcfd9419c845faa0e791d87ba1ce97" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><br /></p>
+
+<p><a href="https://twitter.com/felixrieseberg">Felix Rieseberg</a> from Microsoft’s open source team gave us walkthrough of <a href="http://try.buildwinjs.com/">WinJS</a>. It seems like a great way to make Electron apps look native on Windows 10. Here are the <a href="https://onedrive.live.com/view.aspx?resid=4EA869C40F03DA47!238769&amp;ithint=file%2cpptx&amp;app=PowerPoint&amp;authkey=!ANhVu0KbHyOHXOQ">slides</a>.</p>
+
+<p><br /></p>
+
+<p><a href="https://twitter.com/johnhaley81">John Haley</a> from Axosoft’s GitKraken team talked about how they handle task scheduling in their Electron apps. This strategy seems like a new standard way to handle both UI and processing intensive applications.</p>
+
+<iframe src="https://drive.google.com/file/d/0B8f-2LpBuV0pMUU1bC0wTFJZMjg/preview" width="640" height="480"></iframe>
+
+<p><br /></p>
+
+<p>Wagon’s <a href="http://twitter.com/deland">Matt DeLand</a> presented a few tips and tricks for developing, building, and deploying on Windows along with a demo of our latest version. <a href="https://www.wagonhq.com/">Sign up for early access to try Wagon on Windows</a>.</p>
+
+<script async="" class="speakerdeck-embed" data-id="28549e1d1599428cb575dac98d94d766" data-ratio="1.29456384323641" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><br /></p>
+
+<p><a href="https://twitter.com/edgararout">Edgar Aroutiounian</a> gave a quick demo of how he used OCaml to build an Electron app. Checkout the example project <a href="https://github.com/fxfactorial/ocaml-electron">here</a>.</p>
+
+<hr />
+
+<p>Special thanks to Microsoft for hosting. We’re excited the Electron community is growing and that large companies are adopting and supporting this platform. See you at the next event!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/square-tech-talk>Haskell in Production - Square Tech Talk</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/square-tech-talk&text=Haskell in Production - Square Tech Talk%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/square-tech-talk/&t=Haskell in Production - Square Tech Talk%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               October 28, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>The <a href="https://corner.squareup.com/">Square engineering team</a> invited Wagon to give a tech talk on how we use Haskell in production.  Their teams are interested in functional programming and we were honored to walkthrough our experience building a modern analytics tool using <a href="/blog/engineering-at-wagon">Haskell, React, and Electron</a>. Thanks Square for welcoming us!</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/gX3rJkOjcz4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<p>If you’re using Haskell at your company, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">let us know</a>. We’d love to trade notes.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/react-at-wagon>React at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/react-at-wagon&text=React at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/react-at-wagon/&t=React at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               October 01, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/react">#react</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>We’re building a hybrid web/native application that runs both in the browser and as a downloadable desktop app. Analysts use Wagon to query, analyze, visualize, and share data: the app is highly interactive and data-heavy. It has to be fast, furious, and stable even when used for hours.</p>
+
+<p>It ain’t all gravy: it’s difficult to maintain a UI with asynchronous updates, large scale data manipulation, and many other cross-cutting concerns. How can we build a sane frontend codebase, without losing our ability to iterate and ship quickly? The answer is to separate concerns. We break our UI into small self-contained components, and we isolate state and manage it separately from the UI. Facebook’s React and Flux libraries make this practical.</p>
+
+<p style="max-width: 330px; margin: auto;">
+  <img src="/images/posts/react.png" alt="Wagon loves React" />
+</p>
+
+<p>The big idea behind React is this: a UI component is just a function from its inputs to its content. All a component needs is a <code>render()</code> method that returns the elements we want the user to see.  As an example, here’s a component that takes a size and color and renders a div displaying a filled-in square. Notice that users of this component don’t need to know about how it is implemented.</p>
+
+<noscript><pre>var ColoredSquare = React.createClass({
+  render: function() {
+    // the component&#39;s inputs are available via this.props
+    var squareStyle = {
+      display: &quot;inline-block&quot;,
+      width: this.props.width,
+      height: this.props.width,
+      backgroundColor: this.props.color,
+      borderRadius: this.props.radius
+    };
+
+    return &lt;div style={squareStyle} onClick={saveUserFavColor(this.props.color)} /&gt;;
+  }
+});</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=ColoredSquare.jsx"> </script>
+
+<p>React components are simple to reuse because they nest like HTML elements. It’s easy to wrap an existing component to add additional styles or behavior—React favors composition over inheritance. We can forget about carefully maintaining the DOM to avoid excessive redraws and flicker: we declare what our components should look like, and React makes it so.</p>
+
+<p>React is great for organizing view elements, but an application is more than static UI. Users generate events and we need to capture them, update state, and direct how the app should respond. Flux manages this flow by clearly seperating user action events from application responses.</p>
+
+<p>Actions encapsulate events. They’re the application logic that runs in response to users doing stuff. In our example, when a user clicks a colored square, we update the server and dispatch to let the rest of app know what happened:</p>
+
+<noscript><pre>function saveUserFavColor(color) {
+  var id = getCurrentUserId();  // move along, this is just a demo
+  
+  ajax.user.saveInfo(id, color)  // make an AJAX call,
+    // then tell the rest of the application what happened
+    .then(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVED, {id: id, favoriteColor: color});
+    })
+    .catch(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVE_ERROR, {id: id});
+    });
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserInfoAction.js"> </script>
+
+<p>Stores encapsulate state. They listen to state changes dispatched from actions, and they update themselves to record the changes.</p>
+
+<noscript><pre>class UserStore extends EventEmitter {
+  // administrivia omitted!
+
+  onDispatch(action) {
+    switch (action.type) {
+      case USER_INFO_SAVED:
+        // save the updated state in an instance property
+        this._users[action.payload.id].favoriteColor = action.payload.favoriteColor;
+        // tell the rest of the application to come and get it
+        this.emitChange();
+        break;
+
+      // etc
+    }
+  }
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserStore.js"> </script>
+
+<p>UI components listen to stores and re-render when relevant state changes.</p>
+
+<p>Building a solid, maintainable frontend is still difficult despite these great libraries. Here are a few other strategies we’re using:</p>
+
+<ul>
+  <li>
+    <p>Build pure React components whenever possible. A pure component doesn’t make any external calls from <code>render()</code>—it’s a pure function of the component’s properties and state. Components like this are much easier to test, debug, and reuse. It’s such a good idea it’s <a href="https://facebook.github.io/react/docs/pure-render-mixin.html">included in React itself</a>!</p>
+  </li>
+  <li>
+    <p>Separate React components that listen to Flux stores from those that render the UI. Wrapping UI components in container components is another win for reuse. Jason Bonta mentioned this in <a href="https://www.youtube.com/watch?v=KYzlpRvWZ6c">his great talk at React.js Conf 2015</a>.</p>
+  </li>
+  <li>
+    <p>Take care when integrating non-React UI components. Mixing React’s declarative API with another library’s imperative API can be painful. Build wrapper components around external libraries, and use <a href="https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods">React’s lifecycle methods</a> to handle setup and teardown. When possible, avoid exposing direct-update methods like <code>drawChart()</code> or <code>setCursorPosition()</code>—manage state through component properties or Flux stores.</p>
+  </li>
+  <li>
+    <p>Split Flux actions into modules by UX concern. We separate navigation and authentication from running queries and making charts. Carve out submodules for cross-cutting concerns, like AJAX requests or logging.</p>
+  </li>
+  <li>
+    <p>Split Flux stores by domain. It’s helpful to separate persisted server-side state from ephemeral page state, for example. We hide the state of the URL bar behind a store, too!</p>
+  </li>
+</ul>
+
+<p>We’re tackling fun engineering challenges at Wagon.  If you want to learn more or work everyday on these technologies, <a href="/jobs">check out our jobs page</a> and get in touch!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/electron-meetup>Electron's first meetup</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/electron-meetup&text=Electron's first meetup%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/electron-meetup/&t=Electron's first meetup%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               August 28, 2015 | <a href="http://twitter.com/jeff_weinstein" target="_blank">Jeff Weinstein</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/electron">#electron</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>The Electron community is positively charged!  The project, formerly
+known as <em>Atom-Shell</em>, is a great way to build cross-platform desktop
+apps using web technologies. Given the 2200 people in the
+<a href="http://atom-slack.herokuapp.com">Electron Slack channel</a>, the
+<a href="https://github.com/atom/electron">nearly five thousand commits</a>,
+and the <a href="https://discuss.atom.io/c/electron">active discussion board</a>,
+we figured it’s about time the project had a meetup in real life.</p>
+
+<p>The community seems to agree: we hosted more than 50 people for the
+inaugural <a href="http://www.meetup.com/Bay-Area-Electron-User-Group/">Bay Area Electron
+Meetup</a> for
+four great talks and a big pile of pizza.  Engineers from GitHub,
+Slack, Wagon, and Nylas spoke about building polished apps across
+Mac, Windows, and Linux using the Electron framework.</p>
+
+<ol>
+  <li><a href="#history-of-electron">The History of Electron</a> by Kevin Sawicki (Github)</li>
+  <li><a href="#integrating-with-native-code">Integrating with Native Code</a> by Paul Betts (Slack)</li>
+  <li><a href="#electron-react-haskell">Electron, React, and Haskell. Oh my!</a> by Mike Craig (Wagon)</li>
+  <li><a href="#native-web-app">Making a web app feel native</a> by Ben Gotow (Nylas)</li>
+</ol>
+
+<hr />
+
+<h3 id="history-of-electron">
+  The History of Electron by <a href="https://twitter.com/kevinsawicki">Kevin Sawicki</a> (Engineer
+  at GitHub)
+</h3>
+
+<p>Why Electron was built, what makes it special, how it
+differs from similar frameworks, and where it is going.</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/tP8Yp1boQ9c" frameborder="0" allowfullscreen=""></iframe>
+</div>
+<p><a class="embedly-card" href="https://speakerdeck.com/kevinsawicki/the-history-of-electron">The History of electron</a></p>
+
+<p><br /></p>
+
+<h3 id="integrating-with-native-code">
+  Integrating with Native Code by <a href="https://twitter.com/paulcbetts">Paul Betts</a> (Engineer
+  at Slack)
+</h3>
+
+<p>How Slack’s Desktop app calls native operating system and library
+methods on OS X, Windows, and Linux, via Node Native Modules,
+node-ffi, and edge.js.</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/4UwUL747i4M" frameborder="0" allowfullscreen=""></iframe>
+</div>
+<p><a class="embedly-card" href="https://speakerdeck.com/paulcbetts/native-modules-in-electron">Native Modules in Electron</a></p>
+
+<p><br /></p>
+
+<h3 id="electron-react-haskell">
+  Electron, React, and Haskell. Oh my! by <a href="https://twitter.com/mkscrg">Mike Craig</a> (CTO at Wagon)
+</h3>
+
+<p>How Wagon is building a hybrid desktop/web data analytics app using Electron, React, and Haskell to solve engineering challenges that aren’t possible with the browser alone.</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/mUAu7lcgYWE" frameborder="0" allowfullscreen=""></iframe>
+</div>
+<p><a class="embedly-card" href="https://speakerdeck.com/mkscrg/electron-react-and-haskell-oh-my">Electron, React, and Haskell Oh My!</a></p>
+
+<p><br /></p>
+
+<h3 id="native-web-app">
+  Making a web app feel native by <a href="https://twitter.com/bengotow">Ben Gotow</a> (Engineer at
+  Nylas)
+</h3>
+
+<p>A dive into some JavaScript and CSS tricks the Nylas team uses to
+make their Electron-based mail app feel native across Mac, Windows,
+and Linux.</p>
+
+<div class="responsive-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/JIRXVGVPzn8" frameborder="0" allowfullscreen=""></iframe>
+</div>
+<p><a class="embedly-card" href="http://www.slideshare.net/bengotow/building-native-experiences-with-electron">Building Native Experiences with Electron</a></p>
+
+<hr />
+
+<p>If you’d like to come to the next one, <a href="http://www.meetup.com/Bay-Area-Electron-User-Group/">join the Electron meetup
+group</a> and
+we’ll see you soon.</p>
+
+<script async="" src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/building-an-analytics-pipeline>Building an Analytics Pipeline in 2015</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/building-an-analytics-pipeline&text=Building an Analytics Pipeline in 2015%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/building-an-analytics-pipeline/&t=Building an Analytics Pipeline in 2015%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               August 06, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Every company needs an analytics data platform queryable by SQL.</p>
+
+<p>Using a single analytics tool or relying on logs from a single source is a fast way to get started but is rarely sufficient. You’ll realize you need a better data strategy when attempting more detailed analytics tasks: cohorting customers based on segments available in multiple data sources, analyzing long time scale trends, or making data available to other applications. Unfortunately, you’ll quickly reach the limit of your off-the-shelf tool.</p>
+
+<p>There has been a dramatic increase in data being created and fascination with <em>Big Data</em>, but less of a corresponding uptick in how to capture its value. Engineering a system to ingest, transform, and process data from many (changing, flaky) sources has been a <a href="http://www.b-eye-network.com/newsletters/inmon/7040">long time, Very Hard Problem™</a>. Doing this well requires hard work – the dreaded ETL.</p>
+
+<p>We see more and more companies choosing to invest in SQL warehouses and the requisite engineering well before they become large businesses. How do you effectively build one of these things? And what makes building robust analytics infrastructure difficult?</p>
+
+<p><br /></p>
+
+<p style="max-width: 600px; margin: auto;">
+	<img src="/images/posts/gtrends.png" alt="Google Trends for Big Data vs. ETL" />
+	<em><span style="float: right;"><a href="http://www.google.com/trends/explore?hl=en-US#q=big+data,+/m/01jr1p&amp;date=1/2004+133m&amp;cmpt=q&amp;tz=Etc/GMT%2B7&amp;tz=Etc/GMT%2B7">See full Google Trends report</a></span></em>
+</p>
+
+<p><br /></p>
+
+<p>Here’s an example illustrating the core problems: You implemented a new purchase flow in your app and you’d like to understand conversion rates (tracked from logs) broken down by your email marketing A/B test (tracked from a 3rd party). The log lines you’re generating have new structure and may need to be re-parsed to fit into your existing schema. The A/B testing info may live in a different place than user data. Boiler plate reporting tools and drag and drop analytics UIs are great, but they require structuring ahead of time and the new checkout flow change is already live in production. Manually doing this analysis one time is annoying, but turning it into a reliable, repeatable practice is nearly impossible without dedicated engineering effort.</p>
+
+<p>Your goal should be to get your data into a data warehouse that can be queried directly by people and programs.  While it’s not straightforward, it’s important to understand the pieces. We see companies addressing this problem by focusing on the following steps:</p>
+
+<ol>
+  <li>For each data source: generate, collect, and store your data</li>
+  <li>Transform data into usable, queryable form</li>
+  <li>Copy multiple sources into a single place</li>
+  <li>Enjoy the data fruits of your data labor</li>
+</ol>
+
+<p>The first step is collecting the data with as much structure as possible. You need to generate the data, transmit it from apps, browsers, or services for collection, and then safely store it for later. Many mobile and web analytics providers offer these three steps, others focus on a subset. For example, <a href="https://heapanalytics.com/">Heap</a> and <a href="https://mixpanel.com/">Mixpanel</a> generate many app usage events automatically. Others focus on receiving data and making it available to read later (<a href="https://keen.io/">Keen</a> and <a href="http://www.splunk.com/">Splunk</a> as different examples). <a href="https://segment.com/">Segment</a> takes advantage of the difficulty of logging to many places by transmitting data to many of the above services with one API call.</p>
+
+<p>Another large source of data is logs (usually messy and unstructured). Just having logs is not enough - it must be massaged into usable rows and columns. Some log lines help engineers analyze technology performance or debug errors, some log lines must be interpreted to signal “human” events, and some log lines have been around for so long that no one remembers why they’re there. Logs are rarely generated with their end purpose or a fixed type system in mind. Transformation of these raw strings is necessary to make them usable rather than just searchable.</p>
+
+<p>For example, you may need to combine three separate log lines in order to signal a successful-user-flow, or to compare log lines against prior data to understand if a user is new, active or re-activated. Or maybe you need to remove those extra pesky spaces around your beautiful integers or standardize timestamps across timezones. <a href="http://www.trifacta.com/">Trifacta</a>, <a href="http://www.paxata.com/">Paxata</a>, and <a href="http://www.tamr.com/landing-pages/tamr-technical-whitepaper/">Tamr</a> offer technical tools for transforming ugly log forms to structured rows and columns. Or you’ll roll your own.</p>
+
+<p><br /></p>
+
+<p style="max-width: 500px; margin: auto;">
+	<a href="http://dilbert.com/strip/2008-05-07"><img src="/images/posts/dilbert.gif" alt="Dilbert Cartoon" /></a>
+</p>
+
+<p><br /></p>
+
+<p>Once data collection systems are in place, you want to get this data flowing into a data warehouse. While some of the aforementioned tools provide their own interface for accessing collected and processed data, joining across multiple sources is difficult if not impossible, and their interfaces are often inflexible and cumbersome. Luckily, many of these services recognize this, and offer easy exports to data warehouses. <a href="https://amplitude.com/blog/2015/03/27/why-we-chose-redshift/">Amplitude</a> and <a href="https://segment.com/redshift">Segment</a> do this well and offer straightforward exports to Redshift. Google Analytics offers export to BigQuery for Premium customers (~$150k / year). Others make it possible, but require a bit of work (for example, <a href="https://twitter.com/keen_io/status/545642330384908289">Keen</a>). New startups like <a href="https://www.textur.com/">Textur</a> and <a href="http://www.alooma.io">Alooma</a> are working on plumbing data into hosted RDBMS systems.</p>
+
+<p>Outside of dedicated analytics solutions, you often have data from third party sources you’d like to join and analyze (e.g. Salesforce, ZenDesk, MailChimp, etc.). Most of these tools offer APIs to extract data. Building and maintaining these connections from 3rd parties to your data warehouse on your own is doable, but this is often where data integration tools are helpful. Services like <a href="http://snowplowanalytics.com/">Snowplow</a> and <a href="https://www.fivetran.com">Fivetran</a> help.</p>
+
+<p>At this point, data is flowing in a structured way. But where is it going? When assessing a data warehouse, look for:</p>
+
+<ol>
+  <li>Large scale ingestion and storage</li>
+  <li>Fast computation and multi-user concurrency</li>
+  <li>Easy management and scaling with data</li>
+  <li>Security and permissioning</li>
+</ol>
+
+<p>There are many that meet these criteria: Amazon Redshift, Google BigQuery, Microsoft Azure SQL Data Warehouse, Hive, Spark, Greenplum, Vertica, Impala (the list goes on!). The largest technology companies (Amazon, Google, Microsoft) are investing in, and subsidizing, these data warehousing solutions. It’s a crucial component to nearly every business, which naturally draws the attention of the tech titans.</p>
+
+<p style="max-width: 660px; margin: auto;">
+
+	<a href="http://www.slideshare.net/mjft01/big-data-landscape-matt-turck-may-2014"><img src="/images/posts/big-data-landscape.png" alt="Big Data landscape diagram " /></a>
+
+	<em><span style="float: right;">It’s a data jungle out there. Diagram from 2014 by Matt Turck at FirstMark</span></em>
+</p>
+
+<p><br /></p>
+
+<hr />
+
+<p>Phew, now you can enjoy the freedom of querying structured data, and the work (and fun!) begins. We’ll have more on the data analysis step soon!</p>
+
+<p>We’d love to hear how you’re tackling these problems. What are your favorite tools? Where are your most painful pains? Tweet at <a href="https://twitter.com/wagonhq">@WagonHQ</a> or send us a note at <a href="mailto:hello@wagonhq.com">hello@wagonhq.com</a>!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/electron-at-wagon>Electron at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/electron-at-wagon&text=Electron at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/electron-at-wagon/&t=Electron at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               July 15, 2015 | <a href="http://www.wagonhq.com/about" target="_blank">Mark Daly</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/electron">#electron</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>While building Wagon, we’ve encountered a few engineering challenges that aren’t easily solved in the browser. Our users want Wagon to connect securely to their database and analyze large amounts of data, while being easy to setup and always up to date. Unfortunately, browsers can’t connect directly to databases and aren’t optimized for processing millions of data results. The standard web browser won’t suffice, so what should we do?</p>
+
+<p>As many companies are discovering, mixing <a href="https://medium.com/@collinmathilde/why-desktop-apps-are-making-a-comeback-5b4eb0427647">web and native technologies</a> is very compelling. Early adopters including Slack, Atom, Quip, Visual Studio, Spotify, MapBox, Front, and Nylas have found ways to weave these once unrelated approaches.</p>
+
+<p>At Wagon, we’re using <a href="http://electron.atom.io/">Github’s Electron</a> (previously “Atom-Shell”) as our underlying app framework. Electron was carved out of the Atom editor project and lets us deploy web UIs to the desktop.  Our CTO Mike <a href="http://www.wagonhq.com/blog/engineering-at-wagon">described Wagon’s technical architecture</a>: a Javascript application for user experience along with a native process for database connections and streaming data computation. We want a capable desktop application with the ease of developing for the web.</p>
+
+<p><br /></p>
+
+<p style="max-width: 400px; margin: auto;">
+	  <a href="http://electron.atom.io"><img src="/images/posts/electron_logo.svg" alt="Electron" /></a>
+</p>
+
+<p><br /></p>
+
+<p>The earliest alpha of Wagon was a command line program that powered a browser app available at <code>localhost</code>. We soon shipped our first Mac app: a download-able, double-click-able version using <a href="https://github.com/MacGapProject">MacGap</a>. As more people used Wagon, we wanted to update the code silently in the background, deploy to Windows and Linux, and move away from WebKit (we &lt;3 Chromium’s dev tools!). We <a href="http://www.wagonhq.com/release-notes">frequently ship new versions</a> of both the JS and compiled Haskell, and it was painful for our users to manually download and reinstall the application. We briefly considered Mac-specific update mechanisms but it became clear we needed to replace MacGap. In searching for a full-featured, cross-platform web-view container, we found Electron.</p>
+
+<p><br /></p>
+
+<figure>
+  <div class="row">
+  	<img src="/images/posts/electron_diagram.png" alt="Wagon's Electron architecture diagram" />
+  </div>
+
+  <figcaption class="row">
+    Wagon uses Electron to bundle native and web technologies
+  </figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>Electron is based on Chromium, runs on multiple platforms, and comes packaged with useful features like desktop notifications, custom keyboard shortcuts, and native menus. Auto-update, which originally motivated us to try Electron, is easy to set up and simplifies shipping new versions. Electron is evolving quickly and openly, supported by its <a href="https://discuss.atom.io/c/electron">vibrant community</a>, <a href="https://github.com/atom/electron/issues">active development</a>, <a href="http://atom-slack.herokuapp.com/">public Slack room</a>, and commercial backing.</p>
+
+<p>Migrating from MacGap to Electron was straightforward, as Electron’s <a href="http://electron.atom.io/docs/">excellent documentation</a> has  instructions on rebranding, packaging, and distribution–we got a prototype up and running on a Friday afternoon. Electron differs from other web-view containers by using Node.js (via <a href="https://iojs.org/en/index.html">io.js</a>) as its entry point: when an Electron app starts, execution begins in a JS program included in the app bundle, which can open windows and interact with the host OS. Node’s and Electron’s rich JS APIs made porting from MacGap easy, and we’ve added features that would otherwise only be possible in a native application (like custom menus and dialogs).</p>
+
+<p>Our static assets are hosted on CloudFront, so we can update the UI without requiring users to redownload the whole application. However, it can take a few seconds for these assets to load and we want an immediate cue that Wagon is working. Here’s how Wagon ensures a smooth app launch experience:</p>
+
+<ol>
+  <li>On app start, the main Node process runs our JS App Loader. It loads configuration files, starts background tasks, and opens a renderer to load the latest UI.</li>
+  <li>The renderer immediately displays a <code>splash.html</code> page that is shipped with the Wagon.app bundle.</li>
+  <li>The splash page uses Electron’s <a href="http://electron.atom.io/docs/v0.29.0/api/web-view-tag/"><code>&lt;webview&gt;</code> tag</a> to load our remote assets and start the JS app in the background while the Wagon logo rolls (some say dances!) on screen.</li>
+  <li>Once the UI is ready, it notifies the splash page via Electron’s <code>IPC</code> API.</li>
+  <li>The splash page swaps its content for the UI, creating a seamless transition into the full application.</li>
+</ol>
+
+<p>When we’re ready to roll out a new version of Wagon.app, we use an automated deployment approach built on GitHub and <a href="https://circleci.com/">CircleCI</a>.  When we merge a pull request into the <code>master</code> or <code>production</code> branches of our repos, CircleCI automatically builds the application bundle.  The components are dropped into the Electron app structure, code-signed, and uploaded to S3.  CircleCI also updates a configuration file that our <a href="http://electron.atom.io/docs/v0.29.0/api/auto-updater/">auto-updater API endpoint</a> reads, which lets us notify running instances of Wagon that a new version is available. The update is automatically downloaded in the background, installed, and triggers a desktop notification for the user.</p>
+
+<p>We believe that great software should run in the browser, on phones, and on the desktop. If building across these platforms sounds exciting, check out our <a href="http://www.wagonhq.com/jobs/">open positions</a>, and <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">email us</a> or tweet <a href="https://twitter.com/wagonhq">@WagonHQ</a>. <em>Gogogo!</em></p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/bayhac>Bayhac 2015</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/bayhac&text=Bayhac 2015%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/bayhac/&t=Bayhac 2015%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               June 30, 2015 | <a href="http://twitter.com/begriffs" target="_blank">Joe Nelson</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p><a href="http://bayhac.org/">Bayhac</a> is back. The annual Bay Area Haskell
+conference and hackathon met last weekend for its fifth consecutive
+year, bringing us fascinating talks and strongly-typed bonhomie.
+It drew attendees from all over the country, even from faraway
+Oakland (I’m told to say, “<a href="https://twitter.com/WagonHQ/status/610980698527129601">Go
+Warriors</a>!”).</p>
+
+<p>Each year at Bayhac I am reminded how the Haskell community is
+thriving: more adoption, new libraries, robust tooling. It seems
+that the language is destined to fail at its goal of “avoiding
+success at all costs.” What struck me this year is the number of
+funded startups developing critical parts of their products in
+Haskell. They are springing up in San Francisco, some blocks away
+from the Wagon office, companies like <a href="https://mirror.co/">Mirror</a>,
+<a href="https://www.frontrowed.com/">Front Row Education</a>,
+<a href="https://www.projector.com/">Projector</a>,
+<a href="http://engineering.imvu.com/2014/03/24/what-its-like-to-use-haskell/">IMVU</a>,
+<a href="http://www.alphaheavy.com/">Alpha Heavy Industries</a>, and
+<a href="http://www.pingwell.com/">Pingwell</a>.</p>
+
+<p><br /></p>
+
+<figure>
+  <div class="row">
+    <div class="col-sm-6">
+    <img src="/images/posts/bayhac01.jpg" alt="Bayhac picture" />
+    </div>
+    <div class="col-sm-6">
+    <img src="/images/posts/bayhac02.jpg" alt="Another Bayhac picture" />
+    </div>
+  </div>
+
+  <figcaption class="row">
+    Clockwise from top left: Greg Weber, Phil Freeman,
+    Conal Elliott, Dan Burton
+  </figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>The conference started out strong with two talks which interested
+me personally. <a href="http://jelv.is">Tikhon Jelvis</a> demonstrated how
+lazy evaluation is fundamental to designing modular code, not just
+an incidental curiosity. He gave numerous examples of laziness
+solving problems (the video for his talk is available
+<a href="http://begriffs.com/posts/2015-06-17-thinking-with-laziness.html">here</a>).</p>
+
+<p>Then <a href="https://unknownparallel.wordpress.com">Dan Burton</a> took the
+stage and gave us a tantalizing vision of the world post <code>cabal-install</code>,
+a glimpse of <a href="https://github.com/commercialhaskell/stack">Stack</a>.
+It is the spiritual successor of <code>stackage-cli</code>. In addition to
+locking project dependencies at mutually compatible versions like
+its predecessor, Stack can install necessary binaries and fetch
+packages right from git. Building projects, arguably the biggest
+pain in Haskelland, is getting better.</p>
+
+<p>That was just Friday night. The rest of the weekend had plenty in
+store including our very own Mike Craig sharing Wagon’s experience
+of using Haskell. This technology choice has served our small team
+well and his talk dives in to its strengths and weaknesses. The
+presentation showcases our product space, technical architecture,
+the libraries we lean on, and our deployment strategy. He also
+discusses Haskell’s learning curve (pros and cons) as well as its
+positive impact on recruiting. It’s one of the core reasons we’re
+able to frequently <a href="http://www.wagonhq.com/release-notes">ship new
+features</a> with confidence.</p>
+
+<p>If a picture is worth a thousand words then a thirty minute video
+at thirty frames per second is worth fifty-four million words. Here
+they are:</p>
+
+<div class="responsive-container">
+  <iframe src="https://player.vimeo.com/video/131029270" width="500" height="281" frameborder="0" webkitallowfullscree2="" mozallowfullscreen="" allowfullscreen=""></iframe>
+</div>
+
+<p>Big thanks to Bayhac organizers, notably <a href="https://maxs.io/">Maxwell
+Swadling</a> who stepped up to bring everyone together,
+handling everything from food to soliciting talks to the conference
+web presence. We’re looking forward to next year’s conference. In
+the meantime, keep a look out Wagon and community hosted Haskell
+events, or better yet, <a href="http://www.wagonhq.com/jobs">join our team</a>!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/weekly-roundup-react>Weekly Roundup: React</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/weekly-roundup-react&text=Weekly Roundup: React%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/weekly-roundup-react/&t=Weekly Roundup: React%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               May 27, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/react">#react</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Our hybrid native/web application’s frontend layer is built with Javascript, <a href="https://facebook.github.io/react/">React</a>, and <a href="https://facebook.github.io/flux/">Flux</a>. In 2014, our friends at Facebook advised us to try React and it has since been a core part of our stack.</p>
+
+<p style="max-width: 330px; margin: auto;">
+	<img src="/images/posts/react.png" alt="React logo" />
+</p>
+
+<p>The React community is bustling and there are some great posts to help people start, organize, and scale frontend applications. These articles have helped us:</p>
+
+<ol>
+  <li><a href="https://twitter.com/lopatron">Alex Lopatin</a> details Sift Science’s migration from Backbone to React in <a href="http://blog.siftscience.com/blog/2015/best-practices-for-building-large-react-applications">Best practices for building large React applications</a>.</li>
+  <li><a href="https://twitter.com/aeflash">Alexander Early</a> from Fluid maintains an in-depth set of <a href="http://aeflash.com/2015-02/react-tips-and-best-practices.html">Tips and Best Practices</a>. The discussion in the comments is good too.</li>
+  <li>Facebook’s <a href="https://twitter.com/vjeux/">Christopher Chedeau</a> has many talks on React architectures but this review of <a href="https://speakerdeck.com/vjeux/react-css-in-js">how to scale CSS in a React stack</a> guided our development of Wagon’s custom UI. Merci!</li>
+  <li><a href="https://twitter.com/hackflow">Alex Schepanovski</a> describes React from a jQuery perspective in <a href="http://hackflow.com/blog/2015/03/08/boiling-react-down-to-few-lines-in-jquery/">Boiling React Down to a Few Lines in jQuery</a>.</li>
+  <li><a href="https://twitter.com/rynclark">Ryan Clark</a> has a technical but still approachable <a href="http://ryanclark.me/getting-started-with-react/">Getting Started With React</a> walkthrough. If you like that, read the sibling article <a href="http://ryanclark.me/getting-started-with-flux/">Getting Started with Flux</a> too.</li>
+</ol>
+
+<p>We’ll be doing a deeper dive into Wagon’s React architecture, tooling, and how we see it changing in our next engineering blog post. If you like to hack on React, Flux, Javascript, and <a href="http://electron.atom.io/">Electron</a>, we’re <a href="http://www.wagonhq.com/jobs/frontend-engineer">hiring a frontend engineer</a> in San Francisco. Say hi!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/weekly-roundup-cloud-data>Weekly Roundup: Cloud Data Posts</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/weekly-roundup-cloud-data&text=Weekly Roundup: Cloud Data Posts%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/weekly-roundup-cloud-data/&t=Weekly Roundup: Cloud Data Posts%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               March 12, 2015 | <a href="http://twitter.com/jeff_weinstein" target="_blank">Jeff Weinstein</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Over burritos, our team enjoys discussing what’s new in cloud data infrastructure. Here are a few recent articles and announcements that caught our eye:</p>
+
+<dl>
+	<dt>
+    1. <a href="https://medium.com/aws-enterprise-collection/three-myths-about-hybrid-architectures-using-the-cloud-809a698df8d8" target="_blank">Three Myths about Hybrid Architectures Using the Cloud</a>
+  </dt>
+	<dd>
+  <a href="https://twitter.com/stephenorban" target="_blank">Stephen Orban</a>, Head of AWS Enterprise Strategy, unpacks a few commonly held beliefs about hybrid architectures.  A must read for larger companies that are attempting to migrate from legacy systems.
+  </dd><br />
+
+  <dt>
+    2. <a href="https://www.youtube.com/watch?v=UgJMlHdZEx4" target="_blank">Video of Mesosphere's DCOS</a>
+  </dt>
+	<dd>
+    Check out this awesome demonstration and rad visualization of Mesosphere’s DCOS by <a href="https://twitter.com/mtrifiro" target="_blank">Matt Trifiro</a>.
+  </dd><br />
+
+  <dt>
+    3. <a href="http://www.allthingsdistributed.com/2015/03/the-importance-of-cloud-based-analytics.html" target="_blank">Observations on the Importance of Cloud-based Analytics</a>
+  </dt>
+  <dd>
+    <a href="https://twitter.com/werner" target="_blank">Werner Vogels</a>, CTO at Amazon, details how cloud based analytics can improve different sectors including healthcare, cities, internet of things as well as business intelligence.
+  </dd><br />
+
+  <dt>
+    4. <a href="http://googlecloudplatform.blogspot.com/2015/03/introducing-Google-Cloud-Storage-Nearline-near-online-data-at-an-offline-price.html" target="_blank">Introducing Google Cloud Storage Nearline: (near)online data at an offline price</a>
+  </dt>
+  <dd>
+    Google recently announced $0.01 per GB per month storage, available with ~3 second response time. Amazing!
+  </dd><br />
+
+  <dt>
+    5. <a href="http://a16z.com/2015/01/22/cloud-client-computing" target="_blank">Cloud-Client Computing</a>
+  </dt>
+  <dd>
+    A few months ago, Andreessen Horowitz published 16 ideas they’re watching and the one that spoke to us the most is cloud-client computing. It’s how we’ve <a href="http://www.wagonhq.com/blog/engineering-at-wagon" target="_blank">architected Wagon</a> and is worth a repost!
+  </dd><br />
+
+
+</dl>
+
+<p>Also, shoutout to our friend and Quizlet infrastructure lead <a href="https://twitter.com/pbbakkum" target="_blank">Peter Bakkum</a> on his open source tool for <a href="https://github.com/quizlet/qreplay" target="_blank">capturing and replaying HTTP traffic</a>.  We love seeing the old <a href="http://www.hyperpublic.com/" target="_blank">Hyperpublic</a> crew doing big things.</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/development-tools>How Wagon Rolls: Tooling</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/development-tools&text=How Wagon Rolls: Tooling%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/development-tools/&t=How Wagon Rolls: Tooling%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               March 06, 2015 | <a href="http://www.wagonhq.com/about" target="_blank">Patrick Flor</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>In a recent <a href="http://www.wagonhq.com/blog/engineering-at-wagon" target="_blank">engineering blog post</a>, our CTO Mike walked through our system architecture. As a complement, I’d like to describe the tools and processes we use to build Wagon.</p>
+
+<p>We’re always learning new things from our customers that impact the product and our technologies. Fast iteration based on feedback drives our development, so we have invested significant time in testing, integration, deployment, and monitoring frameworks. We want to minimize the friction needed to turn new ideas into features.</p>
+
+<p>Here is an overview of our tools and engineering development flow:</p>
+
+<p><strong>Docker + CoreOS</strong></p>
+
+<p>Docker and CoreOS gives us a common interface to our backend systems across development, staging, and production environments. If it works on my machine, it works in staging; if it misbehaves in staging or production, I can debug it on my machine. CoreOS’ clustering and service discovery features also give us a path forward as we scale.</p>
+
+<p><strong>Github + CircleCI</strong></p>
+
+<p>CircleCI’s enthusiasm for experimentation and <a href="https://twitter.com/circleci/status/537304143367774208" target="_blank">great customer service</a> have helped us quickly evolve our technical architecture. Their highly configurable Linux and Mac build environments let us consistently test and deploy pieces of Wagon while we transitioned from a server/browser web app to a hybrid native/JS desktop tool. CircleCI’s inferred build processes and Github integration help us to get traction on quick spikes, and their configuration and documentation let us customize CI and get back to building our product.</p>
+
+<p>Here are some details of how we use them to minimize manual testing and deployment:</p>
+
+<ul>
+  <li>CircleCI builds and runs the full test suite on updates to every GitHub branch, so we know the state of any mainline or feature branch.</li>
+  <li>We dial up the counts on our <a href="https://hackage.haskell.org/package/QuickCheck" target="_blank">generative tests</a> in CI to ferret out uncommon and transient bugs in the build farm.</li>
+  <li>All changes are reviewed by at least one other team member before they are merged to a mainline branch. We use GitHub’s Pull Requests for code review and to accept changes.</li>
+  <li>Staging and production deployments are a direct function of successful CI builds on mainline branches. Any pull request accepted into master goes to staging and anything that makes our production branch goes live to users, with no additional tagging or manual deploy steps.</li>
+  <li>We use CircleCI’s API to kick off transitive builds for more complicated pipelines: this helps us keep the component projects small and single-purpose.</li>
+  <li>Each deployment pushes a notification to Slack, so everyone knows there is a new Wagon to enjoy.</li>
+</ul>
+
+<p><strong>Structured logs + Wagon</strong></p>
+
+<p>We log all application events–native, web, and server-side–as structured JSON. We use this data to answer questions about our systems post-hoc. It also gives us a structured stream to pass along to monitoring and alerting tools.</p>
+
+<p>After some light ETL, we use Postgres’ awesome <a href="http://www.postgresql.org/docs/9.4/static/datatype-json.html" target="_blank">JSON</a> <a href="http://www.postgresql.org/docs/9.4/static/functions-json.html" target="_blank">support</a> to query our logs with Wagon itself. This combines dogfooding and product analytics into a workflow that’s so fun and beneficial we dedicate a Slack channel to it. We use Wagon to investigate our application performance and user engagement the same way our users analyze their own data: by writing queries, visualizing results, and sharing charts.</p>
+
+<hr />
+
+<p>Here’s an example of how we use these tools together in practice.</p>
+
+<p>We find a bug! If we’re unsure how to reproduce it, we use Wagon to query our logs to confirm the bug and find more test cases. Since our development setup works just like production, we can quickly spin up a local instance of the specific environment we’re debugging–this makes root cause isolation much easier. When the fix is reviewed (any emoji on the Github PR is our stamp of approval) and merged into master, it automatically kicks off a staging CI build, whose success transitively launches a new build of our hybrid native/JS Mac app. CircleCI gives us a native OS X build environment with scaled-up generative testing, so we have an additional level of verification that our fix performs as expected. Within 5 minutes, the new app build is available in staging and we are alerted in Slack to download and give it a spin. When we’ve queued up a cohesive set of features and fixes, a pull request from master to the production branch automatically cuts a new release and deploys it to users. We then explore and monitor the effects of those changes by querying Wagon’s logs with Wagon.</p>
+
+<p>If this sounds like fun to you, say hi at our sunny office on Valencia St. in San Francisco and check out our <a href="http://www.wagonhq.com/jobs" target="_blank">open positions</a>: we’d love to talk to you!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/engineering-at-wagon>Engineering at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/engineering-at-wagon&text=Engineering at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/engineering-at-wagon/&t=Engineering at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               February 13, 2015 | <a href="https://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/team">#team</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/react">#react</a>
+  
+</div>
+
+
+           <p>Over the last few months, we’ve been user-testing a preview version of Wagon—a modern SQL editor that powers a Google Docs-style experience for analysts, engineers, and their teams. We’ve iterated on both our <a href="http://www.wagonhq.com/blog/design-at-wagon" target="_blank">design process</a> and technology choices to build a tool that we and our users rely on every day.</p>
+
+<p>Wagon takes advantage of <a href="http://a16z.com/2015/01/22/cloud-client-computing/" target="_blank">cloud-local computing</a>, combining the strengths of remote servers like syncing, sharing, and storage with local client advantages like <a href="http://aadrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html" target="_blank">data locality</a> and device-specific user interfaces. Our architecture has three components: a frontend app, a native client, and backend services.</p>
+
+<p><br /></p>
+
+<p style="max-width: 802px; margin: auto;">
+  <a href="http://stackshare.io/wagon/wagon" target="_blank">
+    <img src="/images/posts/system_architecture.png" alt="Wagon architecture" />
+  </a>
+  <em><span style="float: right;">Wagon architecture</span></em>
+</p>
+
+<p><br /></p>
+
+<p>We make it easy to get started. You can download Wagon—a hybrid web application and native client, like Slack—and connect it to an existing local, private, or public database. The frontend is a slick interface for writing and running SQL, interacting with large results, and generating statistics and pivot tables. The native client locally handles connections, manages query runs, and processes results as they return from the database. The results, statistics, and pivots are cached locally and can be used to create sharable charts. When shared, Wagon securely transfers data from the local machine to the backend, making it available to permissioned teammates.</p>
+
+<p><strong>Frontend App</strong></p>
+
+<p>We use HTML, CSS, and JavaScript to maintain a consistent user experience across platforms and environments. The frontend is a single-page application built with React and Flux. We bundle it with the native client as a desktop application, and we have an in-browser experience for sharing and collaboration.</p>
+
+<p><em>Technology: Javascript, React, Flux, Ace</em></p>
+
+<ul>
+  <li><a href="http://facebook.github.io/react/" target="_blank">React</a> gives us declarative, reusable UI elements. React components compose like HTML elements with rich state handling, so we manage fewer event listeners and nested callbacks.</li>
+  <li><a href="https://facebook.github.io/flux/docs/overview.html#content" target="_blank">Flux</a> complements React and helps structure our frontend code. It separates logic, state, and UI into loosely coupled components, and has a straightforward data flow.</li>
+  <li><a href="http://ace.c9.io/#nav=about" target="_blank">Ace</a> is an extensible, embeddable code editor. We use its syntax highlighting and have extended its autocomplete.</li>
+</ul>
+
+<p><strong>Native Client</strong></p>
+
+<p>Our users want to query their databases without any new IT or admin setup, so users connect via their local machine with their existing credentials. Wagon handles connections through the native client, since most databases require socket-level network access that isn’t possible directly from browser.</p>
+
+<p>Exploration and analysis can be a time-consuming and tedious job with existing SQL tools. Each step is an additional database query subject to queuing, slow execution, and changing data. Our users want to quickly explore results and evaluate summary statistics without executing subsequent queries. To power that experience, the client also computes statistics and caches query results on the local file system.</p>
+
+<p>We built the native client in Haskell. It’s a high level language with great libraries, static compilation, a high performance ceiling, and an active community. We use MacGap to bundle the client and the frontend into a downloadable OS X application (Windows soon!).</p>
+
+<p><em>Technology: Haskell, MacGap</em></p>
+
+<ul>
+  <li>Prototyping and refactoring is safe with Haskell’s type-driven development. The compiler helps us avoid bugs and edge cases as we iterate.</li>
+  <li>Haskell’s opt-in control over compiler optimizations and strictness allows for incremental optimization. GHC includes a capable profiler, and the community maintains libraries for <a href="http://hackage.haskell.org/package/QuickCheck" target="_blank">testing</a> and <a href="http://hackage.haskell.org/package/criterion" target="_blank">performance measurement</a>.</li>
+  <li><a href="http://macgapproject.github.io/" target="_blank">MacGap</a> is a lightweight (~1MB) web-to-native wrapper. It provides a JS API to integrate with the file system, subprocesses, and OS-specific features like notifications and menus.</li>
+</ul>
+
+<p><em>*Note: Wagon is now powered by Electron rather than MacGap. Read our <a href="/blog/electron-at-wagon">Electron blog post to learn more</a>.</em></p>
+
+<p><strong>Backend Services</strong></p>
+
+<p>Our backend services persists state and shared data to allow users to securely collaborate on queries, results, and charts. The backend is also written in Haskell: using the same language for the client and the server helps us stay flexible and reduce complexity. We store application state in Postgres while larger immutable data, like shared query results, live in Amazon S3.</p>
+
+<p><em>Technology: Haskell, Postgres, Amazon S3</em></p>
+
+<ul>
+  <li>Haskell’s lightweight threads and the GHC runtime scale well on multi-core machines.</li>
+  <li>Postgres is powerful, flexible, and straightforward to host. We use features like <a href="http://www.postgresql.org/docs/9.4/static/storage-toast.html" target="_blank">TOAST</a> and <a href="http://www.postgresql.org/docs/9.4/static/datatype-json.html" target="_blank">JSON support</a> to test new features.</li>
+</ul>
+
+<p>There are exciting upcoming technology challenges including optimizing compute across local and remote environments, designing efficient streaming statistics algorithms, building features that learn and improve with usage.</p>
+
+<p>We’d love to hear from you! <a href="https://twitter.com/wagonhq" target="_blank">Follow @WagonHQ</a>, check out our stack on <a href="http://stackshare.io/wagon/wagon" target="_blank">Stackshare</a>, and learn more about our <a href="http://www.wagonhq.com/about" target="_blank">engineering and design team</a>. Stay tuned for future engineering deep dives!</p>
+
+<p><br />
+<em>
+  Thanks to <a href="https://twitter.com/scpike" target="_blank">Steve Pike</a> and <a href="https://twitter.com/petkanics" target="_blank">Doug Petkanics</a> for reviewing this post. <a href="http://thenounproject.com/term/website/35429/" target="_blank">Image credit</a> Adam Wilson from The Noun Project.
+</em></p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/design-at-wagon>Design at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/design-at-wagon&text=Design at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/design-at-wagon/&t=Design at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               January 22, 2015 | <a href="http://twitter.com/jeff_weinstein" target="_blank">Jeff Weinstein</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/team">#team</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>We have a challenging design goal: build an easy-to-use product for analysts and their teams to collaborate on understanding data.  Our product is (1) a database query editor for analysts and (2) a Google Docs-style experience for non-technical people to explore results together.</p>
+
+<p>We’re looking for someone to be our first <a href="http://www.wagonhq.com/jobs/ux-designer" target="_blank">UX designer</a> – come craft our user experience, our voice, and our pixels.  You’ll grow a team of designers and engineers that love data analysis and collaboration software.</p>
+
+<p>As a team of engineers and data scientists, we have more experience building systems than storyboarding.  Over the past few months, we’ve developed a structured design workflow.  It starts with stories, drawing, and getting feedback from customers.  We then specify the application’s states and object models and finally code mockups.  Here’s how it all works:</p>
+
+<p><br /></p>
+
+<p style="max-width: 330px; margin: auto;">
+	<a href="https://www.facebook.com/wagonhq/photos/pb.1404706883137141.-2207520000.1421889722./1538047583136403/?type=3&amp;theater" target="_blank">
+		<img src="/images/posts/storyboardDesignMorning.jpg" alt="Drawing on whiteboard" />
+	</a>
+	<em><span style="float: right;">Mark and Mike sketch application states.</span></em>
+</p>
+
+<p><br /><br /></p>
+
+<h5 id="story"><strong>Story</strong></h5>
+<p>Many friends and former colleagues have the analysis and collaboration problem that Wagon solves and they’ve been very helpful testing the product.  We watch them work, document their pain points, and listen to their feature requests.  We winnow our notes into specific user stories: “As an X person, I need to do Y, in order to get Z.”  To avoid groupthink, we <a href="http://www.fastcodesign.com/3034772/innovation-by-design/note-and-vote-how-google-ventures-avoids-groupthink-in-meetings" target="_blank">independently draft and prioritize these stories</a>, then collectively compare and merge them.</p>
+
+<h5 id="draw"><strong>Draw</strong></h5>
+<p>We sketch on the whiteboard, use pen and paper, and drag and drop in Google Draw to visualize our ideas.  We review screenshots and pictures in Github Issues and Slack and share paper prototypes using <a href="https://popapp.in" target="_blank">POP</a>.  One surprisingly successful mockup was built with ASCII in Sublime Text.  As our friends at Wildcard detailed, there are plenty of <a href="http://stephenmeszaros.com/posts/prototyping-tools.html" target="_blank">other design tools</a> that we’d be excited to learn.</p>
+
+<h5 id="feedback"><strong>Feedback</strong></h5>
+<p>Early and frequent user testing is essential.  Our beta testers’ eyes surface bugs and corner cases at a humbling rate.  They contribute directly via our <a href="https://www.hipchat.com/gDpzCSvjl" target="_blank">public Hipchat room</a> and shared Google Docs.  Fortunately, our users have been patient, thoughtful, and enjoy participating.</p>
+
+<h5 id="specify"><strong>Specify</strong></h5>
+<p>We define application states and user flows before writing any code.  These detailed state diagrams are critical for building quickly and reducing the confusion and blockers that can arise during implementation.</p>
+
+<h5 id="wireframe"><strong>Wireframe</strong></h5>
+<p>During implementation, while APIs and data are developed and tested, we lay out the user experience with HTML/CSS. This helps us uncover usability problems and lets us tweak the design in conjunction with other tasks.</p>
+
+<p>To stay focused as a team, our five core product values set expectations and help us measure progress.</p>
+
+<dl class="dl-horizontal">
+  <dt>Intuitive</dt>
+  <dd>Clean design and approachable voice</dd>
+
+  <dt>Aware</dt>
+  <dd>Communicate context and insight</dd>
+
+  <dt>Interoperable</dt>
+  <dd>Connect to the outside world</dd>
+
+  <dt>Responsive</dt>
+  <dd>Iterate at human speed, always in control</dd>
+
+  <dt>Collective</dt>
+  <dd>Shared knowledge improves individuals and unites teams</dd>
+</dl>
+
+<p>Design at Wagon has been a team effort. We’ve been lucky enough to be advised and supported by a set of design advisors.  Curious about data and design at Wagon?  <a href="mailto:hello@wagonhq.com" target="_blank">Say hi</a>.</p>
+
+<p><br />
+<em>Thank you to <a href="https://twitter.com/hillarykelly" target="_blank">Hillary Kelly</a> for reviewing this post.</em></p>
+
+         </div>
+       </section>
+      
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Haskell for commercial software development - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Wagon's co-founder and CTO Mike Craig answers a Quora post about using Haskell in industry.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/haskell-for-industry" />
+    <meta property="og:title" content="Haskell for commercial software development" />
+    <meta property="og:description" content="Wagon's co-founder and CTO Mike Craig answers a Quora post about using Haskell in industry." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/haskell-for-industry>Haskell for commercial software development</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/haskell-for-industry&text=Haskell for commercial software development%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/haskell-for-industry/&t=Haskell for commercial software development%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                February 02, 2016 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+
+          <p>Inquiring minds on Quora want to know, <em><a href="https://www.quora.com/Is-Haskell-suitable-for-commercial-software-development">is Haskell suitable for commercial software development?</a></em></p>
+
+<blockquote>
+  <p>I’m looking for an alternative to Python mainly for reasons of Python having so much trouble with
+workable concurrency, and Go seemed great at first look (it’s still not bad, but indeed error
+handling and lack of generics are a few features cut away too far).</p>
+
+  <p>This pretty much leaves Haskell as workable alternative. But is it really a practical alternative?</p>
+
+  <p>My biggest fear that while Haskell seems very powerful, it is also difficult and so it may be too
+difficult for person A to read code written by person B (what seems to have killed Lisp in my view
+is that problem and person-specific DSLs written in Lisp were simply unreadable for too many other
+people).</p>
+
+  <p>PS, in other words: I do not ask about strong sides of Haskell (or language X), those are well
+known, but rather about a lack of show-stoppers.</p>
+</blockquote>
+
+<p>Absolutely, yes! At Wagon, we’ve built server- and client-side systems in Haskell, running in AWS and distributed to our users in a cross-platform desktop app.</p>
+
+<p style="max-width: 600px; margin: auto;">
+  <img src="/images/posts/quora.png" alt="Wagon on Quora" />
+</p>
+
+<p>Possible show-stoppers to using Haskell commercially:</p>
+
+<p><strong>Community support</strong><br /> A good open-source community is a big deal. It’s the difference between fixing other people’s code and finding an open GitHub issue with a workaround and an in-progress fix. With Haskell, we find the latter much more frequently than the former. The community is positive, active, and generally helpful when problems come up. Lively discussion takes place on <a href="https://www.reddit.com/r/haskell/">Reddit</a>, <a href="https://wiki.haskell.org/IRC_channel">IRC</a>, a <a href="http://fpchat.com/">public Slack channel</a>, and several <a href="https://wiki.haskell.org/Mailing_lists">mailing lists</a>.</p>
+
+<p><strong>Hiring</strong><br /> There are many factors involved in hiring: team size, location, remove vs on-site, other expertise required, etc. At Wagon we’re an on-site team of ~10 in San Francisco, with lots of web- and database-related problems to work on. Finding qualified Haskellers has not been an issue.</p>
+
+<p>Haskell is different from the languages lots of developers are used to. ML-style syntax, strong types, and lazy evaluation make for a steep initial learning curve. Anecdotally, we’ve found Haskell’s secondary learning curve smooth and productive. Intermediate Haskellers quickly pick up advanced concepts on the job: parsers, monad transformers, higher-order types, profiling and optimization, etc.</p>
+
+<p><strong>Available industrial-strength libraries</strong><br /> Haskell lends itself to lightweight-but-powerful libraries that do one thing very well. We get a lot done by composing these small libraries rather than relying on big feature-complete frameworks. Some libraries have become de-facto standards that are stable and performant, and <a href="http://www.stackage.org/">Stackage</a> gives us a reliable way to find additional packages that usually “just work”.</p>
+
+<p>We do sometimes find gaps in Haskell’s available libraries. For example, Haskell can’t yet match Python’s <a href="http://pandas.pydata.org/">tools for numerical computing</a>. And like every open-source ecosystem, there is some bad code out there. We rely on community recommendations and a sense of dependency hygiene to stay productive.</p>
+
+<p><strong>Performance</strong><br /> A quick Google search turns up benchmarks comparing Haskell to anything else you can imagine. In practice, we’re interested in tools with two properties:</p>
+
+<ol>
+  <li>Fast enough under most circumstances. “Fast enough” means performance is never an issue for a given piece of code.</li>
+  <li>Easy to optimize when needed. When we do need more speed, we’d like to get it incrementally rather than immediately rewrite that code in C.</li>
+</ol>
+
+<p>Haskell has both of these properties. We almost never have to address performance in our Haskell code. When we do, we turn to GHC’s profiler and its many performance knobs: optimization flags, inlining, strictness and memory layout controls, etc. Haskell also has good interopability with C for when that’s appropriate.</p>
+
+<p><strong>Memory leaks</strong><br /> There’s a lot of talk about memory leaks caused by Haskell’s lazy evaluation model. We run into this very infrequently in practice, and in those rare situations GHC’s profiler has led us to solutions quickly. The real problem is not lazy evaluation but <a href="http://dev.stephendiehl.com/hask/#lazy-io">lazy IO</a>, which we avoid with tools like <a href="http://www.stackage.org/package/conduit">conduit</a> and <a href="http://www.stackage.org/package/pipes">pipes</a>.</p>
+
+<p><strong>Debuggability</strong><br /> Haskell doesn’t have a debugger in the same sense as Python or Java. This is mostly a non-issue, because exceptions are rare and GHCi gives us a flexible way to run code interactively. Nonetheless, hunting down problems in a big application can be difficult. This has improved in recent versions of GHC with support for proper <a href="https://downloads.haskell.org/~ghc/latest/docs/html/libraries/base-4.8.2.0/GHC-Stack.html">stack traces</a>.</p>
+
+<p><strong>Haskellers reading other Haskellers’ code</strong><br /> This hasn’t been a problem for us. Haskell is a flexible language both in syntax and semantics, but this leads to better solutions more than it leads to opaque or unreadable code. Heavy indirection—via embedded DSLs or deep typeclass hierarchies—is unusual in practice. We reach for those tools as a last resort, knowing that they come with a serious maintenance cost. Agreeing on a basic <a href="https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md">style guide</a> helps smooth out minor syntax differences.</p>
+
+<p>Read our other <a href="https://www.wagonhq.com/blog/haskell">Haskell engineering blog posts</a>, come to our community events, or better yet, <a href="https://www.wagonhq.com/jobs">join our team</a>!</p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

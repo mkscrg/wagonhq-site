@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        My First Two Weeks of Haskell at Wagon - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Experience with the team's development practices">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/first-two-weeks-haskell-wagon" />
+    <meta property="og:title" content="My First Two Weeks of Haskell at Wagon" />
+    <meta property="og:description" content="Experience with the team's development practices" />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/first-two-weeks-haskell-wagon>My First Two Weeks of Haskell at Wagon</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/first-two-weeks-haskell-wagon&text=My First Two Weeks of Haskell at Wagon%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/first-two-weeks-haskell-wagon/&t=My First Two Weeks of Haskell at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                June 11, 2015 | <a href="http://twitter.com/begriffs" target="_blank">Joe Nelson</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/team">#team</a>
+  
+</div>
+
+
+
+          <p>It’s no secret I’m into Haskell. Two years ago a friend introduced
+me to what I then affectionately called “moon language,” and it’s
+been a continuous experience of learning, cursing, and joy ever
+since.</p>
+
+<p>Loving the language is easy; finding a team who shares this functional
+programming passion and uses it to build their core product is more
+rare. That’s what I found at Wagon and I’d like to share my experience
+of the exciting first two weeks as a new Wagoner.</p>
+
+<p><br /></p>
+
+<p style="max-width: 330px; margin: auto;">
+  <img src="/images/posts/wagon-loves-haskell.png" alt="Wagon loves Haskell" />
+</p>
+
+<p><br /></p>
+
+<p>I’ve written Haskell professionally before, so that part wasn’t a
+change. What’s different is that my prior use of the language felt
+almost surreptitious. Building an API server here, writing a script
+there, whatever could fit comfortably within a more conventional
+consulting project. Now it’s different, everyone is onboard: we own
+our product destiny and technology choices.</p>
+
+<p>For me it means being exposed to practices across the whole tech
+stack that were designed with Haskell in mind, not as an afterthought.
+From dockerizing Cabal to sharing and versioning packages between
+client and server code, to streaming statistical calculations over
+datasets with Conduit. There is a lot that goes into the company
+goal of creating a modern data collaboration tool.</p>
+
+<p>Although we work together in person (in the Mission district of San
+Francisco where the walls are muralier, the coffee pour-overier and
+the bikes fixier) we do much of our code communication via pull
+requests. Everyone tries to have at least one other person review
+their work, which keeps us all in the know and leads to a lot of
+teaching. For instance, here is my teammate Mark suggesting an
+improvement to my coding style:</p>
+
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell">(bid, now) &lt;- liftIO $ do
+    b &lt;- randomIO
+    n &lt;- getCurrentTime
+    return (b, n)</code></pre></div>
+
+<p><br />
+<img src="/images/posts/joe-mark-pr.png" alt="Example pull request" />
+<br />
+<br /></p>
+
+<p>Challenges go beyond mere coding style of course, and the team
+excels at debugging gnarly issues, including a memory leak caused
+by a useful yet tricky language feature called lazy evaluation. Our
+architecture is split between a shared server (Haskell), a client
+interface (<a href="https://github.com/atom/electron">Electron</a> + React)
+and a client server (Haskell) for local data access. Nowadays it’s
+common for the browser component on the client to use hundreds of
+megabytes of memory while the Haskell component races along at
+twenty megabytes even when doing intensive streaming operations.
+This was not always the case however, and the team used the GHC
+profiler to identify and correct a memory leak in the streaming
+subsystem.</p>
+
+<p><br /></p>
+
+<p><img src="/images/posts/ghc-profiling.png" alt="Memory profiling in GHC" /></p>
+
+<div style="text-align: center; font-style: italic;">GHC Memory Profiling</div>
+
+<p><br /></p>
+
+<p>During the past two weeks I’ve been getting acquainted with more
+type-safe ways of doing things than I had previously tried. For
+instance I’ve previously worked with Hasql for database access (a
+good choice for low-level and performant PostgreSQL work) and now
+I’m learning Persistent, which uses Template Haskell to generate
+structured ways to access and migrate databases. The Wagon server
+includes a custom routing system with some handy combinators which
+has helped me think about patterns of improving code with types.</p>
+
+<p>I’m excited to share more of what I learn in the coming weeks, both
+the coding and the cultural practices that help us do our best work,
+as well as things we’re learning to improve. (See also <a href="/blog/engineering-at-wagon">Engineering
+at Wagon post</a>)</p>
+
+<p>We’ll be at <a href="http://bayhac.org">BayHac</a> this weekend so make sure
+to check out our CTO Mike Craig’s talk Sunday, June 14 at 11am or
+find me.  If you love this stuff the way we do, you should <a href="/jobs">come
+spend a day with our team</a>.</p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

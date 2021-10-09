@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wagon</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/basscss.min.css" rel="stylesheet">
+    <style>
+html, body {
+  height: 100%;
+}
+html {
+  font-size: 10px;
+}
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+a {
+  text-decoration: none;
+}
+.app-container {
+  margin: 0;
+  padding: 0;
+  width: auto!important;
+  height: 100%;
+}
+.shutdown-banner {
+  min-width: 718px;
+  background-color: #ffa800;
+}
+.shutdown-banner a {
+  font-weight: 700;
+  color: inherit;
+}
+.shutdown-banner a:hover {
+  text-decoration: underline;
+}
+.white {
+  color: #fff;
+}
+.wcw-poem > h1 {
+  color: #428bca;
+}
+.wcw-poem > p {
+  font-size: 1.5em;
+}
+.wcw-poem > p.citation {
+  font-size: inherit;
+  color: #979da4;
+}
+    </style>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div style="height: 100%; width: 100%">
+      <div class="app-container flex flex-column">
+        <div class="shutdown-banner flex-none center white py1">
+          <span>Wagon is joining Box!</span>
+          <a href="http://www.wagonhq.com/blog/wagon-joins-box" target="_blank">
+            Read the announcement.
+          </a>
+        </div>
+        <div class="flex px2"
+            style="width: 718px; margin: auto; overflow: auto; align-items: center;">
+          <div class="col-6 wcw-poem">
+            <h1 style="color: #428bca;">The Red Wheelbarrow</h1>
+            <p>so much depends<br>upon</p>
+            <p>a red wheel<br>barrow</p>
+            <p>glazed with rain<br>water</p>
+            <p>beside the white<br>chickens.</p>
+            <p class="citation">William Carlos Williams, 1883&ndash;1963</p>
+          </div>
+          <div class="col-6">
+            <img style="width: 100%;" alt="Sunset Wagon" src="/images/sunset.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

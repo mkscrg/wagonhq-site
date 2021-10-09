@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Having trouble connecting to your database? We're here to help.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/docs/connecting-to-a-database.html" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="Having trouble connecting to your database? We're here to help." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="post">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <h2>
+        <br>
+      </h2>
+
+      <h3>Having trouble connecting to your database in the Wagon native app? We're here to help.</h3>
+
+<ol>
+  <li>Are you able to connect to the "Demo Postgres Database"?
+    <p><b>Yes:</b> Great, Wagon is working. Move on to step 2.</p>
+    <p><b>No:</b> Check <a href="#common-errors">common error messages</a>.</p>
+  </li>
+  <li>Are you able to connect to the same database in another tool?
+    <p><b>Yes:</b> Ensure you are still able to connect in the other tool and double check your connection information for typos. Check <a href="#common-errors">common error messages</a>.</p>
+    <p><b>No:</b> Have you ever connected in another tool?
+      <ul>
+        <li><b>Yes:</b> Confirm with your database administrator that the database is up.</li>
+        <li><b>No:</b> Check the <a href="#first-time-setup">first time setup instructions</a>.</li>
+      </ul>
+    </p>
+  </li>
+</ol>
+
+<h3 id="common-errors">Common Error messages</h3>
+<ol>
+  <li><code>ConnectTimeout 10s</code>
+    <p>This error message means Wagon stopped trying to connect after 10 seconds. There are a few possible causes:
+      <ol>
+          <li>If you're trying to connect to the Demo Postgres Database, a local network issue (e.g. a firewall) is blocking connections to "testdata.wagonhq.com" on port 5432. Ask your network administrator to allow connections to "testdata.wagonhq.com" on port 5432. You can also retry on another network.</li>
+          <li>If you're trying to connect to Amazon Redshift or Amazon RDS, you may need to <a href="http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html">configure your security group to allow connections from your current IP address</a>.</li>
+          <li>If you're connecting to SQL Server, ensure <a href="https://technet.microsoft.com/en-us/library/hh231672(v=sql.110).aspx">TCP is enabled</a>.</li>
+      </ol>
+    </p>
+  </li>
+  <li><code>ERROR 0: Data source name not found and no default driver specified</code>
+    <p>Click in the menu: Help -&gt; Install ODBC Drivers and then retry</p></li>
+  <li><code>realpath: does not exist (No such file or directory)</code>
+    <p>Quit Wagon, reopen, and try to connect again.</p></li>
+  <li><code>Incorrect SSH private key or password. Double check your SSH credentials.</code>
+    <p>Double check your SSH credentials, and if your SSH key has a password, make sure you entered it.</p></li>
+  <li><code>Please check your SSH private key.</code>
+    <p>You've given Wagon a file that is not an SSH private key.</p></li>
+  <li><code>Error 2003 (MySQL)</code>
+    <p>Either your MySQL Server is not running, or your network is blocking connections to the hostname and port. <a href="http://dev.mysql.com/doc/refman/5.7/en/can-not-connect-to-server.html">More info</a>.</li>
+</ol>
+
+<h3>SQL for Newbs students</h3>
+<ol>
+  <li><code>ERROR 0: Data source name not found and no default driver specified</code>
+    <p>Click in the menu: Help -&gt; Install ODBC Drivers and then retry.</p></li>
+  <li><code>ConnectTimeout 10s</code> or <code>ERROR 2003: Can't connect to MySQL server on 'udemydb.wagonhq.com'</code>
+    <p>A network issue (e.g. a firewall) is blocking connections to "udemydb.wagonhq.com" on port 3306. Ask your network administrator to allow connections to "udemy.wagonhq.com" on port 3306, or retry on your home network.</p></li>
+</ol>
+
+<h3 id="first-time-setup">First time setup</h3>
+
+<p>Wagon connects to your database directly from your laptop. Wagon's servers do not have access to your database.</p>
+
+<h4 id="amazon">Amazon Redshift or Amazon RDS</h4>
+
+<p><a href="http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html">Configure your security group to allow connections from your current IP address</a>.</p>
+
+<h4>BigQuery</h4>
+
+<p>Follow the <a href="/databases/bigquery/setup">BigQuery setup steps</a>.</p>
+
+<h4>Segment Warehouse</h4>
+
+<p><a href="https://segment.com/docs/warehouses/#setting-up">See Segment's setup guides</a>. You may also need to follow the <a href="#amazon">steps above for Amazon Redshift or Amazon RDS</a>.</p>
+
+
+    </div>
+    <br>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

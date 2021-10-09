@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Electron at Wagon - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Learn about how Wagon is building a hybrid desktop and web application using Electron.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/electron-at-wagon" />
+    <meta property="og:title" content="Electron at Wagon" />
+    <meta property="og:description" content="Learn about how Wagon is building a hybrid desktop and web application using Electron." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/electron-at-wagon>Electron at Wagon</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/electron-at-wagon&text=Electron at Wagon%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/electron-at-wagon/&t=Electron at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                July 15, 2015 | <a href="http://www.wagonhq.com/about" target="_blank">Mark Daly</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/electron">#electron</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+
+          <p>While building Wagon, we’ve encountered a few engineering challenges that aren’t easily solved in the browser. Our users want Wagon to connect securely to their database and analyze large amounts of data, while being easy to setup and always up to date. Unfortunately, browsers can’t connect directly to databases and aren’t optimized for processing millions of data results. The standard web browser won’t suffice, so what should we do?</p>
+
+<p>As many companies are discovering, mixing <a href="https://medium.com/@collinmathilde/why-desktop-apps-are-making-a-comeback-5b4eb0427647">web and native technologies</a> is very compelling. Early adopters including Slack, Atom, Quip, Visual Studio, Spotify, MapBox, Front, and Nylas have found ways to weave these once unrelated approaches.</p>
+
+<p>At Wagon, we’re using <a href="http://electron.atom.io/">Github’s Electron</a> (previously “Atom-Shell”) as our underlying app framework. Electron was carved out of the Atom editor project and lets us deploy web UIs to the desktop.  Our CTO Mike <a href="http://www.wagonhq.com/blog/engineering-at-wagon">described Wagon’s technical architecture</a>: a Javascript application for user experience along with a native process for database connections and streaming data computation. We want a capable desktop application with the ease of developing for the web.</p>
+
+<p><br /></p>
+
+<p style="max-width: 400px; margin: auto;">
+	  <a href="http://electron.atom.io"><img src="/images/posts/electron_logo.svg" alt="Electron" /></a>
+</p>
+
+<p><br /></p>
+
+<p>The earliest alpha of Wagon was a command line program that powered a browser app available at <code>localhost</code>. We soon shipped our first Mac app: a download-able, double-click-able version using <a href="https://github.com/MacGapProject">MacGap</a>. As more people used Wagon, we wanted to update the code silently in the background, deploy to Windows and Linux, and move away from WebKit (we &lt;3 Chromium’s dev tools!). We <a href="http://www.wagonhq.com/release-notes">frequently ship new versions</a> of both the JS and compiled Haskell, and it was painful for our users to manually download and reinstall the application. We briefly considered Mac-specific update mechanisms but it became clear we needed to replace MacGap. In searching for a full-featured, cross-platform web-view container, we found Electron.</p>
+
+<p><br /></p>
+
+<figure>
+  <div class="row">
+  	<img src="/images/posts/electron_diagram.png" alt="Wagon's Electron architecture diagram" />
+  </div>
+
+  <figcaption class="row">
+    Wagon uses Electron to bundle native and web technologies
+  </figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>Electron is based on Chromium, runs on multiple platforms, and comes packaged with useful features like desktop notifications, custom keyboard shortcuts, and native menus. Auto-update, which originally motivated us to try Electron, is easy to set up and simplifies shipping new versions. Electron is evolving quickly and openly, supported by its <a href="https://discuss.atom.io/c/electron">vibrant community</a>, <a href="https://github.com/atom/electron/issues">active development</a>, <a href="http://atom-slack.herokuapp.com/">public Slack room</a>, and commercial backing.</p>
+
+<p>Migrating from MacGap to Electron was straightforward, as Electron’s <a href="http://electron.atom.io/docs/">excellent documentation</a> has  instructions on rebranding, packaging, and distribution–we got a prototype up and running on a Friday afternoon. Electron differs from other web-view containers by using Node.js (via <a href="https://iojs.org/en/index.html">io.js</a>) as its entry point: when an Electron app starts, execution begins in a JS program included in the app bundle, which can open windows and interact with the host OS. Node’s and Electron’s rich JS APIs made porting from MacGap easy, and we’ve added features that would otherwise only be possible in a native application (like custom menus and dialogs).</p>
+
+<p>Our static assets are hosted on CloudFront, so we can update the UI without requiring users to redownload the whole application. However, it can take a few seconds for these assets to load and we want an immediate cue that Wagon is working. Here’s how Wagon ensures a smooth app launch experience:</p>
+
+<ol>
+  <li>On app start, the main Node process runs our JS App Loader. It loads configuration files, starts background tasks, and opens a renderer to load the latest UI.</li>
+  <li>The renderer immediately displays a <code>splash.html</code> page that is shipped with the Wagon.app bundle.</li>
+  <li>The splash page uses Electron’s <a href="http://electron.atom.io/docs/v0.29.0/api/web-view-tag/"><code>&lt;webview&gt;</code> tag</a> to load our remote assets and start the JS app in the background while the Wagon logo rolls (some say dances!) on screen.</li>
+  <li>Once the UI is ready, it notifies the splash page via Electron’s <code>IPC</code> API.</li>
+  <li>The splash page swaps its content for the UI, creating a seamless transition into the full application.</li>
+</ol>
+
+<p>When we’re ready to roll out a new version of Wagon.app, we use an automated deployment approach built on GitHub and <a href="https://circleci.com/">CircleCI</a>.  When we merge a pull request into the <code>master</code> or <code>production</code> branches of our repos, CircleCI automatically builds the application bundle.  The components are dropped into the Electron app structure, code-signed, and uploaded to S3.  CircleCI also updates a configuration file that our <a href="http://electron.atom.io/docs/v0.29.0/api/auto-updater/">auto-updater API endpoint</a> reads, which lets us notify running instances of Wagon that a new version is available. The update is automatically downloaded in the background, installed, and triggers a desktop notification for the user.</p>
+
+<p>We believe that great software should run in the browser, on phones, and on the desktop. If building across these platforms sounds exciting, check out our <a href="http://www.wagonhq.com/jobs/">open positions</a>, and <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#119;&#097;&#103;&#111;&#110;&#104;&#113;&#046;&#099;&#111;&#109;">email us</a> or tweet <a href="https://twitter.com/wagonhq">@WagonHQ</a>. <em>Gogogo!</em></p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        React at Wagon - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Learn how Wagon uses react to build a data intensive hybrid web/desktop application.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/react-at-wagon" />
+    <meta property="og:title" content="React at Wagon" />
+    <meta property="og:description" content="Learn how Wagon uses react to build a data intensive hybrid web/desktop application." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/react-at-wagon>React at Wagon</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/react-at-wagon&text=React at Wagon%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/react-at-wagon/&t=React at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                October 01, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/react">#react</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+
+          <p>We’re building a hybrid web/native application that runs both in the browser and as a downloadable desktop app. Analysts use Wagon to query, analyze, visualize, and share data: the app is highly interactive and data-heavy. It has to be fast, furious, and stable even when used for hours.</p>
+
+<p>It ain’t all gravy: it’s difficult to maintain a UI with asynchronous updates, large scale data manipulation, and many other cross-cutting concerns. How can we build a sane frontend codebase, without losing our ability to iterate and ship quickly? The answer is to separate concerns. We break our UI into small self-contained components, and we isolate state and manage it separately from the UI. Facebook’s React and Flux libraries make this practical.</p>
+
+<p style="max-width: 330px; margin: auto;">
+  <img src="/images/posts/react.png" alt="Wagon loves React" />
+</p>
+
+<p>The big idea behind React is this: a UI component is just a function from its inputs to its content. All a component needs is a <code>render()</code> method that returns the elements we want the user to see.  As an example, here’s a component that takes a size and color and renders a div displaying a filled-in square. Notice that users of this component don’t need to know about how it is implemented.</p>
+
+<noscript><pre>var ColoredSquare = React.createClass({
+  render: function() {
+    // the component&#39;s inputs are available via this.props
+    var squareStyle = {
+      display: &quot;inline-block&quot;,
+      width: this.props.width,
+      height: this.props.width,
+      backgroundColor: this.props.color,
+      borderRadius: this.props.radius
+    };
+
+    return &lt;div style={squareStyle} onClick={saveUserFavColor(this.props.color)} /&gt;;
+  }
+});</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=ColoredSquare.jsx"> </script>
+
+<p>React components are simple to reuse because they nest like HTML elements. It’s easy to wrap an existing component to add additional styles or behavior—React favors composition over inheritance. We can forget about carefully maintaining the DOM to avoid excessive redraws and flicker: we declare what our components should look like, and React makes it so.</p>
+
+<p>React is great for organizing view elements, but an application is more than static UI. Users generate events and we need to capture them, update state, and direct how the app should respond. Flux manages this flow by clearly seperating user action events from application responses.</p>
+
+<p>Actions encapsulate events. They’re the application logic that runs in response to users doing stuff. In our example, when a user clicks a colored square, we update the server and dispatch to let the rest of app know what happened:</p>
+
+<noscript><pre>function saveUserFavColor(color) {
+  var id = getCurrentUserId();  // move along, this is just a demo
+  
+  ajax.user.saveInfo(id, color)  // make an AJAX call,
+    // then tell the rest of the application what happened
+    .then(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVED, {id: id, favoriteColor: color});
+    })
+    .catch(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVE_ERROR, {id: id});
+    });
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserInfoAction.js"> </script>
+
+<p>Stores encapsulate state. They listen to state changes dispatched from actions, and they update themselves to record the changes.</p>
+
+<noscript><pre>class UserStore extends EventEmitter {
+  // administrivia omitted!
+
+  onDispatch(action) {
+    switch (action.type) {
+      case USER_INFO_SAVED:
+        // save the updated state in an instance property
+        this._users[action.payload.id].favoriteColor = action.payload.favoriteColor;
+        // tell the rest of the application to come and get it
+        this.emitChange();
+        break;
+
+      // etc
+    }
+  }
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserStore.js"> </script>
+
+<p>UI components listen to stores and re-render when relevant state changes.</p>
+
+<p>Building a solid, maintainable frontend is still difficult despite these great libraries. Here are a few other strategies we’re using:</p>
+
+<ul>
+  <li>
+    <p>Build pure React components whenever possible. A pure component doesn’t make any external calls from <code>render()</code>—it’s a pure function of the component’s properties and state. Components like this are much easier to test, debug, and reuse. It’s such a good idea it’s <a href="https://facebook.github.io/react/docs/pure-render-mixin.html">included in React itself</a>!</p>
+  </li>
+  <li>
+    <p>Separate React components that listen to Flux stores from those that render the UI. Wrapping UI components in container components is another win for reuse. Jason Bonta mentioned this in <a href="https://www.youtube.com/watch?v=KYzlpRvWZ6c">his great talk at React.js Conf 2015</a>.</p>
+  </li>
+  <li>
+    <p>Take care when integrating non-React UI components. Mixing React’s declarative API with another library’s imperative API can be painful. Build wrapper components around external libraries, and use <a href="https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods">React’s lifecycle methods</a> to handle setup and teardown. When possible, avoid exposing direct-update methods like <code>drawChart()</code> or <code>setCursorPosition()</code>—manage state through component properties or Flux stores.</p>
+  </li>
+  <li>
+    <p>Split Flux actions into modules by UX concern. We separate navigation and authentication from running queries and making charts. Carve out submodules for cross-cutting concerns, like AJAX requests or logging.</p>
+  </li>
+  <li>
+    <p>Split Flux stores by domain. It’s helpful to separate persisted server-side state from ephemeral page state, for example. We hide the state of the URL bar behind a store, too!</p>
+  </li>
+</ul>
+
+<p>We’re tackling fun engineering challenges at Wagon.  If you want to learn more or work everyday on these technologies, <a href="/jobs">check out our jobs page</a> and get in touch!</p>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

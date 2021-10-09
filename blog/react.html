@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Posts - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="A collection of blog posts from Wagon's engineering blog.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/react.html" />
+    <meta property="og:title" content="Posts" />
+    <meta property="og:description" content="A collection of blog posts from Wagon's engineering blog." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="release-notes">
+  <div class="container">
+    <div class="col-md-8 center-col">
+    <section class="hiring">
+      <h2 class="text-center">
+        #react<br>
+      </h2>
+
+    </section>
+    <ul>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/react-at-wagon>React at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/react-at-wagon&text=React at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/react-at-wagon/&t=React at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               October 01, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/react">#react</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>We’re building a hybrid web/native application that runs both in the browser and as a downloadable desktop app. Analysts use Wagon to query, analyze, visualize, and share data: the app is highly interactive and data-heavy. It has to be fast, furious, and stable even when used for hours.</p>
+
+<p>It ain’t all gravy: it’s difficult to maintain a UI with asynchronous updates, large scale data manipulation, and many other cross-cutting concerns. How can we build a sane frontend codebase, without losing our ability to iterate and ship quickly? The answer is to separate concerns. We break our UI into small self-contained components, and we isolate state and manage it separately from the UI. Facebook’s React and Flux libraries make this practical.</p>
+
+<p style="max-width: 330px; margin: auto;">
+  <img src="/images/posts/react.png" alt="Wagon loves React" />
+</p>
+
+<p>The big idea behind React is this: a UI component is just a function from its inputs to its content. All a component needs is a <code>render()</code> method that returns the elements we want the user to see.  As an example, here’s a component that takes a size and color and renders a div displaying a filled-in square. Notice that users of this component don’t need to know about how it is implemented.</p>
+
+<noscript><pre>var ColoredSquare = React.createClass({
+  render: function() {
+    // the component&#39;s inputs are available via this.props
+    var squareStyle = {
+      display: &quot;inline-block&quot;,
+      width: this.props.width,
+      height: this.props.width,
+      backgroundColor: this.props.color,
+      borderRadius: this.props.radius
+    };
+
+    return &lt;div style={squareStyle} onClick={saveUserFavColor(this.props.color)} /&gt;;
+  }
+});</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=ColoredSquare.jsx"> </script>
+
+<p>React components are simple to reuse because they nest like HTML elements. It’s easy to wrap an existing component to add additional styles or behavior—React favors composition over inheritance. We can forget about carefully maintaining the DOM to avoid excessive redraws and flicker: we declare what our components should look like, and React makes it so.</p>
+
+<p>React is great for organizing view elements, but an application is more than static UI. Users generate events and we need to capture them, update state, and direct how the app should respond. Flux manages this flow by clearly seperating user action events from application responses.</p>
+
+<p>Actions encapsulate events. They’re the application logic that runs in response to users doing stuff. In our example, when a user clicks a colored square, we update the server and dispatch to let the rest of app know what happened:</p>
+
+<noscript><pre>function saveUserFavColor(color) {
+  var id = getCurrentUserId();  // move along, this is just a demo
+  
+  ajax.user.saveInfo(id, color)  // make an AJAX call,
+    // then tell the rest of the application what happened
+    .then(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVED, {id: id, favoriteColor: color});
+    })
+    .catch(function() {
+      AppDispatcher.handleAction(USER_INFO_SAVE_ERROR, {id: id});
+    });
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserInfoAction.js"> </script>
+
+<p>Stores encapsulate state. They listen to state changes dispatched from actions, and they update themselves to record the changes.</p>
+
+<noscript><pre>class UserStore extends EventEmitter {
+  // administrivia omitted!
+
+  onDispatch(action) {
+    switch (action.type) {
+      case USER_INFO_SAVED:
+        // save the updated state in an instance property
+        this._users[action.payload.id].favoriteColor = action.payload.favoriteColor;
+        // tell the rest of the application to come and get it
+        this.emitChange();
+        break;
+
+      // etc
+    }
+  }
+}</pre></noscript>
+<script src="https://gist.github.com/jweinstein/e6cc2a29621a4508f9e4.js?file=UserStore.js"> </script>
+
+<p>UI components listen to stores and re-render when relevant state changes.</p>
+
+<p>Building a solid, maintainable frontend is still difficult despite these great libraries. Here are a few other strategies we’re using:</p>
+
+<ul>
+  <li>
+    <p>Build pure React components whenever possible. A pure component doesn’t make any external calls from <code>render()</code>—it’s a pure function of the component’s properties and state. Components like this are much easier to test, debug, and reuse. It’s such a good idea it’s <a href="https://facebook.github.io/react/docs/pure-render-mixin.html">included in React itself</a>!</p>
+  </li>
+  <li>
+    <p>Separate React components that listen to Flux stores from those that render the UI. Wrapping UI components in container components is another win for reuse. Jason Bonta mentioned this in <a href="https://www.youtube.com/watch?v=KYzlpRvWZ6c">his great talk at React.js Conf 2015</a>.</p>
+  </li>
+  <li>
+    <p>Take care when integrating non-React UI components. Mixing React’s declarative API with another library’s imperative API can be painful. Build wrapper components around external libraries, and use <a href="https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods">React’s lifecycle methods</a> to handle setup and teardown. When possible, avoid exposing direct-update methods like <code>drawChart()</code> or <code>setCursorPosition()</code>—manage state through component properties or Flux stores.</p>
+  </li>
+  <li>
+    <p>Split Flux actions into modules by UX concern. We separate navigation and authentication from running queries and making charts. Carve out submodules for cross-cutting concerns, like AJAX requests or logging.</p>
+  </li>
+  <li>
+    <p>Split Flux stores by domain. It’s helpful to separate persisted server-side state from ephemeral page state, for example. We hide the state of the URL bar behind a store, too!</p>
+  </li>
+</ul>
+
+<p>We’re tackling fun engineering challenges at Wagon.  If you want to learn more or work everyday on these technologies, <a href="/jobs">check out our jobs page</a> and get in touch!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/weekly-roundup-react>Weekly Roundup: React</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/weekly-roundup-react&text=Weekly Roundup: React%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/weekly-roundup-react/&t=Weekly Roundup: React%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               May 27, 2015 | <a href="http://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/react">#react</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+</div>
+
+
+           <p>Our hybrid native/web application’s frontend layer is built with Javascript, <a href="https://facebook.github.io/react/">React</a>, and <a href="https://facebook.github.io/flux/">Flux</a>. In 2014, our friends at Facebook advised us to try React and it has since been a core part of our stack.</p>
+
+<p style="max-width: 330px; margin: auto;">
+	<img src="/images/posts/react.png" alt="React logo" />
+</p>
+
+<p>The React community is bustling and there are some great posts to help people start, organize, and scale frontend applications. These articles have helped us:</p>
+
+<ol>
+  <li><a href="https://twitter.com/lopatron">Alex Lopatin</a> details Sift Science’s migration from Backbone to React in <a href="http://blog.siftscience.com/blog/2015/best-practices-for-building-large-react-applications">Best practices for building large React applications</a>.</li>
+  <li><a href="https://twitter.com/aeflash">Alexander Early</a> from Fluid maintains an in-depth set of <a href="http://aeflash.com/2015-02/react-tips-and-best-practices.html">Tips and Best Practices</a>. The discussion in the comments is good too.</li>
+  <li>Facebook’s <a href="https://twitter.com/vjeux/">Christopher Chedeau</a> has many talks on React architectures but this review of <a href="https://speakerdeck.com/vjeux/react-css-in-js">how to scale CSS in a React stack</a> guided our development of Wagon’s custom UI. Merci!</li>
+  <li><a href="https://twitter.com/hackflow">Alex Schepanovski</a> describes React from a jQuery perspective in <a href="http://hackflow.com/blog/2015/03/08/boiling-react-down-to-few-lines-in-jquery/">Boiling React Down to a Few Lines in jQuery</a>.</li>
+  <li><a href="https://twitter.com/rynclark">Ryan Clark</a> has a technical but still approachable <a href="http://ryanclark.me/getting-started-with-react/">Getting Started With React</a> walkthrough. If you like that, read the sibling article <a href="http://ryanclark.me/getting-started-with-flux/">Getting Started with Flux</a> too.</li>
+</ol>
+
+<p>We’ll be doing a deeper dive into Wagon’s React architecture, tooling, and how we see it changing in our next engineering blog post. If you like to hack on React, Flux, Javascript, and <a href="http://electron.atom.io/">Electron</a>, we’re <a href="http://www.wagonhq.com/jobs/frontend-engineer">hiring a frontend engineer</a> in San Francisco. Say hi!</p>
+
+         </div>
+       </section>
+      
+       <section class="post">
+         <div class="row">
+           <h2 class="post-header">
+             <a href=/blog/engineering-at-wagon>Engineering at Wagon</a><br>
+             <small>
+               <span class="share">
+                 <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/engineering-at-wagon&text=Engineering at Wagon%20from%20@wagonhq:" target="_blank">
+                   <i class="fa fa-lg fa-twitter"></i>
+                 </a>
+                 <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/engineering-at-wagon/&t=Engineering at Wagon%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                   <i class="fa fa-6 fa-facebook"></i>
+                 </a>
+               </span>
+               February 13, 2015 | <a href="https://twitter.com/mkscrg" target="_blank">Mike Craig</a>
+             </small>
+           </h2>
+           
+<div class="tags">
+  
+  <a href="/blog/team">#team</a>
+  
+  <a href="/blog/engineering">#engineering</a>
+  
+  <a href="/blog/haskell">#haskell</a>
+  
+  <a href="/blog/react">#react</a>
+  
+</div>
+
+
+           <p>Over the last few months, we’ve been user-testing a preview version of Wagon—a modern SQL editor that powers a Google Docs-style experience for analysts, engineers, and their teams. We’ve iterated on both our <a href="http://www.wagonhq.com/blog/design-at-wagon" target="_blank">design process</a> and technology choices to build a tool that we and our users rely on every day.</p>
+
+<p>Wagon takes advantage of <a href="http://a16z.com/2015/01/22/cloud-client-computing/" target="_blank">cloud-local computing</a>, combining the strengths of remote servers like syncing, sharing, and storage with local client advantages like <a href="http://aadrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html" target="_blank">data locality</a> and device-specific user interfaces. Our architecture has three components: a frontend app, a native client, and backend services.</p>
+
+<p><br /></p>
+
+<p style="max-width: 802px; margin: auto;">
+  <a href="http://stackshare.io/wagon/wagon" target="_blank">
+    <img src="/images/posts/system_architecture.png" alt="Wagon architecture" />
+  </a>
+  <em><span style="float: right;">Wagon architecture</span></em>
+</p>
+
+<p><br /></p>
+
+<p>We make it easy to get started. You can download Wagon—a hybrid web application and native client, like Slack—and connect it to an existing local, private, or public database. The frontend is a slick interface for writing and running SQL, interacting with large results, and generating statistics and pivot tables. The native client locally handles connections, manages query runs, and processes results as they return from the database. The results, statistics, and pivots are cached locally and can be used to create sharable charts. When shared, Wagon securely transfers data from the local machine to the backend, making it available to permissioned teammates.</p>
+
+<p><strong>Frontend App</strong></p>
+
+<p>We use HTML, CSS, and JavaScript to maintain a consistent user experience across platforms and environments. The frontend is a single-page application built with React and Flux. We bundle it with the native client as a desktop application, and we have an in-browser experience for sharing and collaboration.</p>
+
+<p><em>Technology: Javascript, React, Flux, Ace</em></p>
+
+<ul>
+  <li><a href="http://facebook.github.io/react/" target="_blank">React</a> gives us declarative, reusable UI elements. React components compose like HTML elements with rich state handling, so we manage fewer event listeners and nested callbacks.</li>
+  <li><a href="https://facebook.github.io/flux/docs/overview.html#content" target="_blank">Flux</a> complements React and helps structure our frontend code. It separates logic, state, and UI into loosely coupled components, and has a straightforward data flow.</li>
+  <li><a href="http://ace.c9.io/#nav=about" target="_blank">Ace</a> is an extensible, embeddable code editor. We use its syntax highlighting and have extended its autocomplete.</li>
+</ul>
+
+<p><strong>Native Client</strong></p>
+
+<p>Our users want to query their databases without any new IT or admin setup, so users connect via their local machine with their existing credentials. Wagon handles connections through the native client, since most databases require socket-level network access that isn’t possible directly from browser.</p>
+
+<p>Exploration and analysis can be a time-consuming and tedious job with existing SQL tools. Each step is an additional database query subject to queuing, slow execution, and changing data. Our users want to quickly explore results and evaluate summary statistics without executing subsequent queries. To power that experience, the client also computes statistics and caches query results on the local file system.</p>
+
+<p>We built the native client in Haskell. It’s a high level language with great libraries, static compilation, a high performance ceiling, and an active community. We use MacGap to bundle the client and the frontend into a downloadable OS X application (Windows soon!).</p>
+
+<p><em>Technology: Haskell, MacGap</em></p>
+
+<ul>
+  <li>Prototyping and refactoring is safe with Haskell’s type-driven development. The compiler helps us avoid bugs and edge cases as we iterate.</li>
+  <li>Haskell’s opt-in control over compiler optimizations and strictness allows for incremental optimization. GHC includes a capable profiler, and the community maintains libraries for <a href="http://hackage.haskell.org/package/QuickCheck" target="_blank">testing</a> and <a href="http://hackage.haskell.org/package/criterion" target="_blank">performance measurement</a>.</li>
+  <li><a href="http://macgapproject.github.io/" target="_blank">MacGap</a> is a lightweight (~1MB) web-to-native wrapper. It provides a JS API to integrate with the file system, subprocesses, and OS-specific features like notifications and menus.</li>
+</ul>
+
+<p><em>*Note: Wagon is now powered by Electron rather than MacGap. Read our <a href="/blog/electron-at-wagon">Electron blog post to learn more</a>.</em></p>
+
+<p><strong>Backend Services</strong></p>
+
+<p>Our backend services persists state and shared data to allow users to securely collaborate on queries, results, and charts. The backend is also written in Haskell: using the same language for the client and the server helps us stay flexible and reduce complexity. We store application state in Postgres while larger immutable data, like shared query results, live in Amazon S3.</p>
+
+<p><em>Technology: Haskell, Postgres, Amazon S3</em></p>
+
+<ul>
+  <li>Haskell’s lightweight threads and the GHC runtime scale well on multi-core machines.</li>
+  <li>Postgres is powerful, flexible, and straightforward to host. We use features like <a href="http://www.postgresql.org/docs/9.4/static/storage-toast.html" target="_blank">TOAST</a> and <a href="http://www.postgresql.org/docs/9.4/static/datatype-json.html" target="_blank">JSON support</a> to test new features.</li>
+</ul>
+
+<p>There are exciting upcoming technology challenges including optimizing compute across local and remote environments, designing efficient streaming statistics algorithms, building features that learn and improve with usage.</p>
+
+<p>We’d love to hear from you! <a href="https://twitter.com/wagonhq" target="_blank">Follow @WagonHQ</a>, check out our stack on <a href="http://stackshare.io/wagon/wagon" target="_blank">Stackshare</a>, and learn more about our <a href="http://www.wagonhq.com/about" target="_blank">engineering and design team</a>. Stay tuned for future engineering deep dives!</p>
+
+<p><br />
+<em>
+  Thanks to <a href="https://twitter.com/scpike" target="_blank">Steve Pike</a> and <a href="https://twitter.com/petkanics" target="_blank">Doug Petkanics</a> for reviewing this post. <a href="http://thenounproject.com/term/website/35429/" target="_blank">Image credit</a> Adam Wilson from The Noun Project.
+</em></p>
+
+         </div>
+       </section>
+      
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

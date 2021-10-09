@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Wagon SQL Tutorial</title>
+    <description>Wagon a simple way to see, explore, and collaborate on data.</description>
+    <link>http://www.wagonhq.com/blog</link>
+    <atom:link href="http://www.wagonhq.com/sql-tutorial/feed.xml" rel="self" type="application/rss+xml" />
+    
+      
+    
+      
+    
+      
+    
+      
+        <item>
+          <title>Calculating a Joint Distribution in SQL</title>
+          
+          
+            <description>&lt;p&gt;&lt;em&gt;This tip builds on the analysis of a 🍌banana store🍌 introduced in &lt;a href=&quot;/sql-tutorial/summary-stats&quot;&gt;Summarizing Data in SQL&lt;/a&gt; tip.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Comparing two numerical measures is very important as we try to summarize our data. Though the math becomes more complicated, SQL can still handle it. For example, we might be nervous that if people have to wait too long, they end up spending less money when they get to the front of the line. To get a rough idea of the relationship between wait-time and revenue, we might write a query very similar to the histogram one:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;select 
+	floor(wait_time/10.00)*10 as wait_time_bucket,
+	avg(revenue) as avg_revenue
+from banana_sales
+group by 1
+order by 1;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=joint.sql&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;wait_time_bucket, avg_revenue
+0, 10.87
+10, 8.43
+20, 9.01
+30, 7.50
+..., ...&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=joint.csv&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;These queries give us some insight into the join distribution (plug: Wagon makes charts like these super easy to generate). We might also be interested in more statistical measurements like covariance or correlation. Most of the popular SQL implementations have these statistics built in, so for example in Postgres/Redshift we can write:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;select
+	corr(wait_time, revenue) as correlation,
+	covar_samp(wait_time, revenue) as covariance
+from banana_sales;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=joint2.sql&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Postgres has all kinds of cool &lt;a href=&quot;http://www.postgresql.org/docs/9.4/static/functions-aggregate.html&quot;&gt;aggregate functions&lt;/a&gt;, including linear regressions - right in our SQL query!&lt;/p&gt;
+
+&lt;h4 id=&quot;read-these-sql-tips-to-learn-more&quot;&gt;Read these SQL tips to learn more:&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/summary-stats&quot;&gt;Summarizing Data&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/calculating-percentiles-sql&quot;&gt;Calculating Percentiles&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/creating-a-histogram-sql&quot;&gt;Creating a Histogram&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Wed, 10 Feb 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/calculating-joint-distribution</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/calculating-joint-distribution</guid>
+        </item>
+      
+    
+      
+        <item>
+          <title>Creating a Histogram in SQL</title>
+          
+          
+            <description>&lt;p&gt;&lt;em&gt;This tip builds on the analysis of a 🍌banana store🍌 introduced in &lt;a href=&quot;/sql-tutorial/summary-stats&quot;&gt;Summarizing Data in SQL&lt;/a&gt; tip.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s often useful to have a rough idea of the distribution of the data in a table or query result. Generating a histogram is a great way to understand that distribution. What’s the distribution of revenue per purchase at the banana stand? I mean, &lt;a href=&quot;https://media1.giphy.com/media/yJu2jIQZgPubm/200_s.gif&quot;&gt;how much could a banana cost?&lt;/a&gt; We might (naively) write a query like:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;select
+	revenue,
+	count(*)
+from banana_sales
+group by revenue
+order by revenue;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram_naive.sql&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;It’s likely this query will return far too many rows to eyeball the revenue distribution (1 row per distinct price). Instead, we’d like to group revenue values together into buckets so that we can understand the shape of the data. We might be interested in the number of banana purchases which generated between $0 to $5, $5 to $10, etc. There’s no “correct” number of buckets to use, it’s a choice we can make and experiment with to get a better understanding of the distribution. Probably 1000 buckets is too many, but 2 is too few. A reasonable rule of thumb is to use somewhere around 20 buckets. Our query will specify the width of the bucket, rather than the total number. The larger the width, the fewer buckets we’ll end up with.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;select 
+	floor(revenue/5.00)*5 as bucket_floor,
+	count(*) as count
+from banana_sales
+group by 1
+order by 1;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram.sql&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;bucket_floor, count
+0, 1054
+5, 465
+10, 233
+..., ...&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram.csv&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;This is a simple, but tricky query that will generate a histogram for us. It rounds each revenue data point down to the nearest multiple of 5 and then groups by that rounded value. It has one failing in that if we have no data in a bucket (e.g. no purchases of 55 to 60 dollars), then that row will not appear in the results. We can fix that with a more complex query, but let’s skip it for now. In order to choose our bucket size, it helps to first calculate the min/max values so we know how many buckets we would end up with. If we want the buckets to have slightly nicer labels, we can format the labels with a query like:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;select
+    bucket_floor,
+    CONCAT(bucket_floor, &amp;#39; to &amp;#39;, bucket_ceiling) as bucket_name,
+    count(*) as count
+from (
+	select 
+		floor(revenue/5.00)*5 as bucket_floor,
+		floor(revenue/5.00)*5 + 5 as bucket_ceiling
+	from web_sessions_table
+) a
+group by 1, 2
+order by 1;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram_label.sql&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;bucket_floor, bucket_name, count
+0, 0 to 5, 1054
+5, 5 to 10, 465
+10, 10 to 15, 233
+..., ..., ...&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=histogram_label.csv&quot;&gt; &lt;/script&gt;
+
+&lt;h4 id=&quot;read-these-sql-tips-to-learn-more&quot;&gt;Read these SQL tips to learn more:&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/summary-stats&quot;&gt;Summarizing Data&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/calculating-percentiles-sql&quot;&gt;Calculating Percentiles&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/calculating-joint-distribution&quot;&gt;Calculating a Joint Distribution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Tue, 09 Feb 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/creating-a-histogram-sql</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/creating-a-histogram-sql</guid>
+        </item>
+      
+    
+      
+        <item>
+          <title>Calculating Percentiles in SQL</title>
+          
+          
+            <description>&lt;p&gt;&lt;em&gt;This tip builds on the analysis of a 🍌banana store🍌 introduced in &lt;a href=&quot;/sql-tutorial/summary-stats&quot;&gt;Summarizing Data in SQL&lt;/a&gt; tip.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;How long do people wait for their tasty banana orders? Using basic SQL we can compute average wait time, but if the distribution is skewed away from normal (as many &lt;a href=&quot;https://en.wikipedia.org/wiki/Skewness&quot;&gt;internet-driven (and banana?) distributions often are&lt;/a&gt;), this may not give us a complete picture of how long most people are waiting. In addition to computing the average, we might (and should) ask, what are the 25th, 50th, 75th &lt;a href=&quot;https://en.wikipedia.org/wiki/Percentile&quot;&gt;percentiles&lt;/a&gt; of wait-time, and how does that number vary day to day?&lt;/p&gt;
+
+&lt;p&gt;Many databases (including &lt;a href=&quot;http://www.postgresql.org/docs/9.4/static/functions-aggregate.html&quot;&gt;Postgres 9.4&lt;/a&gt;, &lt;a href=&quot;http://docs.aws.amazon.com/redshift/latest/dg/r_Examples_of_PERCENTILE_CONT_WF.html&quot;&gt;Redshift&lt;/a&gt;, &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/hh231473.aspx&quot;&gt;SQL Server&lt;/a&gt;) have built in percentile functions. Here’s an example using the function &lt;code&gt;percentile_cont&lt;/code&gt; which is a &lt;a href=&quot;http://www.postgresql.org/docs/current/static/tutorial-window.html&quot;&gt;window function&lt;/a&gt; that computes the percentile of wait-time, split (pun intended!) by day:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;SELECT
+	date,
+	percentile_cont (0.25) WITHIN GROUP
+		(ORDER BY wait_time ASC) OVER(PARTITION BY date) as percentile_25,
+	percentile_cont (0.50) WITHIN GROUP
+		(ORDER BY wait_time ASC) OVER(PARTITION BY date) as percentile_50,
+	percentile_cont (0.75) WITHIN GROUP
+		(ORDER BY wait_time ASC) OVER(PARTITION BY date) as percentile_75,
+	avg(wait_time) as avg -- for comparison
+FROM banana_sales
+GROUP BY date
+ORDER BY date;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles.sql&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;date, percentile_25, percentile_50, percentile_75, avg
+2016-01-01, 18, 37, 75, 66
+2016-01-02, 19, 35, 77, 64
+..., ..., ..., ..., ...&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles.csv&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;The structure of the &lt;code&gt;percentile_cont&lt;/code&gt; is similar to other window functions: we specify how to order the data, how to group it - and the database does the rest. If we wanted to add more dimensions to our query (e.g. time of day), we’d add them to the &lt;code&gt;partition&lt;/code&gt; and &lt;code&gt;group by&lt;/code&gt; clause.
+If our database doesn’t support &lt;code&gt;percentile_cont&lt;/code&gt; (sorry MySQL, Postgres &amp;lt; 9.4), the query is more complicated, but fear not, still possible! The challenge is to order the rows by increasing wait-time (per date of course) and then pick out the middle value (for median). In MySQL, we can use local variables to keep track of the order, and in Postgres, we can use the &lt;a href=&quot;http://www.postgresql.org/docs/8.4/static/functions-window.html&quot;&gt;row-number&lt;/a&gt; function. Here’s the Postgres version:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;SELECT
+	t1.date,
+	t1.wait_time as median
+FROM (	
+	SELECT
+		date,
+		wait_time,
+		ROW_NUMBER() OVER(ORDER BY wait_time PARTITION BY date) as row_num
+	FROM banana_sales
+) t
+JOIN (
+	SELECT
+		date,
+		count(*) as total
+	FROM banana_sales
+	GROUP BY date
+) t2
+	ON
+		t1.date = t2.date
+-- for simplicity, we take a simple solution when the list has an even length, to just choose one value
+WHERE t1.row_num =
+  CASE when t2.total % 2 = 0 
+		THEN t2.total / 2
+		ELSE (t2.total + 1) / 2
+	END;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles2.sql&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;date, median
+2016-01-01, 37
+2016-01-02, 35
+..., ...&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=percentiles2.csv&quot;&gt; &lt;/script&gt;
+
+&lt;h4 id=&quot;read-these-sql-tips-to-learn-more&quot;&gt;Read these SQL tips to learn more:&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/summary-stats&quot;&gt;Summarizing Data&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/creating-a-histogram-sql&quot;&gt;Creating a Histogram&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/calculating-joint-distribution&quot;&gt;Calculating a Joint Distribution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Mon, 08 Feb 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/calculating-percentiles-sql</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/calculating-percentiles-sql</guid>
+        </item>
+      
+    
+      
+        <item>
+          <title>Summarizing Data in SQL</title>
+          
+          
+            <description>&lt;p&gt;How quickly can you understand data from your database? Excel croaks at ten thousands rows, R is difficult to run on a cluster, and your eye certainly can’t summarize large tables. SQL to the rescue!&lt;/p&gt;
+
+&lt;p&gt;Summary statistics are the fastest way to learning about your dataset. Are there outliers? How does the distribution look? What are the relationships hiding inside the rows and columns? You’ll always want to ask these questions when faced with a new dataset. SQL (an uninspired acronym for &lt;em&gt;Structured Query Language&lt;/em&gt;) is the native language for database computation. Many summary methods are available as built in SQL functions in modern databases and  more complex measures can be implemented directly in SQL as well.&lt;/p&gt;
+
+&lt;p&gt;In this post, we’ll walk through 4 ways to summarize your dataset in SQL so you can run it directly on your database.&lt;/p&gt;
+
+&lt;p&gt;Here’s a relatable example: suppose we work in a 🍌&lt;a href=&quot;http://arresteddevelopment.wikia.com/wiki/Bluth%27s_Original_Frozen_Banana_Stand&quot;&gt;banana stand’s&lt;/a&gt;🍌 back office and we analyze banana data.&lt;/p&gt;
+
+&lt;p&gt;With just a few SQL commands, we’ll be able to calculate the basic stats: &lt;code&gt;count&lt;/code&gt;, &lt;code&gt;distinct&lt;/code&gt;, &lt;code&gt;sum&lt;/code&gt;, &lt;code&gt;average&lt;/code&gt;, &lt;code&gt;variance&lt;/code&gt;, … If we have a table of banana transactions, let’s calculate the total number of customers, unique customers, number of bananas sold, as well as total and average revenue per day:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;SELECT
+	date,
+	count(*) as num_customers,
+	count(distinct user_id) as distinct_customers,
+	sum(bananas_sold) as total_bananas,
+	sum(revenue) as total_revenue,
+	avg(revenue) as revenue_per_sale
+FROM banana_sales
+GROUP BY date
+ORDER BY date;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=basic_query.sql&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;date, num_customers, distinct_customers, total_bananas, total_revenue, revenue_per_sale
+2016-01-01, 345, 287, 564, 3689, 6.54
+2016-01-02, 364, 299, 582, 4080, 7.01
+..., ..., ..., ..., ..., ...&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mdeland/8faeb4e60c43b7c51fad.js?file=basic_query.csv&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;This should be a familiar SQL pattern (and if not, come to the &lt;a href=&quot;https://www.wagonhq.com/mailing-list&quot;&gt;next free Wagon SQL class&lt;/a&gt;!). With just one query, we can calculate important aggregations over very large datasets. If we dress it up with a few &lt;code&gt;where&lt;/code&gt; statements or &lt;code&gt;join&lt;/code&gt; with customer lookup tables, we can quickly and effectively slice and dice our data. Unfortunately, there are some tricky questions that can’t be answered with the regular SQL functions alone.&lt;/p&gt;
+
+&lt;h4 id=&quot;read-these-sql-tips-to-learn-more&quot;&gt;Read these SQL tips to learn more:&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/calculating-percentiles-sql&quot;&gt;Calculating Percentiles&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/creating-a-histogram-sql&quot;&gt;Creating a Histogram&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/sql-tutorial/calculating-joint-distribution&quot;&gt;Calculating a Joint Distribution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Sun, 07 Feb 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/summary-stats</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/summary-stats</guid>
+        </item>
+      
+    
+      
+    
+      
+        <item>
+          <title>Date formatting in SQL</title>
+          
+          
+            <description>&lt;p&gt;Timestamps are great for debugging logs. But for analysis, we want to group by day, week, and month.&lt;/p&gt;
+
+&lt;p&gt;Timestamps look like this: &lt;code&gt;07/04/1776 00:28:39.682&lt;/code&gt;, but you’d rather see “July 4, 1776”, “July 1776” or “Q3 - 1776” 🇺🇸. Let’s clean up those messy timestamps in SQL!&lt;/p&gt;
+
+&lt;h4 id=&quot;postgres--redshift&quot;&gt;Postgres &amp;amp; Redshift&lt;/h4&gt;
+
+&lt;p&gt;In Postgres &amp;amp; Redshift, the &lt;code&gt;to_char&lt;/code&gt; function is handy for formatting dates. It takes two arguments: a timestamp and the output format pattern. For example, the following returns “July 04, 1776”:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select to_char(&#39;07/04/1776 00:28:39.682&#39;::timestamp, &#39;Month DD, YYYY&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The next SQL statement returns “Q3 - 1776”, by concatenating “Q” to the quarter and year from the &lt;code&gt;to_char&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select &#39;Q&#39; || to_char(&#39;07/04/1776 00:28:39.682&#39;::timestamp, &#39;Q - YYYY&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Pro Tip:&lt;/em&gt; Use &lt;code&gt;to_char&lt;/code&gt; to format numbers too! See all the possibilities in the &lt;a href=&quot;http://www.postgresql.org/docs/current/static/functions-formatting.html&quot;&gt;official docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;mysql&quot;&gt;MySQL&lt;/h4&gt;
+
+&lt;p&gt;In MySQL, the &lt;code&gt;date_format&lt;/code&gt; function will make those timestamps prettier. Here’s how to make ‘1776-07-04 00:28:39.682’ look like “July 4, 1776”:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select date_format(&#39;1776-07-04 00:28:39.682&#39;, &#39;%M %e, %Y&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;learn-more&quot;&gt;Learn More&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Official &lt;a href=&quot;http://www.postgresql.org/docs/current/static/functions-formatting.html&quot;&gt;&lt;code&gt;to_char&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html#function_date-format&quot;&gt;&lt;code&gt;date_format&lt;/code&gt;&lt;/a&gt; docs&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Date_format_by_country&quot;&gt;Date format by country&lt;/a&gt; (Wikipedia)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Mon, 01 Feb 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/date-formatting-sql</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/date-formatting-sql</guid>
+        </item>
+      
+    
+      
+    
+      
+        <item>
+          <title>How is my database organized?</title>
+          
+          
+            <description>&lt;p&gt;What’s the difference between a &lt;code&gt;database&lt;/code&gt;, &lt;code&gt;schema&lt;/code&gt;, and a &lt;code&gt;table&lt;/code&gt;? Let’s break it down.&lt;/p&gt;
+
+&lt;p&gt;In relational databases, data is organized in a hierarchy, like files and folders. Databases have schemas. Schemas have tables. Tables have columns.&lt;/p&gt;
+
+&lt;p&gt;The standard flow is you connect to a database, browse schemas, and query a table’s columns. There are a few differences for this organization for Postgres, Redshift, and MySQL so here are some tips to navigating your database.&lt;/p&gt;
+
+&lt;h4 id=&quot;postgres--redshift&quot;&gt;Postgres &amp;amp; Redshift&lt;/h4&gt;
+
+&lt;p&gt;In Postgres and Redshift, you connect to a single database and can only access schemas and their tables within that database.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/images/sql-tutorial/postgres-schema.png&quot; alt=&quot;Diagram of Postgres tables are organized.&quot; style=&quot;width: 100%; max-width: 500px;&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;For example, in Wagon’s demo database, there is a schema named &lt;code&gt;dvd&lt;/code&gt; containing tables such as &lt;code&gt;products&lt;/code&gt;, &lt;code&gt;orders&lt;/code&gt;, and &lt;code&gt;customers&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To query one of these tables, you need to prefix your table with &lt;code&gt;dvd.&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select * from dvd.orders;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are frequently querying the same schema, it can be tedious to retype the schema over and over. You can inform the query engine that you’d like to use a specific schema by using &lt;code&gt;set search_path to schema_name;&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select * from orders; -- will generate “relation &quot;orders&quot; does not exist” error!
+set search_path to dvd;
+select * from orders; -- this works now!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Pro tip:&lt;/em&gt; You can set &lt;code&gt;search_path&lt;/code&gt; to multiple schemas too: &lt;code&gt;set search_path to schema1, schema2, schema3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;A good question:&lt;/em&gt; Is every table in a schema? Tables that are created without a specific schema are put in a default schema called &lt;code&gt;public&lt;/code&gt;. This is the default &lt;code&gt;search_path&lt;/code&gt; when you first connect to your database.&lt;/p&gt;
+
+&lt;h4 id=&quot;mysql&quot;&gt;MySQL&lt;/h4&gt;
+
+&lt;p&gt;In MySQL, databases and schemas are synonyms. You connect to a specific database, but can still query tables in other databases.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/images/sql-tutorial/mysql-schema.png&quot; alt=&quot;Diagram of how MySQL tables are organized.&quot; style=&quot;width: 100%; max-width: 500px;&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;To query data from another database, you must prefix the database name. For example, if you are connected to the &lt;code&gt;dvd&lt;/code&gt; database and want to query the &lt;code&gt;baseball&lt;/code&gt; database, you must prefix table names with &lt;code&gt;baseball.&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select * from baseball.batting;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To switch databases, run the &lt;code&gt;use&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use new_database;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;learn-more&quot;&gt;Learn more&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.postgresqlforbeginners.com/2010/12/schema.html&quot;&gt;Schemas in Postgres in depth&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql&quot;&gt;Schema vs database in MySQL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Fri, 15 Jan 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/how-is-my-database-organized</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/how-is-my-database-organized</guid>
+        </item>
+      
+    
+      
+        <item>
+          <title>How to extract values from a nested JSON field in SQL</title>
+          
+          
+            <description>&lt;p&gt;Someone dumped JSON into your database! &lt;code&gt;{“uh”: “oh”, “anything”: “but json”}&lt;/code&gt;. What do you do?&lt;/p&gt;
+
+&lt;p&gt;Relational databases are beginning to support document types like JSON.  It’s an easy, flexible data type to create but can be painful to query.&lt;/p&gt;
+
+&lt;p&gt;Here’s how to extract values from nested JSON in SQL 🔨:&lt;/p&gt;
+
+&lt;h4 id=&quot;example&quot;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;{&quot;userId&quot;: &quot;555&quot;, &quot;transaction&quot;: {&quot;id&quot;: &quot;222&quot;, &quot;sku&quot;: &quot;ABC&quot;}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s select a column for each &lt;code&gt;userId&lt;/code&gt;, &lt;code&gt;id&lt;/code&gt;, and &lt;code&gt;sku&lt;/code&gt;. The following queries return &lt;code&gt;555, 222, ABC&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;postgres&quot;&gt;Postgres&lt;/h4&gt;
+
+&lt;p&gt;Use the &lt;code&gt;-&amp;gt;&amp;gt;&lt;/code&gt; operator to extract a value as text, and the &lt;code&gt;-&amp;gt;&lt;/code&gt; to extract a JSON object:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select
+    my_json_field -&amp;gt;&amp;gt; &#39;userId&#39;,
+    my_json_field -&amp;gt; &#39;transaction&#39; -&amp;gt;&amp;gt; &#39;id&#39;,
+    my_json_field -&amp;gt; &#39;transaction&#39; -&amp;gt;&amp;gt; &#39;sku&#39;
+from my_table;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;redshift&quot;&gt;Redshift&lt;/h4&gt;
+
+&lt;p&gt;Use the &lt;code&gt;json_extract_path_text&lt;/code&gt; function:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select
+    json_extract_path_text(my_json_field, &#39;userId&#39;),
+    json_extract_path_text(my_json_field, &#39;transaction&#39;, &#39;id&#39;),
+    json_extract_path_text(my_json_field, &#39;transaction&#39;, &#39;sku&#39;)
+from my_table;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;mysql&quot;&gt;MySQL&lt;/h4&gt;
+
+&lt;p&gt;MySQL 5.7 includes JSON support. Hurray! Use the &lt;code&gt;json_extract&lt;/code&gt; function:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select
+    json_extract(my_json_field, &#39;$.userId&#39;),
+    json_extract(my_json_field, &#39;$.transaction.id&#39;),
+    json_extract(my_json_field, &#39;$.transaction.sku&#39;)
+from my_table;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;learn-more&quot;&gt;Learn more&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://schinckel.net/2014/05/25/querying-json-in-postgres/&quot;&gt;Querying JSON in Postgres&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;JSON Docs: &lt;a href=&quot;http://www.postgresql.org/docs/current/static/functions-json.html&quot;&gt;Postgres&lt;/a&gt;, &lt;a href=&quot;http://docs.aws.amazon.com/redshift/latest/dg/json-functions.html&quot;&gt;Redshift&lt;/a&gt;, &lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/json-search-functions.html&quot;&gt;MySQL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Wed, 06 Jan 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/values-from-nested-json</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/values-from-nested-json</guid>
+        </item>
+      
+    
+      
+        <item>
+          <title>The easiest way to search for text in SQL</title>
+          
+          
+            <description>&lt;p&gt;What’s the easiest way to match case insensitive text anywhere in a string?&lt;/p&gt;
+
+&lt;p&gt;For example, let’s say you’re a fruit company marketing executive and you want all records matching “orange”, including “navel oranges”, “Syracuse Orange,” “Orange is the New Black”, “The Real Housewives of Orange County”, “orange you glad I didn’t say banana”, “🍊” and so on.&lt;/p&gt;
+
+&lt;p&gt;Here’s a quick way to match case insensitive text.&lt;/p&gt;
+
+&lt;h4 id=&quot;postgres--redshift&quot;&gt;Postgres &amp;amp; Redshift&lt;/h4&gt;
+&lt;p&gt;Use &lt;code&gt;~*&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select *
+from my_table
+where item ~* &#39;orange&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;~*&lt;/code&gt; operator searches for ‘orange’ anywhere in the string, thanks to the power of regular expressions.&lt;/p&gt;
+
+&lt;h4 id=&quot;mysql&quot;&gt;MySQL&lt;/h4&gt;
+&lt;p&gt;Use &lt;code&gt;like&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;select *
+from my_table
+where item like &#39;%orange%&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In MySQL, &lt;code&gt;like&lt;/code&gt; is case insensitive and much faster than &lt;code&gt;regexp&lt;/code&gt; (the MySQL equivalent of &lt;code&gt;~*&lt;/code&gt; in Postgres and Redshift). Add the &lt;code&gt;%&lt;/code&gt; wildcard to both sides of ‘orange’ for a substring match.&lt;/p&gt;
+
+&lt;h4 id=&quot;learn-more&quot;&gt;Learn more&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://regexone.com/&quot;&gt;Regular Expressions Tutorial&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.postgresql.org/docs/current/static/functions-matching.html&quot;&gt;Pattern matching in Postgres&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://dev.mysql.com/doc/refman/5.7/en/pattern-matching.html&quot;&gt;Pattern matching in MySQL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          
+          <pubDate>Tue, 05 Jan 2016 00:00:00 -0800</pubDate>
+          <link>http://www.wagonhq.com/sql-tutorial/search-for-text-sql</link>
+          <guid isPermaLink="true">http://www.wagonhq.com/sql-tutorial/search-for-text-sql</guid>
+        </item>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </channel>
+</rss>

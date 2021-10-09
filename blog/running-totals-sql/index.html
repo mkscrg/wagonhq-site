@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      
+        Calculating Running Totals using SQL - Wagon
+      
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="How to calculate running totals and create a cumulative graph using Postgres and Redshift.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Wagon" />
+    <meta property="og:url" content="http://www.wagonhq.com/blog/running-totals-sql" />
+    <meta property="og:title" content="Calculating Running Totals using SQL" />
+    <meta property="og:description" content="How to calculate running totals and create a cumulative graph using Postgres and Redshift." />
+    <meta property="og:image" content="http://pbs.twimg.com/profile_images/492796946797441024/bP0E4671.png" />
+
+    <link href="/images/favicon.png" rel="icon" type="image/png">
+    <link href="/css/bootstrap-3.3.2.min.css" rel="stylesheet">
+    <link href="/css/font-awesome-4.1.0.min.css" rel="stylesheet">
+    <link href="/css/pygments.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,Open+Sans" rel="stylesheet">
+    <link href="/css/wagon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
+
+    <link type="application/atom+xml" rel="alternate" href="http://www.wagonhq.com/blog/feed.xml" title="Wagon Blog" />
+
+    
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap-3.3.2.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-53305403-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wagon-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a href="/" >
+            <span class="navbar-brand">
+              <span class="navbar-logo"></span>
+            </span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="wagon-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right topnav">
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="posts">
+  <div class="container">
+    <div class="col-md-8 center-col">
+      <section class="post">
+        <div class="row">
+          <h2 class="post-header">
+            <a href=/blog/running-totals-sql>Calculating Running Totals using SQL</a><br>
+
+              <small>
+                <span class="share">
+                  <a href="https://twitter.com/intent/tweet?url=http://www.wagonhq.com/blog/running-totals-sql&text=Calculating Running Totals using SQL%20from%20@WagonHQ:" target="_blank">
+                    <i class="fa fa-lg fa-twitter"></i>
+                  </a>
+                  <a onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://www.wagonhq.com/blog/running-totals-sql/&t=Calculating Running Totals using SQL%20from%20Wagon', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+                    <i class="fa fa-6 fa-facebook"></i>
+                  </a>
+                </span>
+                October 20, 2015 | <a href="http://twitter.com/agrano" target="_blank">Andy Granowitz</a>
+              </small>
+            
+          </h2>
+          
+<div class="tags">
+  
+  <a href="/blog/sql">#sql</a>
+  
+</div>
+
+
+
+          <p>How many users joined in the last 5 months? What were total sales in Q2? How much revenue came from the March sign up cohort?</p>
+
+<p>Although these questions can be answered with a single number, it can be useful to see a <em>running total</em> over time: how many unique users joined, or how much cumulative revenue was received by day over some period.</p>
+
+<p>Usually, data is stored incrementally. For example, here’s a table of sales per day:</p>
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Sales</th>
+  </tr>
+  <tr>
+    <td style="width: 216px;">10/1/2015</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>10/2/2015</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/3/2015</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>10/4/2015</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>10/5/2015</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>10/6/2015</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10/7/2015</td>
+    <td>6</td>
+  </tr>
+</table>
+
+<p>How do we generate the following table of cumulative sales over time? In SQL, there are two typical approaches: a self join or a window function.</p>
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Running Total of Sales</th>
+  </tr>
+  <tr>
+    <td style="width: 216px;">10/1/2015</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>10/2/2015</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>10/3/2015</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>10/4/2015</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>10/5/2015</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>10/6/2015</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>10/7/2015</td>
+    <td>34</td>
+  </tr>
+</table>
+
+<p>A self join is a query that compares a table to itself. In this case, we’re comparing each date to any date less than or equal to it in order to calculate the running total. Concretely, we take the sum of <code>sales</code> in the second table over every row that has a date less than or equal to the date coming from the first table. This is Postgres/Redshift syntax, but other SQL dialects are very similar.</p>
+
+<noscript><pre>select 
+    a.date,
+    sum(b.sales) as cumulative_sales
+from sales_table a 
+join sales_table b on a.date &gt;= b.date
+group by a.date
+order by a.date;</pre></noscript>
+<script src="https://gist.github.com/grano/b705f532374c0ec02f03.js?file=sales_running_total.sql"> </script>
+
+<p>This is not a bad approach; it is a nice showcase of how extensible SQL can be using only <code>select</code>, <code>from</code>, <code>join</code>, and <code>group by</code> statements.</p>
+
+<p>But it is a lot of code for a simple task. Let’s try a window function. They are designed to calculate a metric over a set of rows. In our case, we want to sum every row where the date is less than or equal to the date in the current row.</p>
+
+<noscript><pre>select
+    date,
+    sum(sales) over (order by date rows unbounded preceding) as cumulative_sales
+from sales_table;</pre></noscript>
+<script src="https://gist.github.com/grano/88fcf67e5ff14ae9e1c2.js?file=cumulative_sales_window_function.sql"> </script>
+
+<p>The window function can filter and arrange the set of rows to run the function over. Here the <code>order by date rows unbounded preceding</code> limits the sum function to only <code>sales</code> before the date of the current row. Window functions are incredibly useful for time-based analytical queries; to learn more, the <a href="http://www.postgresql.org/docs/9.4/static/tutorial-window.html">Postgres docs</a> are a great place to start.</p>
+
+<p>The final step of creating a chart and sharing it triumphantly with your teammates is easily accomplished using <a href="https://app.wagonhq.com/result/dcyjd5ha7eiptaoa">Wagon</a>. Window functions for the win!</p>
+
+<p><strong><em>Wagon is a modern SQL editor for analysts and engineers: write queries, visualize data, and share charts with your team. Signup for free:</em></strong></p>
+
+<form id="waitlist-form">
+  <div id="signup-name" class="form-group">
+    <input class="form-control input-lg" type="text" name="name" placeholder="Your name" />
+  </div>
+  <div id="signup-email" class="form-group">
+    <input class="form-control input-lg" type="text" name="email" placeholder="name@company.com" />
+  </div>
+  <p id="signup-error-message" class="form-group" style="color: red;"></p>
+  <p id="signup-success-message" class="form-group text-center"></p>
+  <div id="signup-submit-button" class="form-group">
+    <button class="btn btn-success btn-lg waitlist-submit-button" type="submit" name="submit" id="signup-submit">Sign up and download</button>
+  </div>
+</form>
+<script src="/js/signup.js"></script>
+
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+    <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+      <div class="container">
+        <p class="navbar-text navbar-right">&copy; 2016 Wagon Analytics, Inc.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="mailto:hello@wagonhq.com">Email</a></li>
+          <li><a href="https://twitter.com/WagonHQ" target="_blank">Twitter</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <link rel="stylesheet" href="/css/github-gist.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
